@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      SELECTION
+    </ion-title>
+    <ion-buttons *ngIf="!isUserLoggedIn()" slot="end">
+      <ion-button (click)="goToLogin()">
+        <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="isUserLoggedIn()" slot="end">
+      <ion-button (click)="logout()" >
+        <ion-icon name="exit-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+</ion-content>
