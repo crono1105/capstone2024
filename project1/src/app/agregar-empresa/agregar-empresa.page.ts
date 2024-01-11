@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service'; // Asegúrate de que la ruta sea correcta
+import { AuthService } from '../auth.service'; 
 
 @Component({
   selector: 'app-agregar-empresa',
@@ -22,6 +22,7 @@ export class AgregarEmpresaPage implements OnInit {
 
   ngOnInit() {
     this.cargarComunas();
+    console.log(this.cargarComunas);
   }
 
   async cargarComunas() {

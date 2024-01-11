@@ -14,7 +14,7 @@ export class AuthService {
     if (this.isLoggedIn) {
       const usuarioCorreo = localStorage.getItem('usuarioCorreo');
       if (!usuarioCorreo) {
-        this.logout(); 
+        this.logout();
       }
     }
   }
@@ -90,5 +90,32 @@ export class AuthService {
       console.error('Error al obtener comunas:', error);
       return [];
     }
-  }  
+  }
+  async agregarProducto(producto: any): Promise<any> {
+    const url = `${this.apiUrl}/producto`;
+    try {
+      const resultado = await this.http.post(url, producto).toPromise();
+      return resultado;
+    } catch (error) {
+      console.error('Error al agregar producto:', error);
+      throw error;
+    }
+  }
+
+  async obtenerCategoria(): Promise<any[]> {
+    const url = `${this.apiUrl}/categoria_producto`;
+    try {
+      const categoria = await this.http.get<any[]>(url).toPromise();
+      return categoria || [];
+      console.log(categoria);
+    } catch (error) {
+      console.error('Error al obtener comunas:', error);
+      return [];
+    }
+  }
+
+  async obtenerEmpresasPorUsuario(usuarioCorreo: string): Promise<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/empresas/${localStorage.getItem('usuarioCorreo')}`).toPromise()
+      .then(empresas => empresas || []) 
+  }
 }

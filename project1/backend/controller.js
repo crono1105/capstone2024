@@ -49,9 +49,38 @@ const obtenerComunas = (callback) => {
     });
 };
 
+const agregarProducto = (producto, callback) => {
+    const { nombre_producto, precio, img_producto, rut_empresa, id_categoria } = producto;
+    const sql = 'INSERT INTO producto (nombre_producto, precio, img_producto, rut_empresa, id_categoria) VALUES (?, ?, ?, ?, ?)';
+    db.query(sql, [nombre_producto, precio, img_producto, rut_empresa, id_categoria], callback);
+};
+
+const obtenerEmpresasPorUsuario = (correoUsuario, callback) => {
+    const sql = 'SELECT * FROM empresa WHERE usuario_correo = ?';
+    db.query(sql, [correoUsuario], (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, results);
+    });
+};
+
+const obtenerCategorias = (callback) => {
+    const sql = 'SELECT * FROM categoria_producto';
+    db.query(sql, (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, results);
+    });
+};
+
 module.exports = {
     registroUsuario,
     loginUsuario,
     insertarEmpresa,
-    obtenerComunas
+    obtenerComunas,
+    agregarProducto,
+    obtenerEmpresasPorUsuario,
+    obtenerCategorias,
 };
