@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registrar Empresa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="registrarEmpresa()">
+    <ion-item>
+      <ion-label position="floating">RUT Empresa</ion-label>
+      <ion-input type="text" [(ngModel)]="empresa.rut_empresa" name="rut_empresa" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nombre Empresa</ion-label>
+      <ion-input type="text" [(ngModel)]="empresa.nombre_empresa" name="nombre_empresa" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Dirección</ion-label>
+      <ion-input type="text" [(ngModel)]="empresa.direccion" name="direccion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input type="text" [(ngModel)]="empresa.telefono_empresa" name="telefono_empresa"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">URL del Mapa</ion-label>
+      <ion-input type="url" [(ngModel)]="empresa.mapa" name="mapa"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Comuna</ion-label>
+      <ion-select [(ngModel)]="empresa.id_comuna" name="id_comuna" interface="popover">
+        <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id_comuna">{{ comuna.nombre_comuna }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" class="ion-margin-top">Registrar Empresa</ion-button>
+  </form>
+</ion-content>

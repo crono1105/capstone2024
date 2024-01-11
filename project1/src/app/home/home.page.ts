@@ -28,4 +28,8 @@ export class HomePage implements OnInit {
   isUserLoggedIn() {
     return this.authService.isLoggedIn;
   }
+
+  goToAddEmpresa() {
+    this.router.navigate(['/agregar-empresa']);  
+  }
 }

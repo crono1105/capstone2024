@@ -27,7 +27,31 @@ const loginUsuario = (correo_electronico, password, callback) => {
     });
 };
 
+const insertarEmpresa = (empresa, callback) => {
+    const { rut_empresa, nombre_empresa, direccion, mapa, telefono_empresa, usuario_correo, id_comuna } = empresa;
+    const sql = 'INSERT INTO empresa (rut_empresa, nombre_empresa, direccion, mapa, telefono_empresa, usuario_correo, id_comuna) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    
+    db.query(sql, [rut_empresa, nombre_empresa, direccion, mapa, telefono_empresa, usuario_correo, id_comuna], (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, results);
+    });
+};
+
+const obtenerComunas = (callback) => {
+    const sql = 'SELECT * FROM comuna';
+    db.query(sql, (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, results);
+    });
+};
+
 module.exports = {
     registroUsuario,
-    loginUsuario
+    loginUsuario,
+    insertarEmpresa,
+    obtenerComunas
 };

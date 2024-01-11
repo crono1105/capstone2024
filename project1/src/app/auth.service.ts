@@ -10,9 +10,13 @@ export class AuthService {
   public isLoggedIn = false;
 
   constructor(private http: HttpClient, private router: Router) {
-    // Verificar si hay un estado de inicio de sesión almacenado en el localStorage
-    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
-    this.isLoggedIn = storedIsLoggedIn === 'true';
+    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (this.isLoggedIn) {
+      const usuarioCorreo = localStorage.getItem('usuarioCorreo');
+      if (!usuarioCorreo) {
+        this.logout(); 
+      }
+    }
   }
 
   async registrarUsuario(usuario: any): Promise<any> {
@@ -37,10 +41,11 @@ export class AuthService {
 
     try {
       const result = await this.http.post(url, credentials).toPromise();
-   
-      // Actualizar isLoggedIn solo después de un inicio de sesión exitoso
+
       this.isLoggedIn = true;
       localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('usuarioCorreo', credentials.correo_electronico); // Almacenar el correo electrónico del usuario
+      console.log(localStorage.getItem('usuarioCorreo'));
       return result;
     } catch (error) {
       throw error;
@@ -49,7 +54,41 @@ export class AuthService {
 
   logout(): void {
     this.isLoggedIn = false;
-    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('usuarioCorreo'); // Limpiar el correo electrónico del usuario
     this.router.navigate(['/home']);
   }
+
+  async registrarEmpresa(empresa: any): Promise<any> {
+    const url = `${this.apiUrl}/empresa`;
+    const usuarioCorreo = localStorage.getItem('usuarioCorreo');
+
+    if (!usuarioCorreo) {
+      throw new Error('No hay un usuario logueado.');
+    }
+
+    const empresaConUsuario = { ...empresa, usuario_correo: usuarioCorreo };
+
+    try {
+      const result = await this.http.post(url, empresaConUsuario).toPromise();
+      console.log('Empresa registrada con éxito');
+      return result;
+    } catch (error) {
+      if (error instanceof HttpErrorResponse) {
+        console.error('Error al registrar la empresa:', error.message);
+        throw error;
+      }
+    }
+  }
+
+  async obtenerComunas(): Promise<any[]> {
+    const url = `${this.apiUrl}/comunas`;
+    try {
+      const comunas = await this.http.get<any[]>(url).toPromise();
+      return comunas || [];
+    } catch (error) {
+      console.error('Error al obtener comunas:', error);
+      return [];
+    }
+  }  
 }

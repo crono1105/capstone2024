@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
+  },  {
+    path: 'agregar-empresa',
+    loadChildren: () => import('./agregar-empresa/agregar-empresa.module').then( m => m.AgregarEmpresaPageModule)
   },
+
 ];
 
 @NgModule({
