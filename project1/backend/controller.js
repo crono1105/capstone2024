@@ -75,6 +75,9 @@ const obtenerCategorias = (callback) => {
     });
 };
 
+
+
+
 module.exports = {
     registroUsuario,
     loginUsuario,

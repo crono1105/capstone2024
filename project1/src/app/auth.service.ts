@@ -118,4 +118,10 @@ export class AuthService {
     return this.http.get<any[]>(`${this.apiUrl}/empresas/${localStorage.getItem('usuarioCorreo')}`).toPromise()
       .then(empresas => empresas || []) 
   }
+
+  async obtenerEmpresasPorUsuarioLogiado(usuarioCorreo: string): Promise<any[]> {
+    const response = await this.http.get<any[]>(`${this.apiUrl}/empresas/${localStorage.getItem('usuarioCorreo')}`).toPromise();
+    
+    return response || [];
+  }
 }

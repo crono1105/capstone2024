@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Listar Empresas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Lista de empresas -->
+  <ion-list>
+   
+    <ion-item >
+     
+      <ion-label>rut_empresa</ion-label>
+      <ion-label>nombre empresa</ion-label>
+      <ion-label>dirección</ion-label>
+      <ion-label>telefono</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let empresa of empresas">
+     
+      <ion-label>{{ empresa.rut_empresa }}</ion-label>
+      <ion-label>{{ empresa.nombre_empresa }}</ion-label>
+      <ion-label>{{ empresa.direccion }}</ion-label>
+      <ion-label>{{ empresa.telefono_empresa }}</ion-label>
+      <!-- Agrega más etiquetas según la información que quieras mostrar -->
+    </ion-item>
+  </ion-list>
+
+  <!-- Mensaje de error si no hay empresas o error en la carga -->
+  <div *ngIf="empresas.length === 0">
+    <p>No se encontraron empresas.</p>
+  </div>
+</ion-content>
