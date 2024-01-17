@@ -75,6 +75,29 @@ const obtenerCategorias = (callback) => {
     });
 };
 
+const obtenerProductosPorEmpresa = (req, res) => {
+    let rutEmpresa = req.params.rut_empresa;
+    let sqlQuery = 'SELECT * FROM producto WHERE rut_empresa = ?';
+
+    db.query(sqlQuery, [rutEmpresa], (err, result) => {
+        if (err) {
+            console.error("Error al realizar la consulta: ", err);
+            return res.status(500).json({ error: "Error interno del servidor" });
+        } else if (result.length === 0) {
+            return res.status(404).json({ mensaje: "No se encontraron productos para la empresa especificada" });
+        } else {
+            // Convierte el objeto Buffer a una cadena de caracteres
+            result.forEach(producto => {
+                if (producto.img_producto) {
+                    producto.img_producto = producto.img_producto.toString('utf-8'); // Cambia utf-8 por la codificación adecuada si es diferente
+                }
+            });
+            res.json(result);
+        }
+    });
+};
+
+
 
 
 
@@ -86,4 +109,6 @@ module.exports = {
     agregarProducto,
     obtenerEmpresasPorUsuario,
     obtenerCategorias,
+    obtenerProductosPorEmpresa,
+    
 };

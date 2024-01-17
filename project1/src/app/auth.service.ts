@@ -124,4 +124,15 @@ export class AuthService {
     
     return response || [];
   }
+
+  async obtenerProductosPorEmpresa(rutEmpresa: string): Promise<any[]> {
+    const url = `${this.apiUrl}/productos/${rutEmpresa}`;
+    try {
+      const productos = await this.http.get<any[]>(url).toPromise();
+      return productos || [];
+    } catch (error) {
+      console.error('Error al obtener productos:', error);
+      return [];
+    }
+  }
 }

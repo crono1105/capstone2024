@@ -61,17 +61,18 @@ export class AgregarProductoPage implements OnInit {
   convertirImagenABase64(event: Event) {
     const element = event.currentTarget as HTMLInputElement;
     let files: FileList | null = element.files;
-
+  
     if (files && files.length > 0) {
       const file = files[0];
       const reader = new FileReader();
-
+  
       reader.onload = (e: any) => {
-        this.producto.img_producto = e.target.result;
+        this.producto.img_producto = e.target.result; // Aquí asignas el resultado a tu modelo de producto
       };
-
-      reader.readAsDataURL(file);
+  
+      reader.readAsDataURL(file); // Esto convierte la imagen a Base64
     }
   }
+  
 
 }

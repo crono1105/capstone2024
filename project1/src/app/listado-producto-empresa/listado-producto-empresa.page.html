@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Listado de Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let producto of productos">
+      <ion-thumbnail slot="start">
+        <img [src]="producto.img_producto" alt="Imagen del producto">
+
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ producto.nombre_producto }}</h2>
+        <p>Precio: {{ producto.precio }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button *ngIf="productos.length === 0">
+    No hay productos disponibles
+  </ion-button>
+</ion-content>
+

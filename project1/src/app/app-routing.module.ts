@@ -18,7 +18,8 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
-  },  {
+  },
+  {
     path: 'agregar-empresa',
     loadChildren: () => import('./agregar-empresa/agregar-empresa.module').then( m => m.AgregarEmpresaPageModule)
   },
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'listar-empresas',
     loadChildren: () => import('./listar-empresas/listar-empresas.module').then( m => m.ListarEmpresasPageModule)
+  },
+  {
+    path: 'listado-producto-empresa/:rutEmpresa',
+    loadChildren: () => import('./listado-producto-empresa/listado-producto-empresa.module').then(m => m.ListadoProductoEmpresaPageModule)
   },
 
 ];

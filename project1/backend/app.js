@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const { registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias } = require('./controller');
+const { obtenerProductosPorEmpresa,registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // También para el formato 'x-www-form-urlencoded'
@@ -110,6 +110,10 @@ app.get('/categoria_producto', (req, res) => {
 
         res.json(categoria);
     });
+});
+
+app.get('/productos/:rut_empresa', (req, res) => {
+    obtenerProductosPorEmpresa(req, res);
 });
 
 app.get('/ruta-protegida', verificarToken, (req, res) => {

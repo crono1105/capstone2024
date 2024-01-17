@@ -21,11 +21,10 @@
       <ion-label>{{ empresa.nombre_empresa }}</ion-label>
       <ion-label>{{ empresa.direccion }}</ion-label>
       <ion-label>{{ empresa.telefono_empresa }}</ion-label>
-      <!-- Agrega más etiquetas según la información que quieras mostrar -->
+     
     </ion-item>
   </ion-list>
 
-  <!-- Mensaje de error si no hay empresas o error en la carga -->
   <div *ngIf="empresas.length === 0">
     <p>No se encontraron empresas.</p>
   </div>
