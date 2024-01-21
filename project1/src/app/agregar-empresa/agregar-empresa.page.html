@@ -1,52 +1,68 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Registrar Empresa</ion-title>
-  </ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/home"></ion-back-button>
+  </ion-buttons>
 </ion-header>
 
-<ion-content>
-  <form (ngSubmit)="registrarEmpresa()">
-    <ion-item>
-      <ion-label position="floating">RUT Empresa</ion-label>
-      <ion-input type="text" [(ngModel)]="empresa.rut_empresa" name="rut_empresa" required></ion-input>
-    </ion-item>
+<ion-content class="background">
 
-    <ion-item>
-      <ion-label position="floating">Nombre Empresa</ion-label>
-      <ion-input type="text" [(ngModel)]="empresa.nombre_empresa" name="nombre_empresa" required></ion-input>
-    </ion-item>
+  <ion-card>
+    <ion-card-title> Registro de Empresa </ion-card-title>
 
-    <ion-item>
-      <ion-label position="floating">Dirección</ion-label>
-      <ion-input type="text" [(ngModel)]="empresa.direccion" name="direccion"></ion-input>
-    </ion-item>
+    <ion-card-content>
+      <form (ngSubmit)="registrarEmpresa()">
+        <ion-col>
+          <ion-label position="floating">RUT Empresa</ion-label>
+          <ion-input type="text" [(ngModel)]="empresa.rut_empresa" name="rut_empresa" required></ion-input>
+        </ion-col>
 
-    
+        <br>
 
-    <ion-item>
-      <ion-label position="floating">Latitud</ion-label>
-      <ion-input type="text" [(ngModel)]="empresa.latitud" name="latitud"></ion-input>
-    </ion-item>
+        <ion-col>
+          <ion-label position="floating">Nombre Empresa</ion-label>
+          <ion-input type="text" [(ngModel)]="empresa.nombre_empresa" name="nombre_empresa" required></ion-input>
+        </ion-col>
 
-    <ion-item>
-      <ion-label position="floating">Longitud</ion-label>
-      <ion-input type="text" [(ngModel)]="empresa.longitud" name="longitud"></ion-input>
-    </ion-item>
+        <br>
 
-    <ion-item>
-      <ion-label position="floating">Teléfono</ion-label>
-      <ion-input type="text" [(ngModel)]="empresa.telefono_empresa" name="telefono_empresa"></ion-input>
-    </ion-item>
+        <ion-col>
+          <ion-label position="floating">Dirección</ion-label>
+          <ion-input type="text" [(ngModel)]="empresa.direccion" name="direccion"></ion-input>
+        </ion-col>
 
- 
+        <br>
 
-    <ion-item>
-      <ion-label>Comuna</ion-label>
-      <ion-select [(ngModel)]="empresa.id_comuna" name="id_comuna" interface="popover">
-        <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id_comuna">{{ comuna.nombre_comuna }}</ion-select-option>
-      </ion-select>
-    </ion-item>
+        <ion-col>
+          <ion-label position="floating">Latitud</ion-label>
+          <ion-input type="text" [(ngModel)]="empresa.latitud" name="latitud"></ion-input>
+        </ion-col>
 
-    <ion-button expand="full" type="submit" class="ion-margin-top">Registrar Empresa</ion-button>
-  </form>
+        <br>
+
+        <ion-col>
+          <ion-label position="floating">Longitud</ion-label>
+          <ion-input type="text" [(ngModel)]="empresa.longitud" name="longitud"></ion-input>
+        </ion-col>
+
+        <br>
+
+        <ion-col>
+          <ion-label position="floating">Teléfono</ion-label>
+          <ion-input type="text" [(ngModel)]="empresa.telefono_empresa" name="telefono_empresa"></ion-input>
+        </ion-col>
+
+        <br>
+
+        <ion-col>
+          <ion-label>Comuna</ion-label>
+          <ion-select class="opciones" [(ngModel)]="empresa.id_comuna" name="id_comuna" interface="popover">
+            <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id_comuna">{{ comuna.nombre_comuna
+              }}</ion-select-option>
+          </ion-select>
+        </ion-col>
+
+        <ion-button class="confirmar" expand="block" type="submit">Confirmar</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -1,0 +1,97 @@
+.background {
+    --background: #ffffff;
+}
+
+.logologin {
+    display: flex;
+    width: 100%;
+
+    img {
+        width: 25%;
+        height: auto;
+    }
+}
+
+ion-card {
+    --background: transparent;
+    border-radius: 30px;
+    margin-top: 2%;
+    border: 3px solid black;
+    margin-left: 18%;
+
+
+    ion-card-content {
+        --background: transparent;
+    }
+
+    ion-card-title {
+        text-align: center;
+        color: rgb(14, 13, 13);
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    ion-col {
+
+        ion-label {
+            color: rgb(0, 0, 0);
+            background: transparent;
+            font-size: 18px;
+        }
+
+        ion-input {
+            color: rgb(0, 0, 0);
+            background: transparent;
+            border-bottom: 2px solid black;
+            padding-bottom: 5px;
+        }
+    }
+
+    .iniciar {
+        --background: #1464f6;
+        /* Cambia este color al deseado */
+        --border-radius: 6px;
+        --color: #000000;
+        /* Puedes ajustar el color del texto si es necesario */
+        font-weight: bold;
+        font-size: 18px;
+        width: 50%;
+        margin-left: 25%;
+
+    }
+
+    p.create-account {
+        text-align: center;
+        margin-top: 30px;
+        border-bottom: 0px solid transparent;
+        /* Hace la línea de enlace transparente */
+        font-size: 18px;
+    }
+};
+
+
+/* Pantallas de escritorio más grandes */
+@media only screen and (min-width: 1000px) {
+    .logologin img {
+        width: 25%;
+        margin-left: 33%;
+
+    }
+
+    ion-card {
+        width: 65%;
+
+    }
+
+    ion-col {
+        margin-left: 5%;
+    }
+
+    ion-input {
+        font-size: 18px;
+        width: 83%;
+        margin-left: 5%;
+
+    }
+
+}

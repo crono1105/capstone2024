@@ -1,25 +1,36 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="background">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-col class="logologin">
+    <img src="../../assets/images/logo/logoselection.png">
+  </ion-col>
 
-  <ion-item>
-    <ion-label position="floating">Correo electrónico</ion-label>
-    <ion-input [(ngModel)]="credenciales.correo_electronico" type="text"></ion-input>
-  </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input [(ngModel)]="credenciales.password" type="password"></ion-input>
-  </ion-item>
+  <ion-card>
 
-  <ion-button expand="full" (click)="loginUsuario()">Iniciar sesión</ion-button>
+    <ion-card-title> Ingrese su cuenta </ion-card-title>
+
+    <ion-card-content>
+
+      <ion-col>
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input [(ngModel)]="credenciales.correo_electronico" type="email"></ion-input>
+      </ion-col>
+
+      <br>
+
+      <ion-col>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [(ngModel)]="credenciales.password" type="password"></ion-input>
+      </ion-col>
+
+      <ion-button class="iniciar" expand="block" (click)="loginUsuario()">Iniciar sesión</ion-button>
+
+    </ion-card-content>
+
+    <a routerLink="/registro">
+      <p class="create-account">Crea tu cuenta</p>
+    </a>
+
+  </ion-card>
+
 </ion-content>
