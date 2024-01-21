@@ -43,8 +43,9 @@ const routes: Routes = [
   {
     path: 'perfil-usuario/:correo',
     loadChildren: () => import('./perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
-  },  {
-    path: 'ver-producto',
+  },
+  {
+    path: 'ver-producto/:idProducto',
     loadChildren: () => import('./ver-producto/ver-producto.module').then( m => m.VerProductoPageModule)
   },
 

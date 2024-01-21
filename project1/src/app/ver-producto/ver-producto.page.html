@@ -1,13 +1,37 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>ver-producto</ion-title>
+    <ion-title>Detalle del Producto</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">ver-producto</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card *ngIf="detalleProducto">
+    <ion-card-header>
+      <ion-card-title>{{ detalleProducto.nombre_producto }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-img [src]="detalleProducto.img_producto" *ngIf="detalleProducto.img_producto"></ion-img>
+
+      <ion-list>
+        <ion-item>
+          <ion-label>Precio</ion-label>
+          <ion-text>{{ detalleProducto.precio }}</ion-text>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label>Stock</ion-label>
+          <ion-text>{{ detalleProducto.stock }}</ion-text>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label>Empresa</ion-label>
+          <ion-text>{{ detalleProducto.nombre_empresa }}</ion-text>
+        </ion-item>
+        
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="full" routerLink="/productos">Volver a la lista de productos</ion-button>
 </ion-content>

@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const { obtenerDetalleProductosPorEmpresa, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const { obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // También para el formato 'x-www-form-urlencoded'
@@ -148,6 +148,27 @@ app.get('/detalle-productos/:usuarioCorreo', (req, res) => {
             return res.json(detallesProductos);
         } else {
             return res.status(404).json({ mensaje: 'No se encontraron detalles de productos para la empresa' });
+        }
+    });
+});
+
+app.get('/producto/:idProducto', (req, res) => {
+    // Obtiene el ID del producto desde la URL utilizando req.params
+    const idProducto = req.params.idProducto;
+
+    // Llama a la función del controlador para obtener el detalle del producto
+    obtenerDetalleProducto(idProducto, (err, detalleProducto) => {
+        if (err) {
+            // Manejo de errores
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        if (detalleProducto) {
+            // Si se encuentra el detalle del producto, envía la respuesta en formato JSON
+            return res.json(detalleProducto);
+        } else {
+            // Si no se encuentra el producto, envía una respuesta de "no encontrado"
+            return res.status(404).json({ mensaje: 'Producto no encontrado' });
         }
     });
 });

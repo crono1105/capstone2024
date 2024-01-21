@@ -169,26 +169,32 @@ const obtenerUsuarioPorCorreo = (correo_electronico, callback) => {
 };
 
 
-const obtenerDetalleProductosPorEmpresa = (usuarioCorreo, callback) => {
+const obtenerDetalleProducto = (idProducto, callback) => {
     const sql = `
       SELECT *
       FROM producto
       JOIN empresa ON empresa.rut_empresa = producto.rut_empresa
-      WHERE empresa.usuario_correo = ?`;
+      WHERE producto.id_producto = ?`;
 
-    db.query(sql, [usuarioCorreo], (err, results) => {
+    db.query(sql, [idProducto], (err, results) => {
         if (err) {
-            console.error('Error al obtener detalles de los productos por empresa:', err.message);
+            console.error('Error al obtener detalle del producto:', err.message);
             return callback(err, null);
         }
 
         if (results.length > 0) {
-            const detallesProductos = results;
-            console.log('Detalles de los productos por empresa:', detallesProductos);
-            return callback(null, detallesProductos);
+            const detalleProducto = results[0];
+
+            // Ajusta la propiedad img_producto si existe
+            if (detalleProducto.img_producto) {
+                detalleProducto.img_producto = detalleProducto.img_producto.toString('utf-8');
+            }
+
+            console.log('Detalle del producto:', detalleProducto);
+            return callback(null, detalleProducto);
         } else {
-            console.log('No se encontraron productos para la empresa');
-            return callback(null, []);
+            console.log('Producto no encontrado');
+            return callback(null, null);
         }
     });
 };
@@ -209,6 +215,6 @@ module.exports = {
     obtenerProductosPorEmpresa,
     obtenerTodosLosProductos,
     obtenerUsuarioPorCorreo,
-    obtenerDetalleProductosPorEmpresa,
+    obtenerDetalleProducto,
 
 };

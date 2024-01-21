@@ -159,6 +159,17 @@ export class AuthService {
       throw error;
     }
   }
+  
+  async obtenerDetalleProducto(idProducto: number): Promise<any> {
+    try {
+      // Realiza una solicitud GET para obtener el detalle del producto por su ID
+      const response = await this.http.get(`${this.apiUrl}/producto/${idProducto}`).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al obtener detalle del producto:', error);
+      throw error;
+    }
+  }
 }
 
 
