@@ -23,11 +23,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- Agregar un componente de lista para mostrar los productos -->
-  <ion-list>
-    <!-- Utiliza *ngFor para iterar a través de la lista de productos -->
+  <ion-list>   
     <ion-item *ngFor="let producto of productos">
-      <!-- Muestra los detalles del producto, puedes personalizar esto según tus necesidades -->
+ 
       <ion-label>
         <h2>{{ producto.nombre_producto }}</h2>
         <p>Precio: {{ producto.precio }}</p>
