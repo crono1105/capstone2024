@@ -9,16 +9,15 @@ import { AuthService } from '../auth.service';
 })
 export class HomePage implements OnInit {
   productos: any[] = []; // Esta variable almacenará la lista de productos
-
+  usuarioCorreo?: string | null;
   constructor(private router: Router, private authService: AuthService) {}
-
   ngOnInit(): void {
     console.log(this.authService.isLoggedIn);
 
     // Llama a la función para obtener todos los productos al inicializar la página
     this.obtenerProductos();
   }
-
+  
   goToLogin() {
     this.router.navigate(['/login']);  
   }
@@ -35,6 +34,7 @@ export class HomePage implements OnInit {
     this.router.navigate(['/agregar-empresa']);  
   }
 
+
   // Función para obtener todos los productos
   obtenerProductos() {
     this.authService.obtenerTodosLosProductos().then((productos) => {
@@ -45,4 +45,18 @@ export class HomePage implements OnInit {
       console.error('Error al obtener todos los productos:', error);
     });
   }
+
+  goToPerfil() {
+    // Obtener el correo electrónico del usuario logueado
+    this.usuarioCorreo = this.authService.obtenerCorreoElectronico();
+
+    // Verificar si se obtuvo el correo electrónico
+    if (this.usuarioCorreo) {
+      // Navegar a la ruta del correo electrónico logueado (ajusta la ruta según tu estructura de rutas)
+      this.router.navigate(['/perfil-usuario', this.usuarioCorreo]);
+    } else {
+      console.error('No se pudo obtener el correo electrónico del usuario logueado.');
+      // Manejar el caso en el que no se obtiene el correo electrónico
+    }
+  } 
 }
