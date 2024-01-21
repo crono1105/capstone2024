@@ -14,6 +14,15 @@ ion-title {
     font-weight: bold;
 }
 
+ion-icon[name="add-outline"] {
+    position: absolute; /* Posición absoluta para el ícono dentro de ion-card */
+    top: 0.5%; /* Ajusta la distancia desde la parte superior de ion-card */
+    right: 30%; /* Ajusta la distancia desde el lado derecho de ion-card */
+    font-size: 26px;
+    color: rgb(0, 0, 0);/* Color negro para el ícono del lápiz */ 
+
+}
+
 ion-header {
     background-color: #FFFFFF !important;
 }
