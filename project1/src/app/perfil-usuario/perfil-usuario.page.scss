@@ -18,6 +18,14 @@ ion-icon[name="pencil-outline"] {
     color: rgb(0, 0, 0);/* Color negro para el ícono del lápiz */ 
 }
 
+ion-icon[name="business-outline"] {
+    position: absolute; /* Posición absoluta para el ícono dentro de ion-card */
+    top: 2%; /* Ajusta la distancia desde la parte superior de ion-card */
+    right: 30%; /* Ajusta la distancia desde el lado derecho de ion-card */
+    font-size: 24px;
+    color: rgb(0, 0, 0);/* Color negro para el ícono del lápiz */ 
+}
+
 ion-card {
     --background: transparent;
     border-radius: 30px;
