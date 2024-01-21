@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -11,7 +12,7 @@ export class PerfilUsuarioPage implements OnInit {
   correo: string = ''; // Inicializamos la propiedad correo con un valor vacío
   usuario: any; // Esta variable almacenará los datos del usuario
 
-  constructor(private route: ActivatedRoute, private authService: AuthService) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService,private router: Router) { }
 
   async ngOnInit() {
     this.route.params.subscribe(params => {
@@ -30,5 +31,10 @@ export class PerfilUsuarioPage implements OnInit {
     } catch (error) {
       console.error('Error al obtener usuario:', error);
     }
+  }
+
+
+  GotoListarEmpresa(){
+    this.router.navigate(['/listar-empresas']);  
   }
 }
