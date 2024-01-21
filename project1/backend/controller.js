@@ -60,10 +60,10 @@ const loginUsuario = (correo_electronico, password, callback) => {
 
 
 const insertarEmpresa = (empresa, callback) => {
-    const { rut_empresa, nombre_empresa, direccion, telefono_empresa, usuario_correo, id_comuna,latitud,longitud } = empresa;
+    const { rut_empresa, nombre_empresa, direccion, telefono_empresa, usuario_correo, id_comuna, latitud, longitud } = empresa;
     const sql = 'INSERT INTO empresa (rut_empresa, nombre_empresa, direccion, telefono_empresa, usuario_correo, id_comuna,latitud,longitud) VALUES (?, ?, ?, ?, ?, ?, ?,?)';
 
-    db.query(sql, [rut_empresa, nombre_empresa, direccion, telefono_empresa, usuario_correo, id_comuna,latitud,longitud], (err, results) => {
+    db.query(sql, [rut_empresa, nombre_empresa, direccion, telefono_empresa, usuario_correo, id_comuna, latitud, longitud], (err, results) => {
         if (err) {
             return callback(err, null);
         }
@@ -82,9 +82,9 @@ const obtenerComunas = (callback) => {
 };
 
 const agregarProducto = (producto, callback) => {
-    const { nombre_producto, precio, img_producto, rut_empresa, id_categoria , stock} = producto;
+    const { nombre_producto, precio, img_producto, rut_empresa, id_categoria, stock } = producto;
     const sql = 'INSERT INTO producto (nombre_producto, precio, img_producto, rut_empresa, id_categoria,stock) VALUES (?, ?, ?, ?, ?,?)';
-    db.query(sql, [nombre_producto, precio, img_producto, rut_empresa, id_categoria,stock], callback);
+    db.query(sql, [nombre_producto, precio, img_producto, rut_empresa, id_categoria, stock], callback);
 };
 
 const obtenerEmpresasPorUsuario = (correoUsuario, callback) => {
@@ -169,6 +169,32 @@ const obtenerUsuarioPorCorreo = (correo_electronico, callback) => {
 };
 
 
+const obtenerDetalleProductosPorEmpresa = (usuarioCorreo, callback) => {
+    const sql = `
+      SELECT *
+      FROM producto
+      JOIN empresa ON empresa.rut_empresa = producto.rut_empresa
+      WHERE empresa.usuario_correo = ?`;
+
+    db.query(sql, [usuarioCorreo], (err, results) => {
+        if (err) {
+            console.error('Error al obtener detalles de los productos por empresa:', err.message);
+            return callback(err, null);
+        }
+
+        if (results.length > 0) {
+            const detallesProductos = results;
+            console.log('Detalles de los productos por empresa:', detallesProductos);
+            return callback(null, detallesProductos);
+        } else {
+            console.log('No se encontraron productos para la empresa');
+            return callback(null, []);
+        }
+    });
+};
+
+
+
 
 
 
@@ -183,5 +209,6 @@ module.exports = {
     obtenerProductosPorEmpresa,
     obtenerTodosLosProductos,
     obtenerUsuarioPorCorreo,
+    obtenerDetalleProductosPorEmpresa,
 
 };

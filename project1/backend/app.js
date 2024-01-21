@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const {obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const { obtenerDetalleProductosPorEmpresa, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // También para el formato 'x-www-form-urlencoded'
@@ -133,6 +133,25 @@ app.get('/usuario/:correo_electronico', (req, res) => {
         }
     });
 });
+
+
+app.get('/detalle-productos/:usuarioCorreo', (req, res) => {
+    const usuarioCorreo = req.params.usuarioCorreo;
+
+    // Llama a la función obtenerDetalleProductosPorEmpresa y maneja la respuesta
+    obtenerDetalleProductosPorEmpresa(usuarioCorreo, (err, detallesProductos) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        if (detallesProductos.length > 0) {
+            return res.json(detallesProductos);
+        } else {
+            return res.status(404).json({ mensaje: 'No se encontraron detalles de productos para la empresa' });
+        }
+    });
+});
+
 
 app.get('/ruta-protegida', verificarToken, (req, res) => {
     res.json({ mensaje: 'Ruta protegida' });
