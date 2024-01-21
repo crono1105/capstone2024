@@ -159,7 +159,7 @@ export class AuthService {
       throw error;
     }
   }
-  
+
   async obtenerDetalleProducto(idProducto: number): Promise<any> {
     try {
       // Realiza una solicitud GET para obtener el detalle del producto por su ID
@@ -169,6 +169,10 @@ export class AuthService {
       console.error('Error al obtener detalle del producto:', error);
       throw error;
     }
+  }
+
+  obtenerCorreoElectronico(): string | null {
+    return localStorage.getItem('usuarioCorreo');
   }
 }
 
