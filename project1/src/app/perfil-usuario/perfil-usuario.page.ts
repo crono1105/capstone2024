@@ -37,4 +37,8 @@ export class PerfilUsuarioPage implements OnInit {
   GotoListarEmpresa(){
     this.router.navigate(['/listar-empresas']);  
   }
+
+  GoToModificarPerfil(){
+    this.router.navigate(['modificar-perfil']);
+  }
 }
