@@ -174,6 +174,19 @@ export class AuthService {
   obtenerCorreoElectronico(): string | null {
     return localStorage.getItem('usuarioCorreo');
   }
+
+  async modificarUsuario(usuario: any): Promise<any> {
+    const url = `${this.apiUrl}/modificar-usuario`;
+
+    try {
+      const result = await this.http.post(url, usuario).toPromise();
+      console.log('Usuario modificado con éxito');
+      return result;
+    } catch (error) {
+      console.error('Error al modificar el usuario:', error);
+      throw error;
+    }
+  }
 }
 
 

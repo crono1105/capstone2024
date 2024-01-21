@@ -1,13 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>modificar-perfil</ion-title>
+    <ion-title>Modificar Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">modificar-perfil</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-item>
+    <ion-label position="floating">Correo Electrónico</ion-label>
+    <ion-input [(ngModel)]="usuarioModificado.correoElectronico" type="email" disabled></ion-input>
+    <!-- El campo de correo electrónico se muestra pero no se permite editar (disabled) -->
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="usuarioModificado.nombre" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Teléfono</ion-label>
+    <ion-input [(ngModel)]="usuarioModificado.telefono" type="tel"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="modificarPerfil()">Guardar Cambios</ion-button>
+
 </ion-content>

@@ -199,6 +199,36 @@ const obtenerDetalleProducto = (idProducto, callback) => {
     });
 };
 
+const modificarUsuario = (req, res) => {
+    const { correoElectronico, nombre, contraseña, telefono } = req.body;
+
+    // Construir la consulta SQL para actualizar el usuario
+    const sql = `
+      UPDATE usuario
+      SET nombre_completo = IFNULL(?, nombre_completo),
+          password = IFNULL(?, password),
+          telefono = IFNULL(?, telefono)
+      WHERE correo_electronico = ?;
+    `;
+
+    // Ejecutar la consulta SQL
+    db.query(sql, [nombre, contraseña, telefono, correoElectronico], (err, result) => {
+        if (err) {
+            console.error('Error al modificar usuario:', err.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        if (result.affectedRows === 0) {
+            // Si no se encuentra el usuario, enviar una respuesta de "no encontrado"
+            return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+        }
+
+        // Usuario modificado con éxito
+        return res.json({ mensaje: 'Usuario modificado con éxito' });
+    });
+};
+
+
 
 
 
@@ -216,5 +246,6 @@ module.exports = {
     obtenerTodosLosProductos,
     obtenerUsuarioPorCorreo,
     obtenerDetalleProducto,
+    modificarUsuario,
 
 };
