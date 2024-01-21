@@ -97,6 +97,25 @@ const obtenerProductosPorEmpresa = (req, res) => {
     });
 };
 
+const obtenerTodosLosProductos = (req, res) => {
+    let sqlQuery = 'SELECT * FROM producto'; // Consulta SQL para seleccionar todos los productos
+
+    db.query(sqlQuery, (err, result) => {
+        if (err) {
+            console.error("Error al realizar la consulta: ", err);
+            return res.status(500).json({ error: "Error interno del servidor" });
+        } else {
+            // Mapea y convierte img_producto a Base64 para cada producto
+            result.forEach(producto => {
+                if (producto.img_producto) {
+                    producto.img_producto = producto.img_producto.toString('utf-8');
+                }
+            });
+            res.json(result);
+        }
+    });
+};
+
 
 
 
@@ -110,5 +129,6 @@ module.exports = {
     obtenerEmpresasPorUsuario,
     obtenerCategorias,
     obtenerProductosPorEmpresa,
+    obtenerTodosLosProductos,
     
 };

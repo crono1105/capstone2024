@@ -116,12 +116,12 @@ export class AuthService {
 
   async obtenerEmpresasPorUsuario(usuarioCorreo: string): Promise<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/empresas/${localStorage.getItem('usuarioCorreo')}`).toPromise()
-      .then(empresas => empresas || []) 
+      .then(empresas => empresas || [])
   }
 
   async obtenerEmpresasPorUsuarioLogiado(usuarioCorreo: string): Promise<any[]> {
     const response = await this.http.get<any[]>(`${this.apiUrl}/empresas/${localStorage.getItem('usuarioCorreo')}`).toPromise();
-    
+
     return response || [];
   }
 
@@ -135,4 +135,16 @@ export class AuthService {
       return [];
     }
   }
+
+  async obtenerTodosLosProductos(): Promise<any[]> {
+    const url = `${this.apiUrl}/productos`; // Ruta definida en tu servidor para obtener todos los productos
+    try {
+      const productos = await this.http.get<any[]>(url).toPromise();
+      return productos || [];
+    } catch (error) {
+      console.error('Error al obtener todos los productos:', error);
+      return [];
+    }
+  }
+
 }

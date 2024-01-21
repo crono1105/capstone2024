@@ -8,12 +8,15 @@ import { AuthService } from '../auth.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  
+  productos: any[] = []; // Esta variable almacenará la lista de productos
 
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
-    console.log(this.authService.isLoggedIn)
+    console.log(this.authService.isLoggedIn);
+
+    // Llama a la función para obtener todos los productos al inicializar la página
+    this.obtenerProductos();
   }
 
   goToLogin() {
@@ -24,12 +27,22 @@ export class HomePage implements OnInit {
     this.authService.logout();
   }
 
-  // Cambié el nombre de la función a isUserLoggedIn para evitar conflictos
   isUserLoggedIn() {
     return this.authService.isLoggedIn;
   }
 
   goToAddEmpresa() {
     this.router.navigate(['/agregar-empresa']);  
+  }
+
+  // Función para obtener todos los productos
+  obtenerProductos() {
+    this.authService.obtenerTodosLosProductos().then((productos) => {
+      this.productos = productos;
+      console.log(productos[2].img_producto);
+      console.log('Lista de productos:', this.productos);
+    }).catch((error) => {
+      console.error('Error al obtener todos los productos:', error);
+    });
   }
 }
