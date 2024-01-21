@@ -1,13 +1,13 @@
 <ion-header>
   <ion-buttons slot="start">
-    <ion-back-button defaultHref="/perfil-usuario"></ion-back-button>
+    <ion-back-button (click)="goToPerfil()"></ion-back-button>
   </ion-buttons>
 </ion-header>
 
 <ion-content class="background">
 
   <ion-title>Listado de Empresas</ion-title>
-  <ion-icon name="add-outline"></ion-icon>
+  <ion-icon name="add-outline" (click)="GoToListarEmpresa()"></ion-icon>
   
   <br>
 
