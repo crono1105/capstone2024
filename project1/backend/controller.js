@@ -62,7 +62,7 @@ const loginUsuario = (correo_electronico, password, callback) => {
 const insertarEmpresa = (empresa, callback) => {
     const { rut_empresa, nombre_empresa, direccion, mapa, telefono_empresa, usuario_correo, id_comuna } = empresa;
     const sql = 'INSERT INTO empresa (rut_empresa, nombre_empresa, direccion, mapa, telefono_empresa, usuario_correo, id_comuna) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    
+
     db.query(sql, [rut_empresa, nombre_empresa, direccion, mapa, telefono_empresa, usuario_correo, id_comuna], (err, results) => {
         if (err) {
             return callback(err, null);
@@ -148,6 +148,26 @@ const obtenerTodosLosProductos = (req, res) => {
     });
 };
 
+const obtenerUsuarioPorCorreo = (correo_electronico, callback) => {
+    const sql = 'SELECT * FROM usuario WHERE correo_electronico = ?';
+
+    db.query(sql, [correo_electronico], (err, results) => {
+        if (err) {
+            console.error('Error al buscar usuario por correo electrónico:', err.message);
+            return callback(err, null);
+        }
+
+        if (results.length > 0) {
+            const usuario = results[0];
+            console.log('Usuario encontrado por correo electrónico:', usuario);
+            return callback(null, usuario);
+        } else {
+            console.log('Usuario no encontrado por correo electrónico');
+            return callback(null, null);
+        }
+    });
+};
+
 
 
 
@@ -162,5 +182,6 @@ module.exports = {
     obtenerCategorias,
     obtenerProductosPorEmpresa,
     obtenerTodosLosProductos,
-    
+    obtenerUsuarioPorCorreo,
+
 };

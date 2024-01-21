@@ -12,7 +12,6 @@ export class AgregarEmpresaPage implements OnInit {
     nombre_empresa: '',
     direccion: '',
     telefono_empresa: '',
-    mapa: '',
     id_comuna: null
   };
 

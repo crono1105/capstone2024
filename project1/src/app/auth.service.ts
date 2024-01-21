@@ -136,6 +136,8 @@ export class AuthService {
     }
   }
 
+
+
   async obtenerTodosLosProductos(): Promise<any[]> {
     const url = `${this.apiUrl}/productos`; // Ruta definida en tu servidor para obtener todos los productos
     try {
@@ -147,4 +149,17 @@ export class AuthService {
     }
   }
 
+  // Función para obtener un usuario por correo electrónico
+  async getUsuarioPorCorreo(correoElectronico: string): Promise<any> {
+    try {
+      const response = await this.http.get(`${this.apiUrl}/usuario/${correoElectronico}`).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al obtener usuario por correo electrónico:', error);
+      throw error;
+    }
+  }
 }
+
+
+

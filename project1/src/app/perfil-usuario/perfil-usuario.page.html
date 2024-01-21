@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Perfil de Usuario
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngIf="usuario">
+    <ion-card-header>
+      Datos del Usuario
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label position="stacked">Nombre Completo</ion-label>
+          <ion-input [(ngModel)]="usuario.nombre_completo" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Correo Electrónico</ion-label>
+          <ion-input [(ngModel)]="usuario.correo_electronico" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Teléfono</ion-label>
+          <ion-input [(ngModel)]="usuario.telefono" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Último Acceso</ion-label>
+          <ion-input [(ngModel)]="usuario.ultimo_acceso" disabled></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const { obtenerProductosPorEmpresa,registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const {obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // También para el formato 'x-www-form-urlencoded'
@@ -117,6 +117,23 @@ app.get('/productos/:rut_empresa', (req, res) => {
 });
 
 app.get('/productos', obtenerTodosLosProductos);
+
+app.get('/usuario/:correo_electronico', (req, res) => {
+    const correo_electronico = req.params.correo_electronico;
+
+    obtenerUsuarioPorCorreo(correo_electronico, (err, usuario) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        if (usuario) {
+            return res.json(usuario);
+        } else {
+            return res.status(404).json({ mensaje: 'Usuario no encontrado por correo electrónico' });
+        }
+    });
+});
+
 app.get('/ruta-protegida', verificarToken, (req, res) => {
     res.json({ mensaje: 'Ruta protegida' });
 });

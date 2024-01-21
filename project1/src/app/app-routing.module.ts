@@ -35,6 +35,16 @@ const routes: Routes = [
     path: 'listado-producto-empresa/:rutEmpresa',
     loadChildren: () => import('./listado-producto-empresa/listado-producto-empresa.module').then(m => m.ListadoProductoEmpresaPageModule)
   },
+  {
+    path: 'perfil-usuario',
+    loadChildren: () => import('./perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
+  },
+
+  {
+    path: 'perfil-usuario/:correo',
+    loadChildren: () => import('./perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
+  },
+
 
 ];
 
