@@ -46,17 +46,17 @@ export class HomePage implements OnInit {
     });
   }
 
-  goToPerfil() {
-    // Obtener el correo electrónico del usuario logueado
-    this.usuarioCorreo = this.authService.obtenerCorreoElectronico();
+    goToPerfil() {
+      // Obtener el correo electrónico del usuario logueado
+      this.usuarioCorreo = this.authService.obtenerCorreoElectronico();
 
-    // Verificar si se obtuvo el correo electrónico
-    if (this.usuarioCorreo) {
-      // Navegar a la ruta del correo electrónico logueado (ajusta la ruta según tu estructura de rutas)
-      this.router.navigate(['/perfil-usuario', this.usuarioCorreo]);
-    } else {
-      console.error('No se pudo obtener el correo electrónico del usuario logueado.');
-      // Manejar el caso en el que no se obtiene el correo electrónico
-    }
-  } 
+      // Verificar si se obtuvo el correo electrónico
+      if (this.usuarioCorreo) {
+        // Navegar a la ruta del correo electrónico logueado (ajusta la ruta según tu estructura de rutas)
+        this.router.navigate(['/perfil-usuario', this.usuarioCorreo]);
+      } else {
+        console.error('No se pudo obtener el correo electrónico del usuario logueado.');
+        // Manejar el caso en el que no se obtiene el correo electrónico
+      }
+    } 
 }

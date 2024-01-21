@@ -8,8 +8,9 @@ import { Router } from '@angular/router';
 })
 export class ListarEmpresasPage implements OnInit {
   empresas: any[] = []; // Aquí almacenaremos las empresas del usuario
+  usuarioCorreo?: string | null;
   constructor(private router: Router, private authService: AuthService) { }
-
+  
   ngOnInit() {
     const usuarioCorreo = localStorage.getItem('usuarioCorreo');
 
@@ -25,6 +26,24 @@ export class ListarEmpresasPage implements OnInit {
     } else {
       // Manejar el caso en que el correo sea nulo, por ejemplo, redirigiendo al usuario o mostrando un mensaje de error.
       console.error('El correo del usuario es nulo.');
+    }
+  }
+
+  GoToListarEmpresa(){
+    this.router.navigate(['/agregar-empresa']);
+  }
+
+  goToPerfil() {
+    // Obtener el correo electrónico del usuario logueado
+    this.usuarioCorreo = this.authService.obtenerCorreoElectronico();
+
+    // Verificar si se obtuvo el correo electrónico
+    if (this.usuarioCorreo) {
+      // Navegar a la ruta del correo electrónico logueado (ajusta la ruta según tu estructura de rutas)
+      this.router.navigate(['/perfil-usuario', this.usuarioCorreo]);
+    } else {
+      console.error('No se pudo obtener el correo electrónico del usuario logueado.');
+      // Manejar el caso en el que no se obtiene el correo electrónico
     }
   }
 
