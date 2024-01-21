@@ -60,10 +60,10 @@ const loginUsuario = (correo_electronico, password, callback) => {
 
 
 const insertarEmpresa = (empresa, callback) => {
-    const { rut_empresa, nombre_empresa, direccion, mapa, telefono_empresa, usuario_correo, id_comuna } = empresa;
-    const sql = 'INSERT INTO empresa (rut_empresa, nombre_empresa, direccion, mapa, telefono_empresa, usuario_correo, id_comuna) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    const { rut_empresa, nombre_empresa, direccion, telefono_empresa, usuario_correo, id_comuna,latitud,longitud } = empresa;
+    const sql = 'INSERT INTO empresa (rut_empresa, nombre_empresa, direccion, telefono_empresa, usuario_correo, id_comuna,latitud,longitud) VALUES (?, ?, ?, ?, ?, ?, ?,?)';
 
-    db.query(sql, [rut_empresa, nombre_empresa, direccion, mapa, telefono_empresa, usuario_correo, id_comuna], (err, results) => {
+    db.query(sql, [rut_empresa, nombre_empresa, direccion, telefono_empresa, usuario_correo, id_comuna,latitud,longitud], (err, results) => {
         if (err) {
             return callback(err, null);
         }
@@ -82,9 +82,9 @@ const obtenerComunas = (callback) => {
 };
 
 const agregarProducto = (producto, callback) => {
-    const { nombre_producto, precio, img_producto, rut_empresa, id_categoria } = producto;
-    const sql = 'INSERT INTO producto (nombre_producto, precio, img_producto, rut_empresa, id_categoria) VALUES (?, ?, ?, ?, ?)';
-    db.query(sql, [nombre_producto, precio, img_producto, rut_empresa, id_categoria], callback);
+    const { nombre_producto, precio, img_producto, rut_empresa, id_categoria , stock} = producto;
+    const sql = 'INSERT INTO producto (nombre_producto, precio, img_producto, rut_empresa, id_categoria,stock) VALUES (?, ?, ?, ?, ?,?)';
+    db.query(sql, [nombre_producto, precio, img_producto, rut_empresa, id_categoria,stock], callback);
 };
 
 const obtenerEmpresasPorUsuario = (correoUsuario, callback) => {

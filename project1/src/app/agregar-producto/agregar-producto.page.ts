@@ -13,6 +13,7 @@ export class AgregarProductoPage implements OnInit {
     img_producto: '',
     id_categoria: '',
     rut_empresa: '',
+    stock: null 
   };
 
   categorias: any[] = []; 

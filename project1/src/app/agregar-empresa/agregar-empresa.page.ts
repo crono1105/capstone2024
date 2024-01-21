@@ -12,7 +12,9 @@ export class AgregarEmpresaPage implements OnInit {
     nombre_empresa: '',
     direccion: '',
     telefono_empresa: '',
-    id_comuna: null
+    id_comuna: null,
+    latitud:'',
+    longitud:'',
   };
 
   comunas: any[] = [];
