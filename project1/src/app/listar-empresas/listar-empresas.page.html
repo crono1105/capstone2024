@@ -1,29 +1,33 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Listar Empresas</ion-title>
-  </ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/perfil-usuario"></ion-back-button>
+  </ion-buttons>
 </ion-header>
 
-<ion-content>
-  <!-- Lista de empresas -->
-  <ion-list>
-   
-    <ion-item >
-     
-      <ion-label>rut_empresa</ion-label>
-      <ion-label>nombre empresa</ion-label>
-      <ion-label>dirección</ion-label>
-      <ion-label>telefono</ion-label>
-    </ion-item>
-    <ion-item *ngFor="let empresa of empresas">
-     
-      <ion-label>{{ empresa.rut_empresa }}</ion-label>
-      <ion-label>{{ empresa.nombre_empresa }}</ion-label>
-      <ion-label>{{ empresa.direccion }}</ion-label>
-      <ion-label>{{ empresa.telefono_empresa }}</ion-label>
-     
-    </ion-item>
-  </ion-list>
+<ion-content class="background">
+  <ion-tittle></ion-tittle>
+
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col><strong>Rut Empresa</strong></ion-col>
+      <ion-col><strong>Nombre Empresa</strong></ion-col>
+      <ion-col><strong>Dirección</strong></ion-col>
+      <ion-col><strong>Teléfono</strong></ion-col>
+      <ion-col><strong>Editar Empresa</strong></ion-col>
+      <ion-col><strong>Ver Productos</strong></ion-col>
+
+    </ion-row>
+
+    <ion-row *ngFor="let empresa of empresas">
+      <ion-col>{{ empresa.rut_empresa }}</ion-col>
+      <ion-col>{{ empresa.nombre_empresa }}</ion-col>
+      <ion-col>{{ empresa.direccion }}</ion-col>
+      <ion-col>{{ empresa.telefono_empresa }}</ion-col>
+      <ion-col><ion-icon name="pencil-outline"></ion-icon></ion-col>
+      <ion-col><ion-icon name="document-text-outline"></ion-icon></ion-col>
+    </ion-row>
+  </ion-grid>
 
   <div *ngIf="empresas.length === 0">
     <p>No se encontraron empresas.</p>
