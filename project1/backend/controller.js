@@ -3,29 +3,61 @@ const jwt = require('jsonwebtoken');
 
 const registroUsuario = (usuario, callback) => {
     const { correo_electronico, nombre_completo, password, telefono } = usuario;
-    const sql = 'INSERT INTO usuario (correo_electronico, nombre_completo, password, telefono) VALUES (?, ?, ?, ?)'
+    const sql = 'INSERT INTO usuario (correo_electronico, nombre_completo, password, telefono, ultimo_acceso) VALUES (?, ?, ?, ?, NOW())';
     db.query(sql, [correo_electronico, nombre_completo, password, telefono], callback);
-
 };
 
 const loginUsuario = (correo_electronico, password, callback) => {
-    const sql = 'SELECT * FROM usuario WHERE correo_electronico = ? AND password = ?';
-    db.query(sql, [correo_electronico, password], (err, results) => {
+    const sqlSelect = 'SELECT * FROM usuario WHERE correo_electronico = ? AND password = ?';
+    const sqlUpdateUltimoAcceso = 'UPDATE usuario SET ultimo_acceso = NOW() WHERE correo_electronico = ?';
+
+    db.beginTransaction(function (err) {
         if (err) {
-            console.error('Error al buscar usuario:', err.message);
+            console.error('Error al iniciar transacción:', err.message);
             return callback(err, null);
         }
 
-        if (results.length > 0) {
-            const usuario = results[0];
-            console.log('Usuario encontrado:', usuario);
-            return callback(null, usuario);
-        } else {
-            console.log('Usuario no encontrado');
-            return callback(null, null);
-        }
+        db.query(sqlSelect, [correo_electronico, password], (err, results) => {
+            if (err) {
+                console.error('Error al buscar usuario:', err.message);
+                return db.rollback(function () {
+                    callback(err, null);
+                });
+            }
+
+            if (results.length > 0) {
+                const usuario = results[0];
+                console.log('Usuario encontrado:', usuario);
+
+                // Realiza la actualización del último acceso
+                db.query(sqlUpdateUltimoAcceso, [correo_electronico], (err) => {
+                    if (err) {
+                        console.error('Error al actualizar último acceso:', err.message);
+                        return db.rollback(function () {
+                            callback(err, null);
+                        });
+                    }
+
+                    // Commit la transacción
+                    db.commit(function (err) {
+                        if (err) {
+                            console.error('Error al confirmar la transacción:', err.message);
+                            return db.rollback(function () {
+                                callback(err, null);
+                            });
+                        }
+
+                        return callback(null, usuario);
+                    });
+                });
+            } else {
+                console.log('Usuario no encontrado');
+                return callback(null, null);
+            }
+        });
     });
 };
+
 
 const insertarEmpresa = (empresa, callback) => {
     const { rut_empresa, nombre_empresa, direccion, mapa, telefono_empresa, usuario_correo, id_comuna } = empresa;
