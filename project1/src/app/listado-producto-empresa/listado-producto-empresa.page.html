@@ -28,7 +28,8 @@
       <ion-col>{{ producto.precio | currency }}</ion-col>
       <ion-col>{{ producto.stock }}</ion-col>
       <ion-col>
-        <ion-textarea [disabled]="true"  placeholder="Can't type here"></ion-textarea>
+        {{producto.descripcion}}
+        <ion-textarea [disabled]="true"  placeholder=""></ion-textarea>
       </ion-col>
       <ion-col>
         <ion-icon name="pencil-outline"></ion-icon>
