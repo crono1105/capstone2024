@@ -1,38 +1,51 @@
-<!-- modificar-producto.page.html -->
-
 <ion-header>
-  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/lista-productos"></ion-back-button>
     </ion-buttons>
-    <ion-title>Modificar Producto</ion-title>
-  </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="background">
 
-  <ion-item>
-    <ion-label position="floating">Nombre del Producto</ion-label>
-    <ion-input [(ngModel)]="producto.nombre_producto  " name="nombre" type="text"></ion-input>
-  </ion-item>
+  <ion-card>
 
-  <ion-item>
-    <ion-label position="floating">Descripción del Producto</ion-label>
-    <ion-textarea [(ngModel)]="producto.descripcion" name="descripcion"></ion-textarea>
-  </ion-item>
+    <ion-card-title>Modificar Producto</ion-card-title>
 
-  <ion-item>
-    <ion-label position="floating">Precio del Producto</ion-label>
-    <ion-input [(ngModel)]="producto.precio" name="precio" type="number"></ion-input>
-  </ion-item>
+    <ion-card-content>
 
-  <ion-item>
-    <ion-label position="floating">Stock</ion-label>
-    <ion-input [(ngModel)]="producto.stock" name="precio" type="number"></ion-input>
-  </ion-item>
 
-  <!-- Otros campos según tu modelo de datos -->
 
-  <ion-button expand="full" (click)="submitForm()">Modificar Producto</ion-button>
 
+      <ion-col>
+        <ion-label position="floating">Nombre del Producto</ion-label>
+        <ion-input [(ngModel)]="producto.nombre_producto  " name="nombre" type="text"></ion-input>
+      </ion-col>
+
+      <br>
+
+      <ion-col>
+        <ion-label position="floating">Descripción del Producto</ion-label>
+        <ion-textarea [(ngModel)]="producto.descripcion" name="descripcion"></ion-textarea>
+      </ion-col>
+
+      <br>
+
+      <ion-col>
+        <ion-label position="floating">Precio del Producto</ion-label>
+        <ion-input [(ngModel)]="producto.precio" name="precio" type="number"></ion-input>
+      </ion-col>
+
+      <br>
+
+      <ion-col>
+        <ion-label position="floating">Stock</ion-label>
+        <ion-input [(ngModel)]="producto.stock" name="precio" type="number"></ion-input>
+      </ion-col>
+
+      <br>
+
+
+
+      <ion-button class="confirmar" expand="block" (click)="submitForm()">Modificar Producto</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

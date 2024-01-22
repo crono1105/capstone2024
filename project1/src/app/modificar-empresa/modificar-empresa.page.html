@@ -1,34 +1,55 @@
 <ion-header>
   <ion-buttons slot="start">
-      <ion-back-button defaultHref="/listar-empresas"></ion-back-button>
+    <ion-back-button defaultHref="/listar-empresas"></ion-back-button>
   </ion-buttons>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="background">
+  <ion-card>
 
-  <ion-title>
-    Modificar Empresa
-  </ion-title>
-  <ion-label>Dirección</ion-label>
-  <ion-input [(ngModel)]="empresa.direccion" name="direccion" type="text"></ion-input>
+    <ion-card-title> Modificar Empresa </ion-card-title>
 
-  <ion-label>Latitud</ion-label>
-  <ion-input [(ngModel)]="empresa.latitud" name="latitud" type="text"></ion-input>
+      <ion-card-content>
 
-  <ion-label>Longitud</ion-label>
-  <ion-input [(ngModel)]="empresa.longitud" name="longitud" type="text"></ion-input>
+       <ion-col>
+        <ion-label>Dirección</ion-label>
+        <ion-input [(ngModel)]="empresa.direccion" name="direccion" type="text"></ion-input>
+      </ion-col> 
 
-  <ion-label>Teléfono Empresa</ion-label>
-  <ion-input [(ngModel)]="empresa.telefono_empresa" name="telefono_empresa" type="text"></ion-input>
+      <br>
 
-  <ion-list>
-    <ion-item>
-      <ion-label>ID Comuna</ion-label>
-      <ion-select [(ngModel)]="empresa.id_comuna" name="id_comuna">
-        <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id_comuna">{{ comuna.nombre_comuna }}</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+      <ion-col>
+        <ion-label>Latitud</ion-label>
+        <ion-input [(ngModel)]="empresa.latitud" name="latitud" type="text"></ion-input>
+      </ion-col> 
 
-  <ion-button expand="full" (click)="submitForm()">Modificar Empresa</ion-button>
+      <br>
+
+      <ion-col>
+        <ion-label>Longitud</ion-label>
+        <ion-input [(ngModel)]="empresa.longitud" name="longitud" type="text"></ion-input>
+      </ion-col>
+
+      <br>
+
+      <ion-col>
+        <ion-label>Teléfono Empresa</ion-label>
+        <ion-input [(ngModel)]="empresa.telefono_empresa" name="telefono_empresa" type="text"></ion-input>
+      </ion-col>
+
+      <br>
+
+
+          <ion-col>
+            <ion-label>ID Comuna</ion-label>
+            <ion-select class="opciones" [(ngModel)]="empresa.id_comuna" name="id_comuna">
+              <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id_comuna">{{ comuna.nombre_comuna
+                }}</ion-select-option>
+            </ion-select>
+          </ion-col>
+
+
+        <ion-button class="confirmar" expand="block" (click)="submitForm()">Modificar Empresa</ion-button>
+      </ion-card-content>
+  </ion-card>
 </ion-content>

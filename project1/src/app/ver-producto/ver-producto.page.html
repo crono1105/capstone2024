@@ -1,6 +1,7 @@
 <ion-header>
   <ion-buttons slot="start">
     <ion-back-button defaultHref="/login"></ion-back-button>
+      <ion-back-button defaultHref="/home"></ion-back-button>
   </ion-buttons>
 </ion-header>
 
@@ -16,7 +17,7 @@
       <ion-img [src]="detalleProducto.img_producto" *ngIf="detalleProducto.img_producto"></ion-img>
 
       <ion-list>
-        <ion-item>
+        <ion-col>
           <ion-label>Precio</ion-label>
           <ion-text>{{ detalleProducto.precio }}</ion-text>
         </ion-item>
@@ -31,6 +32,14 @@
           <ion-text>{{ detalleProducto.nombre_empresa }}</ion-text>
         </ion-item>
 
+        </ion-col>
+        
+        <ion-col>
+          <ion-label>Stock</ion-label>
+          <ion-text>{{ detalleProducto.stock }}</ion-text>
+        </ion-col>
+        
+    
       </ion-list>
     </ion-card-content>
   </ion-card>
