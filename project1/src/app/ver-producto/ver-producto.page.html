@@ -1,7 +1,7 @@
 <ion-header>
   <ion-buttons slot="start">
     <ion-back-button defaultHref="/login"></ion-back-button>
-      <ion-back-button defaultHref="/home"></ion-back-button>
+    <ion-back-button defaultHref="/home"></ion-back-button>
   </ion-buttons>
 </ion-header>
 
@@ -18,28 +18,29 @@
 
       <ion-list>
         <ion-col>
-          <ion-label>Precio</ion-label>
-          <ion-text>{{ detalleProducto.precio }}</ion-text>
-        </ion-item>
+          <ion-item>
+            <ion-label>Precio</ion-label>
+            <ion-text>{{ detalleProducto.precio }}</ion-text>
+          </ion-item>
 
-        <ion-item>
-          <ion-label>Stock</ion-label>
-          <ion-text>{{ detalleProducto.stock }}</ion-text>
-        </ion-item>
+          <ion-item>
+            <ion-label>Stock</ion-label>
+            <ion-text>{{ detalleProducto.stock }}</ion-text>
+          </ion-item>
 
-        <ion-item>
-          <ion-label>Empresa</ion-label>
-          <ion-text>{{ detalleProducto.nombre_empresa }}</ion-text>
-        </ion-item>
+          <ion-item>
+            <ion-label>Empresa</ion-label>
+            <ion-text>{{ detalleProducto.nombre_empresa }}</ion-text>
+          </ion-item>
 
         </ion-col>
-        
+
         <ion-col>
           <ion-label>Stock</ion-label>
           <ion-text>{{ detalleProducto.stock }}</ion-text>
         </ion-col>
-        
-    
+
+
       </ion-list>
     </ion-card-content>
   </ion-card>
@@ -49,7 +50,7 @@
   <ion-button expand="full" routerLink="/productos">Volver a la lista de productos</ion-button>
 
 
-   
+
 
 
 
