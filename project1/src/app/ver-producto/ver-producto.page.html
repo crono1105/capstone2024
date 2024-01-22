@@ -1,10 +1,12 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Detalle del Producto</ion-title>
-  </ion-toolbar>
+  <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+  </ion-buttons>
 </ion-header>
 
 <ion-content>
+  <ion-title>Detalle del Producto</ion-title>
+
   <ion-card *ngIf="detalleProducto">
     <ion-card-header>
       <ion-card-title>{{ detalleProducto.nombre_producto }}</ion-card-title>
