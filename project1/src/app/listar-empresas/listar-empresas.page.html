@@ -8,7 +8,7 @@
 
   <ion-title>Listado de Empresas</ion-title>
   <ion-icon name="add-outline" (click)="GoToListarEmpresa()"></ion-icon>
-
+  
   <br>
 
 
@@ -28,7 +28,7 @@
       <ion-col>{{ empresa.direccion }}</ion-col>
       <ion-col>{{ empresa.telefono_empresa }}</ion-col>
       <ion-col><ion-icon name="pencil-outline"></ion-icon></ion-col>
-      <ion-icon name="document-text-outline" (click)="GoToProductosEmpresa(empresa.rut_empresa)"></ion-icon>
+      <ion-col><ion-icon name="document-text-outline"></ion-icon></ion-col>
     </ion-row>
   </ion-grid>
 

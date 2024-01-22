@@ -1,6 +1,5 @@
 .background {
-    --ion-background-color: rgb(255, 255, 255);
-    /* Establece el color de fondo para ion-content */
+    --ion-background-color: rgb(255, 255, 255); /* Establece el color de fondo para ion-content */
 }
 
 ion-back-button {
@@ -19,8 +18,7 @@ ion-icon[name="add-outline"] {
     top: 0.5%; /* Ajusta la distancia desde la parte superior de ion-card */
     right: 30%; /* Ajusta la distancia desde el lado derecho de ion-card */
     font-size: 26px;
-    color: rgb(0, 0, 0);/* Color negro para el ícono del lápiz */ 
-
+    color: rgb(0, 0, 0); /* Color negro para el ícono del lápiz */ 
 }
 
 ion-header {
@@ -29,60 +27,46 @@ ion-header {
 
 ion-grid {
     width: 95%;
-
-    /* Añade un borde ligero alrededor de la tabla */
 }
 
 ion-row {
-    align-items: center;
-    /* Centra los elementos verticalmente */
+    align-items: center; /* Centra los elementos verticalmente */
     background-color: transparent;
-    /* Color de fondo para los encabezados */
 }
 
 ion-col {
-    text-align: center;
-    /* Alinea el texto de las celdas al centro */
-    border: 1px rgb(197, 197, 197);
-    /* Añade un poco de padding vertical */
+    text-align: center; /* Alinea el texto de las celdas al centro */
+    border: 1px solid rgb(197, 197, 197);
     color: rgb(0, 0, 0);
     font-size: 18px;
+    max-width: 200px; /* Limita el ancho máximo de la columna */
+    overflow: hidden; /* Oculta contenido que excede el tamaño de la celda */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos para texto desbordado */
+    white-space: nowrap; /* Asegura que el texto no se ajuste en líneas nuevas */
 }
-
 
 /* Estilo para los iconos dentro de la tabla */
 ion-icon {
-    font-size: 1.2em;
-    /* Aumenta el tamaño del icono */
-
-    padding: 0px;
-    /* Añade padding para hacer el área de clic más grande */
-    color: #000000;
-    /* Color para los iconos */
+    font-size: 1.2em; /* Aumenta el tamaño del icono */
+    padding: 5px; /* Añade padding para hacer el área de clic más grande */
+    color: #000000; /* Color para los iconos */
+    cursor: pointer; /* Indica que el icono es clickeable */
 }
 
 /* Estilo para la fila cuando no se encuentran empresas */
 p {
-    text-align: center;
-    /* Centra el texto del párrafo */
-    color: rgb(197, 197, 197);
-    /* Color gris para el texto */
-    padding: 20px;
-    /* Añade padding para separar del resto del contenido */
+    text-align: center; /* Centra el texto del párrafo */
+    color: rgb(197, 197, 197); /* Color gris para el texto */
+    padding: 20px; /* Añade padding para separar del resto del contenido */
 }
-
-    
 
 /* Pantallas de escritorio más grandes */
 @media only screen and (min-width: 1000px) {
-
     ion-col {
-        padding: 15px 0;
-        /* Aumenta el padding vertical para celdas en pantallas más grandes */
+        padding: 15px 0; /* Aumenta el padding vertical para celdas en pantallas más grandes */
+        max-width: none; /* Permite que las columnas se expandan en pantallas más grandes */
     }
-
     ion-grid {
         width: 95%;
-}
-
+    }
 }
