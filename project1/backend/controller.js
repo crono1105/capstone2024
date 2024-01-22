@@ -82,9 +82,9 @@ const obtenerComunas = (callback) => {
 };
 
 const agregarProducto = (producto, callback) => {
-    const { nombre_producto, precio, img_producto, rut_empresa, id_categoria, stock ,descripcion} = producto;
+    const { nombre_producto, precio, img_producto, rut_empresa, id_categoria, stock, descripcion } = producto;
     const sql = 'INSERT INTO producto (nombre_producto, precio, img_producto, rut_empresa, id_categoria,stock,descripcion) VALUES (?, ?, ?, ?, ?,?,?)';
-    db.query(sql, [nombre_producto, precio, img_producto, rut_empresa, id_categoria, stock,descripcion], callback);
+    db.query(sql, [nombre_producto, precio, img_producto, rut_empresa, id_categoria, stock, descripcion], callback);
 };
 
 const obtenerEmpresasPorUsuario = (correoUsuario, callback) => {
@@ -286,6 +286,19 @@ const modificarProducto = (idProducto, productoModificado, callback) => {
 };
 
 
+const obtenerActualizacionesPorProducto = (idProducto, callback) => {
+    const sql = 'SELECT fecha_actualizacion, valor FROM actualizacion_producto WHERE id_producto = ?';
+
+    db.query(sql, [idProducto], (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+
+        return callback(null, results);
+    });
+};
+
+
 module.exports = {
     registroUsuario,
     loginUsuario,
@@ -302,5 +315,6 @@ module.exports = {
     modificarEmpresa,
     obtenerDetalleEmpresa,
     modificarProducto,
+    obtenerActualizacionesPorProducto,
 
 };

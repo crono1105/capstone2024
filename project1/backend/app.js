@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const { modificarProducto ,obtenerDetalleEmpresa, modificarEmpresa,modificarUsuario,obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const { obtenerActualizacionesPorProducto,modificarProducto ,obtenerDetalleEmpresa, modificarEmpresa,modificarUsuario,obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // También para el formato 'x-www-form-urlencoded'
@@ -227,6 +227,19 @@ app.put('/modificar-producto/:idProducto', (req, res) => {
         }
 
         res.json(result);
+    });
+});
+
+app.get('/obtener-actualizaciones/:id_producto', (req, res) => {
+    const idProducto = req.params.id_producto;
+
+    obtenerActualizacionesPorProducto(idProducto, (err, actualizaciones) => {
+        if (err) {
+            console.error('Error al obtener actualizaciones:', err);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        return res.json(actualizaciones);
     });
 });
 

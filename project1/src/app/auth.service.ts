@@ -225,6 +225,16 @@ export class AuthService {
     }
   }
 
+  async obtenerActualizacionesPorProducto(idProducto: string): Promise<any[]> {
+    try {
+      const response = await this.http.get(`${this.apiUrl}/obtener-actualizaciones/${idProducto}`).toPromise();
+      return Array.isArray(response) ? response : [];
+    } catch (error) {
+      console.error('Error al obtener actualizaciones del producto:', error);
+      throw error;
+    }
+  }
+
 
 }
 

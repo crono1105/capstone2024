@@ -1,10 +1,10 @@
 <ion-header>
   <ion-buttons slot="start">
-      <ion-back-button defaultHref="/login"></ion-back-button>
+    <ion-back-button defaultHref="/login"></ion-back-button>
   </ion-buttons>
 </ion-header>
 
-<ion-content>
+<ion-content class="">
   <ion-title>Detalle del Producto</ion-title>
 
   <ion-card *ngIf="detalleProducto">
@@ -20,20 +20,31 @@
           <ion-label>Precio</ion-label>
           <ion-text>{{ detalleProducto.precio }}</ion-text>
         </ion-item>
-        
+
         <ion-item>
           <ion-label>Stock</ion-label>
           <ion-text>{{ detalleProducto.stock }}</ion-text>
         </ion-item>
-        
+
         <ion-item>
           <ion-label>Empresa</ion-label>
           <ion-text>{{ detalleProducto.nombre_empresa }}</ion-text>
         </ion-item>
-        
+
       </ion-list>
     </ion-card-content>
   </ion-card>
 
+  <!-- Agrega el elemento canvas para el gráfico -->
+
   <ion-button expand="full" routerLink="/productos">Volver a la lista de productos</ion-button>
+
+
+   
+
+
+
+
+
+
 </ion-content>

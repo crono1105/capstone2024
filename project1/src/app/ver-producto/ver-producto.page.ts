@@ -9,6 +9,34 @@ import { AuthService } from '../auth.service';
 })
 export class VerProductoPage implements OnInit {
   detalleProducto: any;
+  datosGrafico: any[] = [];
+
+  public lineChartOptions: any = {
+    responsive: true,
+    scales: {
+      xAxes: [{ // Cambio aquí
+        type: 'time',
+        time: {
+          unit: 'day', // O ajusta a tu necesidad
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Fechas',
+        },
+      }],
+      yAxes: [{ // Cambio aquí
+        scaleLabel: {
+          display: true,
+          labelString: 'Valor',
+        },
+      }],
+    },
+  };
+
+  public lineChartLabels: any[] = [];
+  public lineChartType: string = 'line';
+  public lineChartLegend: boolean = true;
+  public lineChartData: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -16,23 +44,29 @@ export class VerProductoPage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    // Obtiene el ID del producto desde la URL utilizando route.snapshot.paramMap
     const idProductoString = this.route.snapshot.paramMap.get('idProducto');
-    
+
     if (idProductoString !== null) {
-      const idProducto = parseInt(idProductoString, 10); // Convierte la cadena a número
+      const idProducto = parseInt(idProductoString, 10);
 
       try {
-        // Llama al servicio para obtener el detalle del producto
+          
         this.detalleProducto = await this.authService.obtenerDetalleProducto(idProducto);
-        // Asigna la respuesta al detalleProducto
+
+        // Procesa los datos para ng2-charts
+        this.lineChartLabels = this.datosGrafico.map(actualizacion => new Date(actualizacion.fecha));
+        this.lineChartData = [
+          {
+            data: this.datosGrafico.map(actualizacion => actualizacion.valor),
+            label: 'Valor',
+          },
+        ];
       } catch (error) {
         console.error('Error al obtener el detalle del producto:', error);
-        // Maneja el error aquí
       }
     } else {
       console.error('ID de producto nulo');
-      // Maneja el caso en que el ID de producto es nulo
     }
   }
 }
+  
