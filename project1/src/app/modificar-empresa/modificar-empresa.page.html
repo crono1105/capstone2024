@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Modificar Empresa
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-label>Dirección</ion-label>
+  <ion-input [(ngModel)]="empresa.direccion" name="direccion" type="text"></ion-input>
+
+  <ion-label>Latitud</ion-label>
+  <ion-input [(ngModel)]="empresa.latitud" name="latitud" type="text"></ion-input>
+
+  <ion-label>Longitud</ion-label>
+  <ion-input [(ngModel)]="empresa.longitud" name="longitud" type="text"></ion-input>
+
+  <ion-label>Teléfono Empresa</ion-label>
+  <ion-input [(ngModel)]="empresa.telefono_empresa" name="telefono_empresa" type="text"></ion-input>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>ID Comuna</ion-label>
+      <ion-select [(ngModel)]="empresa.id_comuna" name="id_comuna">
+        <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id_comuna">{{ comuna.nombre_comuna }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="submitForm()">Modificar Empresa</ion-button>
+</ion-content>

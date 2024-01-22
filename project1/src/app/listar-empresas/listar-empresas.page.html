@@ -27,11 +27,11 @@
       <ion-col>{{ empresa.nombre_empresa }}</ion-col>
       <ion-col>{{ empresa.direccion }}</ion-col>
       <ion-col>{{ empresa.telefono_empresa }}</ion-col>
-      <ion-col><ion-icon name="pencil-outline"></ion-icon></ion-col>
+      <ion-col><ion-icon name="pencil-outline" (click)="GoToModificarEmpresa(empresa.rut_empresa)"></ion-icon></ion-col>
       <ion-col><ion-icon name="document-text-outline" (click)="GoToProductosEmpresa(empresa.rut_empresa)"></ion-icon></ion-col>
     </ion-row>
   </ion-grid>
-
+  
   <div *ngIf="empresas.length === 0">
     <p>No se encontraron empresas.</p>
   </div>

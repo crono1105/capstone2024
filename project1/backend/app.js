@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const { modificarUsuario,obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const { obtenerDetalleEmpresa, modificarEmpresa,modificarUsuario,obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // También para el formato 'x-www-form-urlencoded'
@@ -174,6 +174,46 @@ app.get('/producto/:idProducto', (req, res) => {
 });
 
 app.post('/modificar-usuario', modificarUsuario);
+
+app.put('/modificar-empresa', (req, res) => {
+    const empresa = req.body;
+
+    // Llama a la función del controlador para modificar la empresa
+    modificarEmpresa(empresa, (err, result) => {
+        if (err) {
+            console.error('Error al modificar la empresa:', err.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ mensaje: 'Empresa no encontrada' });
+        }
+
+        // Empresa modificada con éxito
+        return res.json({ mensaje: 'Empresa modificada con éxito' });
+    });
+});
+
+
+app.get('/detalle-empresa/:rut_empresa', (req, res) => {
+    const rutEmpresa = req.params.rut_empresa;
+
+    // Llama a la función del controlador
+    obtenerDetalleEmpresa(rutEmpresa, (err, empresa) => {
+        if (err) {
+            console.error("Error al obtener detalle de la empresa:", err);
+            return res.status(500).json({ error: "Error interno del servidor" });
+        }
+
+        if (empresa) {
+            // Si se encuentra la empresa, envía la respuesta en formato JSON
+            res.json(empresa);
+        } else {
+            // Si no se encuentra la empresa, envía una respuesta de "no encontrada"
+            res.status(404).json({ mensaje: "No se encontró la empresa especificada" });
+        }
+    });
+});
 
 
 app.get('/ruta-protegida', verificarToken, (req, res) => {

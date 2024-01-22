@@ -186,6 +186,33 @@ export class AuthService {
       throw error;
     }
   }
+
+  async modificarEmpresa(empresa: any): Promise<any> {
+    const url = `${this.apiUrl}/modificar-empresa`;
+
+    try {
+      const result = await this.http.put(url, empresa).toPromise();
+      console.log('Empresa modificada con éxito');
+      return result;
+    } catch (error) {
+      console.error('Error al modificar la empresa:', error);
+      throw error;
+    }
+  }
+
+  async obtenerDetalleEmpresa(rutEmpresa: string): Promise<any> {
+    const url = `${this.apiUrl}/detalle-empresa/${rutEmpresa}`;
+
+    try {
+      const empresa = await this.http.get<any>(url).toPromise();
+      return empresa;
+    } catch (error) {
+      console.error('Error al obtener detalle de la empresa:', error);
+      throw error;
+    }
+  }
+
+
 }
 
 

@@ -47,9 +47,14 @@ const routes: Routes = [
   {
     path: 'ver-producto/:idProducto',
     loadChildren: () => import('./ver-producto/ver-producto.module').then( m => m.VerProductoPageModule)
-  },  {
+  },
+  {
     path: 'modificar-perfil',
     loadChildren: () => import('./modificar-perfil/modificar-perfil.module').then( m => m.ModificarPerfilPageModule)
+  },
+  {
+    path: 'modificar-empresa/:rut_empresa',
+    loadChildren: () => import('./modificar-empresa/modificar-empresa.module').then( m => m.ModificarEmpresaPageModule)
   },
 
 

@@ -228,10 +228,41 @@ const modificarUsuario = (req, res) => {
     });
 };
 
+const modificarEmpresa = (empresa, callback) => {
+    const { rut_empresa, direccion, latitud, longitud, telefono_empresa, id_comuna } = empresa;
+    const sql = `
+        UPDATE empresa
+        SET direccion = ?,
+            latitud = ?,
+            longitud = ?,
+            telefono_empresa = ?,
+            id_comuna = ?
+        WHERE rut_empresa = ?;
+    `;
 
+    db.query(sql, [direccion, latitud, longitud, telefono_empresa, id_comuna, rut_empresa], (err, result) => {
+        if (err) {
+            return callback(err, null);
+        }
 
+        callback(null, result);
+    });
+};
 
-
+const obtenerDetalleEmpresa = (rutEmpresa, callback) => {
+    const sql = 'SELECT * FROM empresa WHERE rut_empresa = ?';
+    db.query(sql, [rutEmpresa], (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+        if (results.length > 0) {
+            const empresa = results[0];
+            return callback(null, empresa);
+        } else {
+            return callback(null, null);
+        }
+    });
+};
 
 
 module.exports = {
@@ -247,5 +278,7 @@ module.exports = {
     obtenerUsuarioPorCorreo,
     obtenerDetalleProducto,
     modificarUsuario,
+    modificarEmpresa,
+    obtenerDetalleEmpresa,
 
 };

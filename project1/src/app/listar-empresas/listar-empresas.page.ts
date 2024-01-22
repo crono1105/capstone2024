@@ -45,6 +45,10 @@ export class ListarEmpresasPage implements OnInit {
   GoToProductosEmpresa(rutEmpresa: string) {
     this.router.navigate(['/listado-producto-empresa', rutEmpresa]);
   }
+
+  GoToModificarEmpresa(rutEmpresa: string) {
+    this.router.navigate(['/modificar-empresa', rutEmpresa]);
+  }
   
 }
 
