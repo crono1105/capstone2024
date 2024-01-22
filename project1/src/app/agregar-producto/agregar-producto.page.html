@@ -12,9 +12,17 @@
     </ion-item>
   
     <ion-item>
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-input type="text" [(ngModel)]="producto.descripcion" name="descripcion" required></ion-input>
+    </ion-item>
+
+
+    <ion-item>
       <ion-label position="floating">Precio</ion-label>
       <ion-input type="number" [(ngModel)]="producto.precio" name="precio_producto" required></ion-input>
     </ion-item>
+
+    
 
 
     <ion-item>
@@ -50,6 +58,9 @@
         </ion-select-option>
       </ion-select>
     </ion-item>
+
+
+    
   
     <!-- Botón para enviar el formulario -->
     <ion-button expand="full" type="submit" class="ion-margin-top">Agregar Producto</ion-button>

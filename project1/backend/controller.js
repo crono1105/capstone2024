@@ -82,9 +82,9 @@ const obtenerComunas = (callback) => {
 };
 
 const agregarProducto = (producto, callback) => {
-    const { nombre_producto, precio, img_producto, rut_empresa, id_categoria, stock } = producto;
-    const sql = 'INSERT INTO producto (nombre_producto, precio, img_producto, rut_empresa, id_categoria,stock) VALUES (?, ?, ?, ?, ?,?)';
-    db.query(sql, [nombre_producto, precio, img_producto, rut_empresa, id_categoria, stock], callback);
+    const { nombre_producto, precio, img_producto, rut_empresa, id_categoria, stock ,descripcion} = producto;
+    const sql = 'INSERT INTO producto (nombre_producto, precio, img_producto, rut_empresa, id_categoria,stock,descripcion) VALUES (?, ?, ?, ?, ?,?,?)';
+    db.query(sql, [nombre_producto, precio, img_producto, rut_empresa, id_categoria, stock,descripcion], callback);
 };
 
 const obtenerEmpresasPorUsuario = (correoUsuario, callback) => {
