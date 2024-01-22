@@ -55,7 +55,11 @@ const routes: Routes = [
   {
     path: 'modificar-empresa/:rut_empresa',
     loadChildren: () => import('./modificar-empresa/modificar-empresa.module').then( m => m.ModificarEmpresaPageModule)
+  },  {
+    path: 'modificar-producto',
+    loadChildren: () => import('./modificar-producto/modificar-producto.module').then( m => m.ModificarProductoPageModule)
   },
+
 
 
 

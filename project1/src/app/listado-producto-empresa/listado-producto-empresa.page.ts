@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado-producto-empresa',
@@ -11,7 +12,7 @@ export class ListadoProductoEmpresaPage implements OnInit {
   productos: any[] = [];
   rutEmpresa: string | null = null;
 
-  constructor(private authService: AuthService, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -32,5 +33,9 @@ export class ListadoProductoEmpresaPage implements OnInit {
     } else {
       console.error('RUT de la empresa es null');
     }
+  }
+
+  goToAgregarProducto(){
+    this.router.navigate(['/agregar-producto']);
   }
 }
