@@ -1,24 +1,36 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Modificar Perfil</ion-title>
-  </ion-toolbar>
+<ion-header>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/perfil-usuario"></ion-back-button>
+  </ion-buttons>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-label position="floating">Correo Electrónico</ion-label>
-    <ion-input [(ngModel)]="usuarioModificado.correoElectronico" type="email" disabled></ion-input>
-    <!-- El campo de correo electrónico se muestra pero no se permite editar (disabled) -->
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Nombre</ion-label>
-    <ion-input [(ngModel)]="usuarioModificado.nombre" type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Teléfono</ion-label>
-    <ion-input [(ngModel)]="usuarioModificado.telefono" type="tel"></ion-input>
-  </ion-item>
+<ion-content class="background">
 
-  <ion-button expand="full" (click)="modificarPerfil()">Guardar Cambios</ion-button>
+  <ion-card>
 
+    <ion-card-title>Modificar Perfil</ion-card-title>
+
+    <ion-card-content>
+      <ion-col>
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input [(ngModel)]="usuarioModificado.correoElectronico" type="email" disabled></ion-input>
+      </ion-col>
+
+      <br>
+
+      <ion-col>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="usuarioModificado.nombre" type="text"></ion-input>
+      </ion-col>
+
+      <br>
+
+      <ion-col>
+        <ion-label position="floating">Teléfono</ion-label>
+        <ion-input [(ngModel)]="usuarioModificado.telefono" type="tel"></ion-input>
+      </ion-col>
+
+      <ion-button class="confirmar" expand="block" (click)="modificarPerfil()">Guardar Cambios</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
