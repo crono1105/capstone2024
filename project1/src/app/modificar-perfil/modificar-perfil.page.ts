@@ -56,4 +56,6 @@ export class ModificarPerfilPage implements OnInit {
       // Maneja el error, por ejemplo, mostrando un mensaje de error al usuario.
     }
   }
+
+  
 }

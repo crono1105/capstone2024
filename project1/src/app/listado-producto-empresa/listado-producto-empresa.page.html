@@ -4,31 +4,39 @@
   </ion-buttons>
 </ion-header>
 
+<ion-content class="background">
 
-    
-
-
-<ion-content>
-
-  <ion-title> Listado de Productos </ion-title>
-
+  <ion-title>Listado de Productos</ion-title>
+  <ion-icon name="add-outline"></ion-icon>
   
   <br>
-  <ion-list>
-    <ion-item *ngFor="let producto of productos">
-      <ion-thumbnail slot="start">
-        <img [src]="producto.img_producto" alt="Imagen del producto">
 
-      </ion-thumbnail>
-      <ion-label>
-        <h2>{{ producto.nombre_producto }}</h2>
-        <p>Precio: {{ producto.precio }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col><strong>Producto</strong></ion-col>
+      <ion-col><strong>Precio</strong></ion-col>
+      <ion-col><strong>Stock</strong></ion-col>
+      <ion-col><strong>Descripción</strong></ion-col>
+      <ion-col><strong>Modificar</strong></ion-col>
+    </ion-row>
 
-  <ion-button *ngIf="productos.length === 0">
-    No hay productos disponibles
-  </ion-button>
+    <ion-row *ngFor="let producto of productos">
+      <ion-col>
+        <ion-img [src]="producto.img_producto" alt="Imagen del producto"></ion-img>
+        {{ producto.nombre_producto }}
+      </ion-col>
+      <ion-col>{{ producto.precio | currency }}</ion-col>
+      <ion-col>{{ producto.stock }}</ion-col>
+      <ion-col>
+        <ion-textarea [disabled]="true"  placeholder="Can't type here"></ion-textarea>
+      </ion-col>
+      <ion-col>
+        <ion-icon name="pencil-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="productos.length === 0">
+    <p>No hay productos disponibles</p>
+  </div>
 </ion-content>
-
