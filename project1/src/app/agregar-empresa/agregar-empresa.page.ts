@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-empresa',
@@ -19,7 +20,7 @@ export class AgregarEmpresaPage implements OnInit {
 
   comunas: any[] = [];
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,private router: Router) {}
 
   ngOnInit() {
     this.cargarComunas();
@@ -38,10 +39,14 @@ export class AgregarEmpresaPage implements OnInit {
     try {
       const resultado = await this.authService.registrarEmpresa(this.empresa);
       console.log('Empresa registrada con éxito:', resultado);
-      // Aquí puedes agregar lógica adicional después del registro, como redirigir o mostrar un mensaje
+    
     } catch (error) {
       console.error('Error al registrar la empresa:', error);
       // Manejo de errores en el registro
     }
+  }
+
+  goToListarEmpresa(){
+    this.router.navigate(['/listar-empresas']);
   }
 }

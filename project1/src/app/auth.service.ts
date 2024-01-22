@@ -62,7 +62,6 @@ export class AuthService {
   async registrarEmpresa(empresa: any): Promise<any> {
     const url = `${this.apiUrl}/empresa`;
     const usuarioCorreo = localStorage.getItem('usuarioCorreo');
-
     if (!usuarioCorreo) {
       throw new Error('No hay un usuario logueado.');
     }

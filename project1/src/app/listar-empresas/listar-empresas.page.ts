@@ -33,20 +33,19 @@ export class ListarEmpresasPage implements OnInit {
     this.router.navigate(['/agregar-empresa']);
   }
 
-  goToPerfil() {
-    // Obtener el correo electrónico del usuario logueado
+  goToPerfil() {  
     this.usuarioCorreo = this.authService.obtenerCorreoElectronico();
-
-    // Verificar si se obtuvo el correo electrónico
     if (this.usuarioCorreo) {
-      // Navegar a la ruta del correo electrónico logueado (ajusta la ruta según tu estructura de rutas)
       this.router.navigate(['/perfil-usuario', this.usuarioCorreo]);
     } else {
       console.error('No se pudo obtener el correo electrónico del usuario logueado.');
-      // Manejar el caso en el que no se obtiene el correo electrónico
     }
   }
 
+  GoToProductosEmpresa(rutEmpresa: string) {
+    this.router.navigate(['/listado-producto-empresa', rutEmpresa]);
+  }
+  
 }
 
 
