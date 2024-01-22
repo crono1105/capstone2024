@@ -1,69 +1,76 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Registrar Empresa</ion-title>
-  </ion-toolbar>
+  <ion-buttons slot="start">
+      <ion-back-button defaultHref="/listado-producto-empresa"></ion-back-button>
+  </ion-buttons>
 </ion-header>
 
-<ion-content>
-  <form (ngSubmit)="agregarProducto()">
-    <ion-item>
-      <ion-label position="floating">Nombre del Producto</ion-label>
-      <ion-input type="text" [(ngModel)]="producto.nombre_producto" name="nombre_producto" required></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label position="floating">Descripcion</ion-label>
-      <ion-input type="text" [(ngModel)]="producto.descripcion" name="descripcion" required></ion-input>
-    </ion-item>
+<ion-content class="background">
+  <ion-card>
 
+    <ion-card-title>Agregar Producto</ion-card-title>
+    <ion-card-content>
+      <ion-col>
+        <ion-label position="floating">Nombre del Producto</ion-label>
+        <ion-input type="text" [(ngModel)]="producto.nombre_producto" name="nombre_producto" required></ion-input>
+      </ion-col>
 
-    <ion-item>
-      <ion-label position="floating">Precio</ion-label>
-      <ion-input type="number" [(ngModel)]="producto.precio" name="precio_producto" required></ion-input>
-    </ion-item>
+      <br>
 
-    
+      <ion-col>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea class="descripcion" placeholder="Type something here"></ion-textarea>
+      </ion-col>
 
+      <br>
 
-    <ion-item>
-      <ion-label position="floating">stock</ion-label>
-      <ion-input type="number" [(ngModel)]="producto.stock" name="stock_producto" required></ion-input>
-    </ion-item>
-  
-    <!-- Campo para cargar la imagen -->
-    <ion-item>
-      <ion-label position="stacked">Imagen del Producto</ion-label>
-      <input type="file" (change)="convertirImagenABase64($event)" name="imagen_producto">
-    </ion-item>
-  
-    <!-- Mostrar la imagen cargada -->
-    <ion-img [src]="producto.img_producto" *ngIf="producto.img_producto"></ion-img>
-  
-    <!-- SELECTOR DE EMPRESA -->
-    <ion-item>
-      <ion-label>Empresa</ion-label>
-      <ion-select [(ngModel)]="producto.rut_empresa" name="empresa" placeholder="Selecciona una empresa">
-        <ion-select-option *ngFor="let empresa of empresas" [value]="empresa.rut_empresa">
-          {{ empresa.nombre_empresa }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-  
-    <!-- Selector de Categoría -->
-    <ion-item>
-      <ion-label>Categoría</ion-label>
-      <ion-select [(ngModel)]="producto.id_categoria" name="categoria" placeholder="Selecciona una categoría">
-        <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id_categoria">
-          {{ categoria.nombre_categoria }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
+      <ion-col>
+        <ion-label position="floating">Precio</ion-label>
+        <ion-input type="number" [(ngModel)]="producto.precio" name="precio_producto" required></ion-input>
+      </ion-col>
 
+      <br>
 
-    
-  
-    <!-- Botón para enviar el formulario -->
-    <ion-button expand="full" type="submit" class="ion-margin-top">Agregar Producto</ion-button>
-  </form>
-  
+      <ion-col>
+        <ion-label position="floating">Stock</ion-label>
+        <ion-input type="number" [(ngModel)]="producto.stock" name="stock_producto" required></ion-input>
+      </ion-col>
+
+      <br>
+      <!-- Campo para cargar la imagen -->
+      <ion-col>
+        <ion-label position="stacked">Imagen del Producto</ion-label>
+        <input type="file" (change)="convertirImagenABase64($event)" name="imagen_producto">(se recomienda subir imagen que no pese más de 200 MB)
+      </ion-col>
+
+      <br>
+      <!-- Mostrar la imagen cargada -->
+      <ion-img [src]="producto.img_producto" *ngIf="producto.img_producto"></ion-img>
+
+      <br>
+      <!-- SELECTOR DE EMPRESA -->
+      <ion-col>
+        <ion-label>Empresa</ion-label>
+        <ion-select class="opciones" [(ngModel)]="producto.rut_empresa" name="empresa" placeholder="Selecciona una empresa">
+          <ion-select-option *ngFor="let empresa of empresas" [value]="empresa.rut_empresa">
+            {{ empresa.nombre_empresa }}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+
+      <br>
+      <!-- Selector de Categoría -->
+      <ion-col>
+        <ion-label>Categoría</ion-label>
+        <ion-select class="opciones" [(ngModel)]="producto.id_categoria" name="categoria" placeholder="Selecciona una categoría">
+          <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id_categoria">
+            {{ categoria.nombre_categoria }}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+
+      <!-- Botón para enviar el formulario -->
+      <ion-button class="confirmar" expand="block">Agregar Producto</ion-button>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
