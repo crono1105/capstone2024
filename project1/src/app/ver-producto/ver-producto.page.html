@@ -41,6 +41,9 @@
         </ion-col>
 
 
+
+
+
       </ion-list>
     </ion-card-content>
   </ion-card>
@@ -50,7 +53,17 @@
   <ion-button expand="full" routerLink="/productos">Volver a la lista de productos</ion-button>
 
 
+<ion-list>
+  <ion-item lines="none" class="header-item">
+    <ion-label class="header-label">Fecha</ion-label>
+    <ion-label class="header-label">Precio</ion-label>
+  </ion-item>
 
+  <ion-item *ngFor="let actualizacion of datosGrafico">
+    <ion-label class="date-label">{{ actualizacion.fecha_actualizacion | date: 'dd/MM/yyyy' }}</ion-label>
+    <ion-label class="price-label">{{ actualizacion.valor }}</ion-label>
+  </ion-item>
+</ion-list>
 
 
 

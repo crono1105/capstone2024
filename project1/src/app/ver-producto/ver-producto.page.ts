@@ -11,27 +11,7 @@ export class VerProductoPage implements OnInit {
   detalleProducto: any;
   datosGrafico: any[] = [];
 
-  public lineChartOptions: any = {
-    responsive: true,
-    scales: {
-      xAxes: [{ // Cambio aquí
-        type: 'time',
-        time: {
-          unit: 'day', // O ajusta a tu necesidad
-        },
-        scaleLabel: {
-          display: true,
-          labelString: 'Fechas',
-        },
-      }],
-      yAxes: [{ // Cambio aquí
-        scaleLabel: {
-          display: true,
-          labelString: 'Valor',
-        },
-      }],
-    },
-  };
+  
 
   public lineChartLabels: any[] = [];
   public lineChartType: string = 'line';
@@ -50,7 +30,7 @@ export class VerProductoPage implements OnInit {
       const idProducto = parseInt(idProductoString, 10);
 
       try {
-          
+        this.datosGrafico = await this.authService.obtenerActualizacionesPorProducto(idProducto.toString());
         this.detalleProducto = await this.authService.obtenerDetalleProducto(idProducto);
 
         // Procesa los datos para ng2-charts
