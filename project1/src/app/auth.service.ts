@@ -212,6 +212,19 @@ export class AuthService {
     }
   }
 
+  async modificarProducto(idProducto: number, productoModificado: any): Promise<any> {
+    const url = `${this.apiUrl}/modificar-producto/${idProducto}`;
+
+    try {
+      const result = await this.http.put(url, productoModificado).toPromise();
+      console.log('Producto modificado con éxito');
+      return result;
+    } catch (error) {
+      console.error('Error al modificar el producto:', error);
+      throw error;
+    }
+  }
+
 
 }
 

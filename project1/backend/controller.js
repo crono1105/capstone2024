@@ -264,6 +264,27 @@ const obtenerDetalleEmpresa = (rutEmpresa, callback) => {
     });
 };
 
+const modificarProducto = (idProducto, productoModificado, callback) => {
+    // Construye la consulta SQL para actualizar el producto
+    const sqlQuery = 'UPDATE producto SET nombre_producto = ?, descripcion = ?, precio = ?, stock = ? WHERE id_producto = ?';
+
+    // Ejecuta la consulta SQL con los datos proporcionados
+    db.query(sqlQuery, [productoModificado.nombre_producto, productoModificado.descripcion, productoModificado.precio, productoModificado.stock, idProducto], (err, result) => {
+        if (err) {
+            console.error('Error al modificar el producto:', err.message);
+            return callback(err, null);
+        }
+
+        // Verifica si se afectaron filas en la base de datos
+        if (result.affectedRows === 0) {
+            return callback(null, { mensaje: 'Producto no encontrado' });
+        }
+
+        // Producto modificado con éxito
+        return callback(null, { mensaje: 'Producto modificado con éxito' });
+    });
+};
+
 
 module.exports = {
     registroUsuario,
@@ -280,5 +301,6 @@ module.exports = {
     modificarUsuario,
     modificarEmpresa,
     obtenerDetalleEmpresa,
+    modificarProducto,
 
 };

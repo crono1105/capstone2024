@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const { obtenerDetalleEmpresa, modificarEmpresa,modificarUsuario,obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const { modificarProducto ,obtenerDetalleEmpresa, modificarEmpresa,modificarUsuario,obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // También para el formato 'x-www-form-urlencoded'
@@ -212,6 +212,21 @@ app.get('/detalle-empresa/:rut_empresa', (req, res) => {
             // Si no se encuentra la empresa, envía una respuesta de "no encontrada"
             res.status(404).json({ mensaje: "No se encontró la empresa especificada" });
         }
+    });
+});
+
+app.put('/modificar-producto/:idProducto', (req, res) => {
+    const idProducto = req.params.idProducto;
+    const productoModificado = req.body;
+
+    // Llama a la función del controlador para modificar el producto
+    modificarProducto(idProducto, productoModificado, (err, result) => {
+        if (err) {
+            console.error('Error al modificar el producto:', err.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        res.json(result);
     });
 });
 
