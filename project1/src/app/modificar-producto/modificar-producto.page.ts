@@ -31,7 +31,7 @@ export class ModificarProductoPage implements OnInit {
     if (this.producto.id_producto !== null && !isNaN(this.producto.id_producto)) {
       this.authService.modificarProducto(this.producto.id_producto, this.producto).then(() => {
         console.log('Producto modificado con éxito');
-        this.router.navigate(['/listar_empresa']); // Redirige a la página de lista de productos
+        this.router.navigate(['/home']); // Redirige a la página de lista de productos
       }).catch(error => {
         console.error('Error al modificar el producto:', error);
       });
@@ -39,4 +39,6 @@ export class ModificarProductoPage implements OnInit {
       console.error('El ID del producto no es un número válido.');
     }
   }
+
+  
 }

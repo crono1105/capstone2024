@@ -32,7 +32,7 @@
         <ion-textarea [disabled]="true"  placeholder=""></ion-textarea>
       </ion-col>
       <ion-col>
-        <ion-icon name="pencil-outline"></ion-icon>
+        <ion-icon name="pencil-outline" (click)="GoToModificarProducto(producto.id_producto)"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-grid>

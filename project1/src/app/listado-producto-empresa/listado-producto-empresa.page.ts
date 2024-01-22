@@ -38,4 +38,8 @@ export class ListadoProductoEmpresaPage implements OnInit {
   goToAgregarProducto(){
     this.router.navigate(['/agregar-producto']);
   }
+
+  GoToModificarProducto(id_producto: string) {
+    this.router.navigate(['/modificar-producto', id_producto]);
+  }
 }
