@@ -59,7 +59,11 @@ const routes: Routes = [
   {
     path: 'modificar-producto/:id_producto',
     loadChildren: () => import('./modificar-producto/modificar-producto.module').then( m => m.ModificarProductoPageModule)
+  },  {
+    path: 'mapa-empresa',
+    loadChildren: () => import('./mapa-empresa/mapa-empresa.module').then( m => m.MapaEmpresaPageModule)
   },
+
 
 
 
