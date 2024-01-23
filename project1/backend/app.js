@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const { obtenerActualizacionesPorProducto,modificarProducto ,obtenerDetalleEmpresa, modificarEmpresa,modificarUsuario,obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const { obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // También para el formato 'x-www-form-urlencoded'
@@ -243,6 +243,20 @@ app.get('/obtener-actualizaciones/:id_producto', (req, res) => {
     });
 });
 
+app.get('/obtener-resenas/:id_producto', (req, res) => {
+    const idProducto = req.params.id_producto;
+
+    obtenerResenasPorProducto(idProducto, (err, result) => {
+        if (err) {
+            console.error('Error al obtener reseñas por producto:', err);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        res.json(result);
+    });
+});
+
+app.post('/valoracion-producto/:id_producto', insertarValoracionProducto);
 
 app.get('/ruta-protegida', verificarToken, (req, res) => {
     res.json({ mensaje: 'Ruta protegida' });

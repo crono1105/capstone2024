@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ver-producto',
@@ -10,8 +11,7 @@ import { AuthService } from '../auth.service';
 export class VerProductoPage implements OnInit {
   detalleProducto: any;
   datosGrafico: any[] = [];
-
-  
+  public resenas: any[] = [];
 
   public lineChartLabels: any[] = [];
   public lineChartType: string = 'line';
@@ -20,7 +20,8 @@ export class VerProductoPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -32,6 +33,7 @@ export class VerProductoPage implements OnInit {
       try {
         this.datosGrafico = await this.authService.obtenerActualizacionesPorProducto(idProducto.toString());
         this.detalleProducto = await this.authService.obtenerDetalleProducto(idProducto);
+        this.resenas = await this.authService.obtenerResenasPorProducto(idProducto);
 
         // Procesa los datos para ng2-charts
         this.lineChartLabels = this.datosGrafico.map(actualizacion => new Date(actualizacion.fecha));
@@ -48,5 +50,12 @@ export class VerProductoPage implements OnInit {
       console.error('ID de producto nulo');
     }
   }
+
+  goToVerMapa(id_empresa: String) {
+    this.router.navigate(['/mapa-empresa/', id_empresa]);
+  }
+
+  goToCrearReview(id_producto: String) {
+    this.router.navigate(['/agregar-valoracion/', id_producto]);
+  }
 }
-  

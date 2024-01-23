@@ -64,6 +64,11 @@ const routes: Routes = [
     path: 'mapa-empresa/:id_empresa',
     loadChildren: () => import('./mapa-empresa/mapa-empresa.module').then( m => m.MapaEmpresaPageModule)
   },
+  {
+    path: 'agregar-valoracion/:id_producto',
+    loadChildren: () => import('./agregar-valoracion/agregar-valoracion.module').then( m => m.AgregarValoracionPageModule)
+  },
+
 
 
 

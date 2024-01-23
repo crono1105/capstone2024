@@ -1,0 +1,24 @@
+<!-- agregar-valoracion.page.html -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Agregar Valoración
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Valoración</ion-label>
+    <ion-range [(ngModel)]="valoracion" min="0" max="5" step="1"></ion-range>
+    <ion-badge slot="end">{{ valoracion }}</ion-badge>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Comentario</ion-label>
+    <ion-textarea [(ngModel)]="comentario" placeholder="Escribe tu comentario aquí"></ion-textarea>
+  </ion-item>
+
+  <ion-button expand="full" (click)="agregarValoracion()">Agregar Valoración</ion-button>
+</ion-content>

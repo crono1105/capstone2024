@@ -235,6 +235,27 @@ export class AuthService {
     }
   }
 
+  async valorarProducto(idProducto: string, valoracion: number, comentario: string): Promise<any> {
+    const url = `${this.apiUrl}/valoracion-producto/${idProducto}`;
+    const valoracionData = { valoracion, comentario };
+
+    try {
+      const result = await this.http.post(url, valoracionData).toPromise();
+      console.log('Valoración realizada con éxito');
+      return result;
+    } catch (error) {
+      console.error('Error al valorar el producto:', error);
+      throw error;
+    }
+  }
+
+
+  obtenerResenasPorProducto(idProducto: number): Promise<any> {
+    const url = `${this.apiUrl}/obtener-resenas/${idProducto}`;
+
+    return this.http.get(url).toPromise();
+  }
+
 
 }
 

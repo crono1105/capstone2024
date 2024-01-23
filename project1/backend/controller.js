@@ -300,6 +300,39 @@ const obtenerActualizacionesPorProducto = (idProducto, callback) => {
     });
 };
 
+function insertarValoracionProducto(req, res) {
+    // Obtén el ID del producto y los datos de la valoración desde la solicitud
+    const idProducto = req.params.id_producto;
+    const { valoracion, comentario } = req.body;
+
+    // Crea la consulta SQL para insertar la valoración
+    const sql = 'INSERT INTO valoracion_producto (valoracion, comentario, id_producto) VALUES (?, ?, ?)';
+    const values = [valoracion, comentario, idProducto];
+
+    // Ejecuta la consulta SQL
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error al insertar la valoración:', err);
+            res.status(500).json({ error: 'Error interno del servidor' });
+        } else {
+            console.log('Valoración insertada con éxito');
+            res.status(200).json({ mensaje: 'Valoración insertada con éxito' });
+        }
+    });
+}
+
+const obtenerResenasPorProducto = (idProducto, callback) => {
+    const sql = 'SELECT valoracion, comentario FROM valoracion_producto WHERE id_producto = ?';
+
+    db.query(sql, [idProducto], (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+
+        callback(null, results);
+    });
+};
+
 
 module.exports = {
     registroUsuario,
@@ -318,5 +351,7 @@ module.exports = {
     obtenerDetalleEmpresa,
     modificarProducto,
     obtenerActualizacionesPorProducto,
+    insertarValoracionProducto,
+    obtenerResenasPorProducto,
 
 };

@@ -71,9 +71,28 @@
     <ion-label class="date-label">{{ actualizacion.fecha_actualizacion | date: 'dd/MM/yyyy' }}</ion-label>
     <ion-label class="price-label">{{ actualizacion.valor }}</ion-label>
   </ion-item>
+
+
+  <!--boton ver mapa-->
+  <ion-button (click)="goToVerMapa(detalleProducto.rut_empresa)">MAPA</ion-button>
+  <ion-button (click)="goToCrearReview(detalleProducto.id_producto)">AGREGAR RESEÑA</ion-button>
 </ion-list>
 
 
+<ion-card *ngIf="resenas.length > 0">
+  <ion-card-header>
+    <ion-card-title>Reseñas</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-list>
+      <ion-item *ngFor="let resena of resenas">
+        <ion-label>{{ resena.comentario }}</ion-label>
+        <p>{{resena.valoracion}}</p>
+       
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
 
 
 
