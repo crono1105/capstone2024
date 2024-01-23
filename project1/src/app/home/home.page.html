@@ -32,6 +32,9 @@
             <h2>{{ producto.nombre_producto }}</h2>
             <img [src]="producto.img_producto" alt="Imagen del producto">
             <p>Precio: {{ producto.precio }}</p>
+            <p>{{producto.nombre_empresa}}</p>
+            <p>{{producto.nombre_categoria}}</p>
+            <ion-button (click)="goToVerProducto(producto.id_producto)">VER PRODUCTO</ion-button>
           </ion-card-content>
         </ion-card>
       </ion-col>

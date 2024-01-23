@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';    
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,16 +10,16 @@ import { AuthService } from '../auth.service';
 export class HomePage implements OnInit {
   productos: any[] = []; // Esta variable almacenará la lista de productos
   usuarioCorreo?: string | null;
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) { }
   ngOnInit(): void {
     console.log(this.authService.isLoggedIn);
 
     // Llama a la función para obtener todos los productos al inicializar la página
     this.obtenerProductos();
   }
-  
+
   goToLogin() {
-    this.router.navigate(['/login']);  
+    this.router.navigate(['/login']);
   }
 
   logout() {
@@ -31,7 +31,7 @@ export class HomePage implements OnInit {
   }
 
   goToAddEmpresa() {
-    this.router.navigate(['/agregar-empresa']);  
+    this.router.navigate(['/agregar-empresa']);
   }
 
 
@@ -46,17 +46,21 @@ export class HomePage implements OnInit {
     });
   }
 
-    goToPerfil() {
-      // Obtener el correo electrónico del usuario logueado
-      this.usuarioCorreo = this.authService.obtenerCorreoElectronico();
+  goToPerfil() {
+    // Obtener el correo electrónico del usuario logueado
+    this.usuarioCorreo = this.authService.obtenerCorreoElectronico();
 
-      // Verificar si se obtuvo el correo electrónico
-      if (this.usuarioCorreo) {
-        // Navegar a la ruta del correo electrónico logueado (ajusta la ruta según tu estructura de rutas)
-        this.router.navigate(['/perfil-usuario', this.usuarioCorreo]);
-      } else {
-        console.error('No se pudo obtener el correo electrónico del usuario logueado.');
-        // Manejar el caso en el que no se obtiene el correo electrónico
-      }
-    } 
+    // Verificar si se obtuvo el correo electrónico
+    if (this.usuarioCorreo) {
+      // Navegar a la ruta del correo electrónico logueado (ajusta la ruta según tu estructura de rutas)
+      this.router.navigate(['/perfil-usuario', this.usuarioCorreo]);
+    } else {
+      console.error('No se pudo obtener el correo electrónico del usuario logueado.');
+      // Manejar el caso en el que no se obtiene el correo electrónico
+    }
+  }
+
+  goToVerProducto(id_producto: String) {
+    this.router.navigate(['/ver-producto/',id_producto]);  
+  }
 }

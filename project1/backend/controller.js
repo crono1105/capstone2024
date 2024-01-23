@@ -130,7 +130,7 @@ const obtenerProductosPorEmpresa = (req, res) => {
 };
 
 const obtenerTodosLosProductos = (req, res) => {
-    let sqlQuery = 'SELECT * FROM producto'; // Consulta SQL para seleccionar todos los productos
+    let sqlQuery = 'SELECT * FROM producto JOIN empresa ON empresa.rut_empresa = producto.rut_empresa JOIN categoria_producto ON categoria_producto.id_categoria = producto.id_categoria '; // Consulta SQL para seleccionar todos los productos
 
     db.query(sqlQuery, (err, result) => {
         if (err) {
