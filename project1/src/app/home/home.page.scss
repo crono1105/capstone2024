@@ -25,3 +25,109 @@
 #container a {
   text-decoration: none;
 }
+
+ion-card {
+  --background: transparent;
+  border-radius: 30px;
+  border: 3px solid black;
+  margin-left: 18%;
+
+
+  ion-card-content {
+      --background: transparent;
+  }
+}
+
+
+.background {
+  --ion-background-color: #ffffff;
+}
+
+ion-header {
+  background: #FFFFFF !important;
+
+  ion-toolbar {
+    --background: var(--background);
+  }
+
+  ion-icon {
+    color: rgb(0, 0, 0);
+    font-size: 35px;
+    top: 2%;
+    left: 10%;
+  }
+}
+
+
+ion-content {
+  ion-grid {
+    padding: 0;
+  }
+
+  ion-row {
+    ion-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  ion-card {
+    display: block;
+    width: 80%;
+    ion-thumbnail {
+      width: 100%;
+      height: auto;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    ion-card-content {
+      h2, p {
+        text-align: center;
+        color: rgb(0, 0, 0);
+        font-size: 18px;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 5%;
+      }
+
+    
+    }
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  ion-col[size="12"] {
+    max-width: calc(20% - 16px); // Asumiendo un padding de 8px a cada lado
+    flex: 0 0 calc(20% - 16px); // Asumiendo un padding de 8px a cada lado
+  }
+}
+
+
+/*@media only screen and (min-width: 1000px) {
+  ion-card {
+    max-width: 40%; // Establece una anchura máxima para las tarjetas en pantallas más grandes
+    margin: auto; // Centra la tarjeta si es menor que el ancho disponible
+  }
+}
+
+
+
+/* Pantallas de escritorio más grandes 
+@media only screen and (min-width: 1000px) {
+
+  ion-card {
+      width: 50%;
+      height: 100%;
+      margin-top: 5%;
+
+  }
+
+
+}*/

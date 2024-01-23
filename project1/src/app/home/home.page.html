@@ -1,34 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      SELECTION
+      <img class="logohome" src="../../assets/images/logo/logohome.png">
     </ion-title>
+
     <ion-buttons *ngIf="!isUserLoggedIn()" slot="end">
       <ion-button (click)="goToLogin()">
         <ion-icon slot="icon-only" name="person-outline"></ion-icon>
       </ion-button>
+
     </ion-buttons>
     <ion-buttons *ngIf="isUserLoggedIn()" slot="end">
       <ion-button (click)="goToPerfil()">
         <ion-icon name="body-outline"></ion-icon>
       </ion-button>
+
       <ion-button (click)="logout()">
         <ion-icon name="exit-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="background">
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let producto of productos">
+      <ion-col size="12" size-md="2" *ngFor="let producto of productos">
         <ion-card>
-          <ion-thumbnail slot="start">
-            <img [src]="producto.img_producto" alt="Imagen del producto">
-          </ion-thumbnail>
           <ion-card-content>
             <h2>{{ producto.nombre_producto }}</h2>
+            <img [src]="producto.img_producto" alt="Imagen del producto">
             <p>Precio: {{ producto.precio }}</p>
           </ion-card-content>
         </ion-card>
