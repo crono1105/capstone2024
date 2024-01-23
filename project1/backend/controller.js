@@ -174,6 +174,8 @@ const obtenerDetalleProducto = (idProducto, callback) => {
       SELECT *
       FROM producto
       JOIN empresa ON empresa.rut_empresa = producto.rut_empresa
+      JOIN categoria_producto ON producto.id_categoria = categoria_producto.id_categoria
+      JOIN comuna ON comuna.id_comuna = empresa.id_comuna
       WHERE producto.id_producto = ?`;
 
     db.query(sql, [idProducto], (err, results) => {
