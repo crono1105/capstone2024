@@ -34,7 +34,7 @@ ion-card {
 
 
   ion-card-content {
-      --background: transparent;
+    --background: transparent;
   }
 }
 
@@ -65,42 +65,55 @@ ion-content {
   }
 
   ion-row {
+
     ion-col {
       display: flex;
       justify-content: center;
       align-items: center;
+
+      ion-card {
+        display: block;
+        width: 80%;
+
+        ion-card-content {
+
+          h2,
+          p {
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-size: 18px;
+          }
+
+          img {
+            width: 100%;
+            height: auto;
+            border-radius: 5%;
+          }
+
+          .verproducto {
+            --background: rgb(18, 55, 148); /* Color de fondo azul para el botón */
+            --border-radius: 4px; /* Bordes redondeados para el botón */
+            --color: #ffffff; /* Color de texto blanco para el botón */
+            --padding: 13px 20px; /* Espaciado interno para el botón */
+            font-weight: 400; /* Peso de la fuente */
+            font-size: 16px; /* Tamaño de la fuente */
+            width: 65%; /* El botón ocupa todo el ancho posible */
+            text-transform: none; /* Evita la transformación de texto por defecto */
+            margin-top: 15px; /* Espacio por encima del botón */
+            margin-left: 17%;
+            height: 50px; /* Altura específica para el botón */
+            display: block; /* Asegura que el botón sea un bloque para aplicar anchura y altura */
+            justify-content: center;
+            align-items: center;
+          }
+          }
+
+        }
+       
+      }
     }
   }
 
-  ion-card {
-    display: block;
-    width: 80%;
-    ion-thumbnail {
-      width: 100%;
-      height: auto;
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-    }
-
-    ion-card-content {
-      h2, p {
-        text-align: center;
-        color: rgb(0, 0, 0);
-        font-size: 18px;
-      }
-
-      img {
-        width: 100%;
-        height: auto;
-        border-radius: 5%;
-      }
-
-    
-    }
-  }
-}
 
 @media only screen and (min-width: 1000px) {
   ion-col[size="12"] {
