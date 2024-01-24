@@ -1,0 +1,15 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>lista-reportes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ul>
+    <li *ngFor="let reporte of reportes">
+   {{ reporte.estado }} - {{reporte.valoracion}} - {{reporte.comentario}} 
+   <ion-button (click)="modificarandeliminar(reporte.id_reporte,reporte.id_valoracion)">ACEPTAR REPORTE</ion-button>
+   <ion-button (click)="eliminarReporte(reporte.id_reporte)">RECHAZAR REPORTE</ion-button>
+    </li>
+</ul>
+</ion-content>

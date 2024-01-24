@@ -67,7 +67,11 @@ const routes: Routes = [
   {
     path: 'agregar-valoracion/:id_producto',
     loadChildren: () => import('./agregar-valoracion/agregar-valoracion.module').then( m => m.AgregarValoracionPageModule)
+  },  {
+    path: 'lista-reportes',
+    loadChildren: () => import('./lista-reportes/lista-reportes.module').then( m => m.ListaReportesPageModule)
   },
+
 
 
 

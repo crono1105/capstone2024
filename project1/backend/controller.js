@@ -353,19 +353,59 @@ function loginAdmin(correo_electronico, password, callback) {
         if (err) {
             callback(err, null);
         } else {
-            callback(null, results[0]); 
+            callback(null, results[0]);
         }
     });
 }
 const insertarReporte = (idValoracion, estado, callback) => {
     const query = 'INSERT INTO reporte (id_valoracion, estado) VALUES (?, ?)';
     db.query(query, [idValoracion, estado], (err, result) => {
-      if (err) {
-        return callback(err, null);
-      }
-      callback(null, result);
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, result);
     });
-  };
+};
+
+
+function obtenerListaDeReportes(callback) {
+  
+    const query = 'SELECT * FROM reporte JOIN valoracion_producto ON reporte.id_valoracion = valoracion_producto.id_valoracion' ;
+    db.query(query, (err, reportes) => {
+        if (err) {
+            return callback(err, null);
+        }
+
+        // Retorna la lista de reportes
+        callback(null, reportes);
+    });
+}
+
+function modificarComentarioValoracionProducto(idValoracion, nuevoComentario, callback) {
+ 
+    const query = 'UPDATE valoracion_producto SET comentario = ? WHERE id_valoracion = ?';
+    db.query(query, [nuevoComentario, idValoracion], (err, result) => {
+        if (err) {
+            return callback(err, null);
+        }
+
+        
+        callback(null, result);
+    });
+}
+
+function eliminarReporte(idReporte, callback) {
+
+    const query = 'DELETE FROM reporte WHERE id_reporte = ?';
+    db.query(query, [idReporte], (err, result) => {
+        if (err) {
+            return callback(err, null);s
+        }
+
+        callback(null, result);
+    });
+}
+
 
 module.exports = {
     registroUsuario,
@@ -389,4 +429,7 @@ module.exports = {
     calcularPromedioValoracion,
     loginAdmin,
     insertarReporte,
+    obtenerListaDeReportes,
+    modificarComentarioValoracionProducto,
+    eliminarReporte,
 };

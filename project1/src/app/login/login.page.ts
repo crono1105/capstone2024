@@ -13,9 +13,9 @@ export class LoginPage implements OnInit {
     password: ''
   };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async login() {
     try {
@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
         const resultAdmin = await this.authService.loginAdmin(this.credenciales);
         console.log('Login de administrador exitoso', resultAdmin);
         // Puedes realizar acciones específicas para el administrador aquí
-        this.router.navigate(['home']);
+        this.router.navigate(['lista-reportes']);
       } catch (errorAdmin) {
         console.error('Error al iniciar sesión', errorAdmin);
       }
