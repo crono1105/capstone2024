@@ -256,6 +256,14 @@ export class AuthService {
     return this.http.get(url).toPromise();
   }
 
+  calcularPromedioValoracion(idProducto: string): Promise<any> {
+    const url = `${this.apiUrl}/calcular-promedio/${idProducto}`;
+
+    return this.http.get(url).toPromise();
+  }
+
+  
+
 
 }
 

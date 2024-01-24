@@ -333,6 +333,19 @@ const obtenerResenasPorProducto = (idProducto, callback) => {
     });
 };
 
+const calcularPromedioValoracion = (idProducto, callback) => {
+    const sql = 'SELECT calcularPromedioValoracion(?) AS promedio_valoracion';
+
+    db.query(sql, [idProducto], (err, result) => {
+        if (err) {
+            return callback(err, null);
+        }
+
+        const promedioValoracion = result[0].promedio_valoracion;
+        callback(null, promedioValoracion);
+    });
+};
+
 
 module.exports = {
     registroUsuario,
@@ -353,5 +366,6 @@ module.exports = {
     obtenerActualizacionesPorProducto,
     insertarValoracionProducto,
     obtenerResenasPorProducto,
+    calcularPromedioValoracion,
 
 };

@@ -12,7 +12,7 @@ export class VerProductoPage implements OnInit {
   detalleProducto: any;
   datosGrafico: any[] = [];
   public resenas: any[] = [];
-
+  promedioValoracion: number=0;
   public lineChartLabels: any[] = [];
   public lineChartType: string = 'line';
   public lineChartLegend: boolean = true;
@@ -34,8 +34,8 @@ export class VerProductoPage implements OnInit {
         this.datosGrafico = await this.authService.obtenerActualizacionesPorProducto(idProducto.toString());
         this.detalleProducto = await this.authService.obtenerDetalleProducto(idProducto);
         this.resenas = await this.authService.obtenerResenasPorProducto(idProducto);
-
-        // Procesa los datos para ng2-charts
+        const promedioResponse = await this.authService.calcularPromedioValoracion(idProducto.toString());
+        this.promedioValoracion = promedioResponse.promedioValoracion;
         this.lineChartLabels = this.datosGrafico.map(actualizacion => new Date(actualizacion.fecha));
         this.lineChartData = [
           {
