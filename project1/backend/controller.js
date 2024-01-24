@@ -322,7 +322,7 @@ function insertarValoracionProducto(req, res) {
 }
 
 const obtenerResenasPorProducto = (idProducto, callback) => {
-    const sql = 'SELECT valoracion, comentario FROM valoracion_producto WHERE id_producto = ?';
+    const sql = 'SELECT * FROM valoracion_producto WHERE id_producto = ?';
 
     db.query(sql, [idProducto], (err, results) => {
         if (err) {
@@ -347,6 +347,26 @@ const calcularPromedioValoracion = (idProducto, callback) => {
 };
 
 
+function loginAdmin(correo_electronico, password, callback) {
+    const query = 'SELECT * FROM admin WHERE correo_electronico = ? AND password = ?';
+    db.query(query, [correo_electronico, password], (err, results) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, results[0]); 
+        }
+    });
+}
+const insertarReporte = (idValoracion, estado, callback) => {
+    const query = 'INSERT INTO reporte (id_valoracion, estado) VALUES (?, ?)';
+    db.query(query, [idValoracion, estado], (err, result) => {
+      if (err) {
+        return callback(err, null);
+      }
+      callback(null, result);
+    });
+  };
+
 module.exports = {
     registroUsuario,
     loginUsuario,
@@ -367,5 +387,6 @@ module.exports = {
     insertarValoracionProducto,
     obtenerResenasPorProducto,
     calcularPromedioValoracion,
-
+    loginAdmin,
+    insertarReporte,
 };

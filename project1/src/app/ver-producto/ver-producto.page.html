@@ -88,9 +88,10 @@
       <ion-item *ngFor="let resena of resenas">
         <ion-label>{{ resena.comentario }}</ion-label>
         <p>{{resena.valoracion}}</p>
-       
+        <ion-button (click)="reportarResena(resena.id_valoracion)" >REPORTAR</ion-button>
       </ion-item>
     </ion-list>
+  
   </ion-card-content>
 </ion-card>
 

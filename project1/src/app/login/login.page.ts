@@ -13,17 +13,26 @@ export class LoginPage implements OnInit {
     password: ''
   };
 
-  constructor(private authService: AuthService,private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
-  async loginUsuario() {
+  async login() {
     try {
-      const result = await this.authService.loginUsuario(this.credenciales);
-      console.log('Login exitoso', result);
+      // Intenta iniciar sesión como usuario
+      const resultUsuario = await this.authService.loginUsuario(this.credenciales);
+      console.log('Login de usuario exitoso', resultUsuario);
       this.router.navigate(['/home']);
-    } catch (error) {
-      console.error('Error al iniciar sesión', error); // Muestra el objeto de error completo en la consola
+    } catch (errorUsuario) {
+      // Si el inicio de sesión como usuario falla, intenta como administrador
+      try {
+        const resultAdmin = await this.authService.loginAdmin(this.credenciales);
+        console.log('Login de administrador exitoso', resultAdmin);
+        // Puedes realizar acciones específicas para el administrador aquí
+        this.router.navigate(['home']);
+      } catch (errorAdmin) {
+        console.error('Error al iniciar sesión', errorAdmin);
+      }
     }
   }
 }

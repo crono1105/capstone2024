@@ -58,4 +58,14 @@ export class VerProductoPage implements OnInit {
   goToCrearReview(id_producto: String) {
     this.router.navigate(['/agregar-valoracion/', id_producto]);
   }
+
+  async reportarResena(idValoracion: number) {
+    try {
+      await this.authService.insertarReporte(idValoracion);
+      console.log('Reporte enviado con éxito');
+     
+    } catch (error) {
+      console.error('Error al enviar el reporte', error);
+    }
+  }
 }

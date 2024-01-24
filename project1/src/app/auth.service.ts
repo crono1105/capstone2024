@@ -262,7 +262,38 @@ export class AuthService {
     return this.http.get(url).toPromise();
   }
 
+  async loginAdmin(credentials: any): Promise<any> {
+    const url = `${this.apiUrl}/login-admin`;
+
+    try {
+      const result = await this.http.post(url, credentials).toPromise();
+
+      this.isLoggedIn = true;
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('usuarioCorreo', credentials.correo_electronico);
+      console.log(localStorage.getItem('usuarioCorreo'));
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async insertarReporte(idValoracion: number): Promise<any> {
+    const url = `${this.apiUrl}/insertar-reporte`; // Ajusta la URL según tu backend
   
+    try {
+      const estado = 'pendiente';
+  
+      const result = await this.http.post(url, { idValoracion, estado }).toPromise();
+      console.log('Reporte insertado con éxito', result);
+      return result;
+    } catch (error) {
+      console.error('Error al insertar el reporte', error);
+      throw error;
+    }
+  }
+
+
 
 
 }

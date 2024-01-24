@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const { calcularPromedioValoracion,obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const {  insertarReporte,loginAdmin,calcularPromedioValoracion,obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // También para el formato 'x-www-form-urlencoded'
@@ -27,7 +27,6 @@ app.post('/registro', (req, res) => {
 app.post('/login', (req, res) => {
     const { correo_electronico, password } = req.body;
     console.log(correo_electronico, password)
-    // Lógica para verificar las credenciales y generar un token
     loginUsuario(correo_electronico, password, (err, user) => {
         if (err || !user) {
             return res.status(401).json({ mensaje: 'Credenciales inválidas' });
@@ -269,6 +268,36 @@ app.get('/calcular-promedio/:idProducto', (req, res) => {
         }
     });
 });
+
+app.post('/login-admin', (req, res) => {
+    const { correo_electronico, password } = req.body;
+    
+    loginAdmin(correo_electronico, password, (err, admin) => {
+        if (err || !admin) {
+            return res.status(401).json({ mensaje: 'Credenciales de administrador inválidas' });
+        }
+
+        const token = jwt.sign({ correo_electronico: admin.correo_electronico }, 'secreto', { expiresIn: '1h' });
+        res.json({ token });
+    });
+});
+
+app.post('/insertar-reporte', (req, res) => {
+    const { idValoracion, estado } = req.body;
+
+    insertarReporte(idValoracion, estado, (err, result) => {
+        if (err) {
+            console.error('Error al insertar el reporte:', err.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        console.log('Reporte insertado con éxito');
+        res.status(200).json({ mensaje: 'Reporte insertado con éxito' });
+    });
+});
+
+
+
 
 app.get('/ruta-protegida', verificarToken, (req, res) => {
     res.json({ mensaje: 'Ruta protegida' });
