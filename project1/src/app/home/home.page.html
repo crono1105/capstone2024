@@ -25,7 +25,7 @@
 <ion-content class="background">
   <ion-searchbar placeholder="Buscar productos" [(ngModel)]="busquedaPalabraClave"
     (ionInput)="filtrarProductos()"></ion-searchbar>
-  <ion-button expand="full" (click)="filtrarProductos()">Buscar</ion-button>
+  <ion-button class="buscar" expand="full" (click)="filtrarProductos()">Buscar</ion-button>
   <ion-grid>
     <ion-row>
       <ion-col size="12" size-md="3" *ngFor="let producto of filteredProductos">
