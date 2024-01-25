@@ -1,24 +1,34 @@
-<!-- agregar-valoracion.page.html -->
-
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Agregar Valoración
-    </ion-title>
-  </ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/ver-producto"></ion-back-button>
+  </ion-buttons>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="stacked">Valoración</ion-label>
-    <ion-range [(ngModel)]="valoracion" min="0" max="5" step="1"></ion-range>
-    <ion-badge slot="end">{{ valoracion }}</ion-badge>
-  </ion-item>
+<!-- agregar-valoracion.page.html -->
+<ion-content class="background">
 
-  <ion-item>
-    <ion-label position="stacked">Comentario</ion-label>
-    <ion-textarea [(ngModel)]="comentario" placeholder="Escribe tu comentario aquí"></ion-textarea>
-  </ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Agregar Valoración
+      </ion-card-title>
+    </ion-card-header>
 
-  <ion-button expand="full" (click)="agregarValoracion()">Agregar Valoración</ion-button>
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label position="stacked">Valoración</ion-label>
+        <ion-range [(ngModel)]="valoracion" min="0" max="5" step="1"></ion-range>
+        <ion-badge slot="end">{{ valoracion }}</ion-badge>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Comentario</ion-label>
+        <ion-textarea [(ngModel)]="comentario" placeholder="Escribe tu comentario aquí"></ion-textarea>
+      </ion-item>
+
+      <ion-button class="agregar" expand="blocked" (click)="agregarValoracion()">Agregar Valoración</ion-button>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>

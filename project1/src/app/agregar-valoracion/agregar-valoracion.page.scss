@@ -1,0 +1,63 @@
+.background {
+    --background: rgb(0, 0, 0);
+}
+
+
+ion-back-button {
+    color: rgb(0, 0, 0);
+}
+
+ion-header {
+    background: rgb(255, 255, 255) !important;
+}
+
+ion-card {
+    --background: transparent;
+    border-radius: 30px;
+    border: 3px solid black;
+    margin-left: 18%;
+
+    ion-card-header {
+
+        ion-card-title {
+            text-align: center;
+            color: rgb(255, 255, 255);
+            font-size: 30px;
+            font-weight: bold;
+
+            ion-card-content {
+                --background: transparent;
+
+                ion-item {
+
+                    ion-label {
+
+                        font-size: 16px;
+
+                    }
+
+
+
+                }
+
+            }
+
+        }
+
+
+    }
+
+}
+
+
+
+/* Pantallas de escritorio más grandes */
+@media only screen and (min-width: 1000px) {
+    ion-card {
+
+        width: 65%;
+        height: auto;
+
+    }
+
+}
