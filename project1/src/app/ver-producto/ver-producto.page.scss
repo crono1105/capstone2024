@@ -1,0 +1,136 @@
+.background {
+    --background: rgb(255, 255, 255);
+}
+
+
+ion-back-button {
+    color: rgb(0, 0, 0);
+}
+
+ion-header {
+    background: rgb(255, 255, 255) !important;
+}
+
+ion-title {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.pro {
+    --background: transparent;
+    border-radius: 30px;
+    border: 3px solid black;
+    margin-left: 15%;
+
+    ion-card-header {
+
+        ion-card-title {
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+    }
+
+    ion-card-content {
+        --background: transparent;
+
+        ion-img {
+            max-width: 35%;
+            height: auto;
+            display: block;
+            border: 3px solid black;
+            /* Añade un borde a la imagen */
+            border-radius: 10px;
+            /* Añade esquinas redondeadas al borde de la imagen */
+        }
+
+        ion-item {
+            --background: rgb(218, 221, 228);
+            --color: rgb(0, 0, 0);
+            --padding-start: 7%;
+            /* Elimina el padding inicial predeterminado */
+            --padding-end: 7%;
+            --border-color: transparent;
+            font-weight: bold;
+            /*--inner-padding-end: 2%; /* Elimina el padding interno del final */
+            /*--inner-border-width: 2%; /* Elimina el borde interno */
+            display: flex;
+            /* Utiliza flexbox para alinear el contenido */
+            width: 55%;
+            /* Establece el ancho al 100% del ion-list */
+            height: auto;
+            top: -50%;
+            left: 45%;
+            /* Aumenta el margen izquierdo para desplazar el elemento hacia la derecha */
+
+        }
+
+        ion-list {
+            width: 70%;
+            /* Ajusta al 100% del ancho del ion-card-content */
+            height: auto;
+            background-color: rgb(218, 221, 228);
+            padding-left: 5%;
+            color: rgb(0, 0, 0);
+            font-size: 20px;
+            margin-top: -15%;
+            border-color: rgb(0, 0, 0);
+
+            ion-col {
+
+                ion-textarea {
+                    font-size: 20px;
+                    color: rgb(0, 0, 0);
+                    border-color: black;
+
+
+                    
+
+                }
+
+            }
+        }
+
+
+    }
+}
+
+
+.listtar {
+    --background: rgb(18, 55, 148);
+    /* Cambia este color al deseado */
+    --border-radius: 6px;
+    --color: #ffffff;
+    /* Puedes ajustar el color del texto si es necesario */
+    font-weight: bold;
+    font-size: 18px;
+    width: 50%;
+    margin-left: 25%;
+}
+
+
+
+
+@media only screen and (min-width: 1000px) {
+    ion-card {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+
+        ion-card-content {
+            flex-direction: row;
+
+            ion-img {
+                max-width: auto;
+            }
+
+            ion-item {
+                max-width: auto;
+            }
+        }
+    }
+}

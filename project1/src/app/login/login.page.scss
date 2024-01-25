@@ -2,6 +2,10 @@
     --background: rgb(255, 255, 255);
 }
 
+ion-back-button {
+    color: rgb(0, 0, 0);
+}
+
 .logologin {
     display: flex;
     width: 100%;
@@ -12,10 +16,18 @@
     }
 }
 
+ion-header {
+    background: #FFFFFF !important;
+  
+    ion-toolbar {
+      --background: var(--background);
+    }
+}
+
 ion-card {
     --background: transparent;
     border-radius: 30px;
-    margin-top: 2%;
+    margin-top: -2%;
     border: 3px solid black;
     margin-left: 18%;
 
@@ -37,6 +49,7 @@ ion-card {
             color: rgb(0, 0, 0);
             background: transparent;
             font-size: 18px;
+            font-weight: bold;
         }
 
         ion-input {
@@ -48,10 +61,10 @@ ion-card {
     }
 
     .iniciar {
-        --background: #rgb(18, 55, 148);
+        --background: rgb(18, 55, 148);
         /* Cambia este color al deseado */
         --border-radius: 6px;
-        --color: #000000;
+        --color: rgb(255, 255, 255);
         /* Puedes ajustar el color del texto si es necesario */
         font-weight: bold;
         font-size: 18px;
