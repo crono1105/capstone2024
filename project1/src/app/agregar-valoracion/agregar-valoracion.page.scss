@@ -1,5 +1,5 @@
 .background {
-    --background: rgb(0, 0, 0);
+    --background: rgb(255, 255, 255);
 }
 
 
@@ -14,40 +14,80 @@ ion-header {
 ion-card {
     --background: transparent;
     border-radius: 30px;
-    border: 3px solid black;
+    border: 3px solid rgb(0, 0, 0);
     margin-left: 18%;
+    top: 10%;
 
-    ion-card-header {
+    ion-card-title {
+        text-align: center;
+        color: rgb(0, 0, 0);
+        font-size: 30px;
+        font-weight: bold;
+    }
+}
 
-        ion-card-title {
-            text-align: center;
-            color: rgb(255, 255, 255);
-            font-size: 30px;
+ion-card-content {
+
+    ion-item {
+        --background: transparent;
+        --border-color: transparent;
+        width: 80%;
+        /* Establece el ancho al 100% del ion-list */
+        height: auto;
+        --padding-start: 7%;
+        /* Elimina el padding inicial predeterminado */
+        --padding-end: 7%;
+        left: 11%;
+
+        ion-label {
+            font-size: 25px;
+            color: rgb(0, 0, 0);
             font-weight: bold;
-
-            ion-card-content {
-                --background: transparent;
-
-                ion-item {
-
-                    ion-label {
-
-                        font-size: 16px;
-
-                    }
-
-
-
-                }
-
-            }
-
         }
 
+        ion-range {
+            color: rgb(0, 0, 0);
+            --bar-background: rgb(57, 183, 206);
+            --bar-background-active: rgb(9, 32, 92);
+            --bar-height: 5px;
+            --bar-border-radius: 8px;
+            --knob-size: 25px;
+            --pin-background: rgb(0, 0, 0);
+            --pin-color: rgb(0, 0, 0);
+        }
 
+        ion-badge {
+            background: rgb(9, 32, 92);
+            font-size: 16px;
+            color: rgb(255, 255, 255);
+        }
+
+        ion-textarea {
+            border-color: transparent;
+        }
     }
 
+    .agregrese {
+        --background: rgb(9, 32, 92);
+        /* Color de fondo azul para el botón */
+        --border-radius: 6px;
+        --color: #ffffff;
+        /* Puedes ajustar el color del texto si es necesario */
+        font-weight: bold;
+        font-size: 18px;
+        width: 40%;
+        height: auto;
+        margin-right:5%;
+        margin-left: 30%;
+    }
 }
+
+
+
+
+
+
+
 
 
 

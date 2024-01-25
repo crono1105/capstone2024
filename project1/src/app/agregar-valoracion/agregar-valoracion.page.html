@@ -8,11 +8,10 @@
 <ion-content class="background">
 
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        Agregar Valoración
-      </ion-card-title>
-    </ion-card-header>
+
+    <ion-card-title>
+      Agregar Valoración
+    </ion-card-title>
 
     <ion-card-content>
 
@@ -22,12 +21,14 @@
         <ion-badge slot="end">{{ valoracion }}</ion-badge>
       </ion-item>
 
+      <br>
+
       <ion-item>
         <ion-label position="stacked">Comentario</ion-label>
         <ion-textarea [(ngModel)]="comentario" placeholder="Escribe tu comentario aquí"></ion-textarea>
       </ion-item>
 
-      <ion-button class="agregar" expand="blocked" (click)="agregarValoracion()">Agregar Valoración</ion-button>
+      <ion-button class="agregrese" expand="block" (click)="agregarValoracion()">Agregar Valoración</ion-button>
 
     </ion-card-content>
   </ion-card>
