@@ -10,13 +10,55 @@ import { AuthService } from '../auth.service';
 export class HomePage implements OnInit {
   productos: any[] = []; // Esta variable almacenará la lista de productos
   usuarioCorreo?: string | null;
-  constructor(private router: Router, private authService: AuthService) { }
-  ngOnInit(): void {
-    console.log(this.authService.isLoggedIn);
+  busquedaPalabraClave: string = '';
+  filteredProductos: any[] = [];
 
+  constructor(private router: Router, private authService: AuthService) { }
+
+  ngOnInit(): void {
     // Llama a la función para obtener todos los productos al inicializar la página
     this.obtenerProductos();
   }
+
+  // Resto del código
+
+  // Función para obtener todos los productos
+  obtenerProductos() {
+    this.authService.obtenerTodosLosProductos().then((productos) => {
+      this.productos = productos;
+      this.filteredProductos = productos; // Inicialmente, muestra todos los productos
+      console.log('Lista de productos:', this.productos);
+    }).catch((error) => {
+      console.error('Error al obtener todos los productos:', error);
+    });
+  }
+
+
+  filtrarProductos() {
+
+    if (this.productos && this.productos.length > 0) {
+      // Filtra los productos solo si hay una palabra clave
+      if (this.busquedaPalabraClave.trim() !== '') {
+        this.filteredProductos = this.productos.filter((producto) => {
+          // Asegúrate de que los campos relevantes existan antes de usar toLowerCase
+          const nombreProducto = producto.nombre_producto ? producto.nombre_producto.toLowerCase() : '';
+          const descripcionProducto = producto.descripcion_producto ? producto.descripcion_producto.toLowerCase() : '';
+          const categoria = producto.nombre_categoria ? producto.nombre_categoria.toLowerCase() : '';
+          const comuna = producto.nombre_comuna ? producto.nombre_comuna.toLowerCase() : '';
+          return (
+            nombreProducto.includes(this.busquedaPalabraClave.toLowerCase()) ||
+            descripcionProducto.includes(this.busquedaPalabraClave.toLowerCase()) ||
+            categoria.includes(this.busquedaPalabraClave.toLocaleLowerCase()) ||
+            comuna.includes(this.busquedaPalabraClave.toLowerCase())
+          );
+        });
+      } else {
+        // Si no hay palabra clave, muestra todos los productos
+        this.filteredProductos = [...this.productos];
+      }
+    }
+  }
+
 
   goToLogin() {
     this.router.navigate(['/login']);
@@ -34,33 +76,21 @@ export class HomePage implements OnInit {
     this.router.navigate(['/agregar-empresa']);
   }
 
-
-  // Función para obtener todos los productos
-  obtenerProductos() {
-    this.authService.obtenerTodosLosProductos().then((productos) => {
-      this.productos = productos;
-      console.log(productos[2].img_producto);
-      console.log('Lista de productos:', this.productos);
-    }).catch((error) => {
-      console.error('Error al obtener todos los productos:', error);
-    });
-  }
-
   goToPerfil() {
-    // Obtener el correo electrónico del usuario logueado
     this.usuarioCorreo = this.authService.obtenerCorreoElectronico();
 
-    // Verificar si se obtuvo el correo electrónico
     if (this.usuarioCorreo) {
-      // Navegar a la ruta del correo electrónico logueado (ajusta la ruta según tu estructura de rutas)
       this.router.navigate(['/perfil-usuario', this.usuarioCorreo]);
     } else {
       console.error('No se pudo obtener el correo electrónico del usuario logueado.');
-      // Manejar el caso en el que no se obtiene el correo electrónico
     }
   }
 
   goToVerProducto(id_producto: String) {
-    this.router.navigate(['/ver-producto/',id_producto]);  
+    this.router.navigate(['/ver-producto/', id_producto]);
+  }
+
+  filtrarProductosConBoton() {
+    this.filtrarProductos();
   }
 }

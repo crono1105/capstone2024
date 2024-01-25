@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const { calcularPromedioValoracion,obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const {eliminarReporte, modificarComentarioValoracionProducto,obtenerListaDeReportes,insertarReporte, loginAdmin, calcularPromedioValoracion, obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // También para el formato 'x-www-form-urlencoded'
@@ -27,7 +27,6 @@ app.post('/registro', (req, res) => {
 app.post('/login', (req, res) => {
     const { correo_electronico, password } = req.body;
     console.log(correo_electronico, password)
-    // Lógica para verificar las credenciales y generar un token
     loginUsuario(correo_electronico, password, (err, user) => {
         if (err || !user) {
             return res.status(401).json({ mensaje: 'Credenciales inválidas' });
@@ -260,7 +259,7 @@ app.post('/valoracion-producto/:id_producto', insertarValoracionProducto);
 
 app.get('/calcular-promedio/:idProducto', (req, res) => {
     const idProducto = req.params.idProducto;
-        calcularPromedioValoracion(idProducto, (err, promedio) => {
+    calcularPromedioValoracion(idProducto, (err, promedio) => {
         if (err) {
             console.error('Error al calcular el promedio de valoración:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
@@ -269,6 +268,83 @@ app.get('/calcular-promedio/:idProducto', (req, res) => {
         }
     });
 });
+
+app.post('/login-admin', (req, res) => {
+    const { correo_electronico, password } = req.body;
+
+    loginAdmin(correo_electronico, password, (err, admin) => {
+        if (err || !admin) {
+            return res.status(401).json({ mensaje: 'Credenciales de administrador inválidas' });
+        }
+
+        const token = jwt.sign({ correo_electronico: admin.correo_electronico }, 'secreto', { expiresIn: '1h' });
+        res.json({ token });
+    });
+});
+
+app.post('/insertar-reporte', (req, res) => {
+    const { idValoracion, estado } = req.body;
+
+    insertarReporte(idValoracion, estado, (err, result) => {
+        if (err) {
+            console.error('Error al insertar el reporte:', err.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        console.log('Reporte insertado con éxito');
+        res.status(200).json({ mensaje: 'Reporte insertado con éxito' });
+    });
+});
+
+app.get('/listar-reportes', (req, res) => {
+    
+    obtenerListaDeReportes((err, reportes) => {
+        if (err) {
+            console.error('Error al obtener la lista de reportes:', err.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        res.status(200).json(reportes);
+    });
+});
+
+app.put('/modificar-comentario-valoracion-producto/:idValoracion', (req, res) => {
+    const idValoracion = req.params.idValoracion;
+    const nuevoComentario = req.body.nuevoComentario;
+
+    modificarComentarioValoracionProducto(idValoracion, nuevoComentario, (err, result) => {
+        if (err) {
+            console.error('Error al modificar el comentario de la valoración del producto:', err.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ mensaje: 'Valoración no encontrada' });
+        }
+
+        // Valoración modificada con éxito
+        return res.json({ mensaje: 'Comentario de la valoración del producto modificado con éxito' });
+    });
+});
+
+app.delete('/eliminar-reporte/:idReporte', (req, res) => {
+    const idReporte = req.params.idReporte;
+
+    eliminarReporte(idReporte, (err, result) => {
+        if (err) {
+            console.error('Error al eliminar el reporte:', err.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ mensaje: 'Reporte no encontrado' });
+        }
+
+        // Reporte eliminado con éxito
+        return res.json({ mensaje: 'Reporte eliminado con éxito' });
+    });
+});
+
 
 app.get('/ruta-protegida', verificarToken, (req, res) => {
     res.json({ mensaje: 'Ruta protegida' });

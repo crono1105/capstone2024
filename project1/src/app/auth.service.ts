@@ -262,7 +262,76 @@ export class AuthService {
     return this.http.get(url).toPromise();
   }
 
-  
+  async loginAdmin(credentials: any): Promise<any> {
+    const url = `${this.apiUrl}/login-admin`;
+
+    try {
+      const result = await this.http.post(url, credentials).toPromise();
+
+      this.isLoggedIn = true;
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('usuarioCorreo', credentials.correo_electronico);
+      console.log(localStorage.getItem('usuarioCorreo'));
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async insertarReporte(idValoracion: number): Promise<any> {
+    const url = `${this.apiUrl}/insertar-reporte`; // Ajusta la URL según tu backend
+
+    try {
+      const estado = 'pendiente';
+
+      const result = await this.http.post(url, { idValoracion, estado }).toPromise();
+      console.log('Reporte insertado con éxito', result);
+      return result;
+    } catch (error) {
+      console.error('Error al insertar el reporte', error);
+      throw error;
+    }
+  }
+
+  async obtenerListaDeReportes(): Promise<any[]> {
+    const url = `${this.apiUrl}/listar-reportes`;
+
+    try {
+      const reportes = await this.http.get<any[]>(url).toPromise();
+      return reportes || [];
+    } catch (error) {
+      console.error('Error al obtener la lista de reportes:', error);
+      return [];
+    }
+  }
+
+  async modificarComentarioValoracionProducto(idValoracion: string, nuevoComentario: string): Promise<any> {
+    const url = `${this.apiUrl}/modificar-comentario-valoracion-producto/${idValoracion}`;
+
+    try {
+      const result = await this.http.put(url, { nuevoComentario }).toPromise();
+      console.log('Comentario de valoración del producto modificado con éxito', result);
+      return result;
+    } catch (error) {
+      console.error('Error al modificar el comentario de la valoración del producto:', error);
+      throw error;
+    }
+  }
+
+  async eliminarReporte(idReporte: string): Promise<any> {
+    const url = `${this.apiUrl}/eliminar-reporte/${idReporte}`;
+
+    try {
+        const result = await this.http.delete(url).toPromise();
+        console.log('Reporte eliminado con éxito', result);
+        return result;
+    } catch (error) {
+        console.error('Error al eliminar el reporte:', error);
+        throw error;
+    }
+}
+
+
 
 
 }

@@ -4,62 +4,55 @@
   </ion-buttons>
 </ion-header>
 
-<ion-content class="background">
+<ion-content class="">
   <ion-title>Detalle del Producto</ion-title>
 
-  <ion-card class="pro" *ngIf="detalleProducto">
+  <ion-card *ngIf="detalleProducto">
     <ion-card-header>
       <ion-card-title>{{ detalleProducto.nombre_producto }}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col offset-lg="1">
-            <ion-img [src]="detalleProducto.img_producto" *ngIf="detalleProducto.img_producto"></ion-img>
+      <ion-img [src]="detalleProducto.img_producto" *ngIf="detalleProducto.img_producto"></ion-img>
 
-            <ion-item>
-              <ion-label>Precio</ion-label>
-              <ion-text>{{ detalleProducto.precio }}</ion-text>
-            </ion-item>
+      <ion-list>
+        <ion-col>
+          <ion-item>
+            <ion-label>Precio</ion-label>
+            <ion-text>{{ detalleProducto.precio }}</ion-text>
+          </ion-item>
 
-            <ion-item>
-              <ion-label>Stock</ion-label>
-              <ion-text>{{ detalleProducto.stock }}</ion-text>
-            </ion-item>
+          <ion-item>
+            <ion-label>Stock</ion-label>
+            <ion-text>{{ detalleProducto.stock }}</ion-text>
+          </ion-item>
 
-            <ion-item>
-              <ion-label>Empresa</ion-label>
-              <ion-text>{{ detalleProducto.nombre_empresa }}</ion-text>
-            </ion-item>
+          <ion-item>
+            <ion-label>Empresa</ion-label>
+            <ion-text>{{ detalleProducto.nombre_empresa }}</ion-text>
+          </ion-item>
 
-            <ion-item>
-              <ion-label>Categoria</ion-label>
-              <ion-text>{{ detalleProducto.nombre_categoria }}</ion-text>
-            </ion-item>
+          <ion-item>
+            <ion-label>Categoria</ion-label>
+            <ion-text>{{ detalleProducto.nombre_categoria }}</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label>Direccion</ion-label>
+            <ion-text>{{detalleProducto.direccion}},{{ detalleProducto.nombre_comuna }}</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label>Descripcion</ion-label>
+            <ion-text>{{detalleProducto.descripcion}}</ion-text>
+          </ion-item>
 
-            <ion-item>
-              <ion-label>Direccion</ion-label>
-              <ion-text>{{detalleProducto.direccion}},{{ detalleProducto.nombre_comuna }}</ion-text>
-            </ion-item>
-
-            <ion-list> Descripción:
-              <ion-col >
-                <ion-textarea  [disabled]="true" placeholder="dsadsad"></ion-textarea>
-              </ion-col>
-            </ion-list>
-
-
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+        </ion-col>
+      </ion-list>
     </ion-card-content>
-
   </ion-card>
 
   <!-- Agrega el elemento canvas para el gráfico -->
 
-  <ion-button class="listtar" expand="block" routerLink="/productos">Volver a la lista de productos</ion-button>
+  <ion-button expand="full" routerLink="/productos">Volver a la lista de productos</ion-button>
 
 
   <ion-list>
@@ -75,8 +68,8 @@
 
 
     <!--boton ver mapa-->
-    <ion-button class="map" (click)="goToVerMapa(detalleProducto.rut_empresa)">MAPA</ion-button>
-    <ion-button class="reseña" (click)="goToCrearReview(detalleProducto.id_producto)">AGREGAR RESEÑA</ion-button>
+    <ion-button (click)="goToVerMapa(detalleProducto.rut_empresa)">MAPA</ion-button>
+    <ion-button (click)="goToCrearReview(detalleProducto.id_producto)">AGREGAR RESEÑA</ion-button>
   </ion-list>
 
 
@@ -89,9 +82,10 @@
         <ion-item *ngFor="let resena of resenas">
           <ion-label>{{ resena.comentario }}</ion-label>
           <p>{{resena.valoracion}}</p>
-
+          <ion-button (click)="reportarResena(resena.id_valoracion)">REPORTAR</ion-button>
         </ion-item>
       </ion-list>
+
     </ion-card-content>
   </ion-card>
 
