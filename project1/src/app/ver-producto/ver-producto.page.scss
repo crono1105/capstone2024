@@ -151,6 +151,58 @@ ion-list {
     }
 }
 
+.res{
+    --background: transparent;
+    border: 3px solid black;
+    border-radius: 30px;
+
+    ion-card-header {
+
+        ion-card-title {
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-size: 30px;
+            font-weight: bold;
+        }
+    }
+
+    ion-card-content{
+        background: transparent;
+
+        .listita {
+            width: 80%;
+
+            p {
+                color: rgb(0, 0, 0);
+                font-weight: lighter;
+                width: 80%; 
+            }
+    
+            .report{
+                --background: rgb(18, 55, 148);
+            /* Cambia este color al deseado */
+            --border-radius: 6px;
+            --color: #ffffff;
+            /* Puedes ajustar el color del texto si es necesario */
+            font-weight: bold;
+            font-size: 18px;
+            width: 40%;
+            height: auto;
+            margin-right:5%;
+            margin-left: 3%;
+            }
+        }
+
+       
+
+    }
+
+}
+
+h2 {
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
 
 
 

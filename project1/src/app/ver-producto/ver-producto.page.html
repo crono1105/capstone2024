@@ -80,17 +80,17 @@
   </ion-list>
 
 
-  <ion-card *ngIf="resenas.length > 0">
+  <ion-card class="res" *ngIf="resenas.length > 0">
     <ion-card-header>
       <ion-card-title>Reseñas</ion-card-title>
     </ion-card-header>
     <ion-card-content>
 
-      <ion-list>
+      <ion-list class="listita">
         <ion-item *ngFor="let resena of resenas">
           <ion-label>{{ resena.comentario }}</ion-label>
           <p>{{resena.valoracion}}</p>
-          <ion-button (click)="reportarResena(resena.id_valoracion)">REPORTAR</ion-button>
+          <ion-button class="report" (click)="reportarResena(resena.id_valoracion)">REPORTAR</ion-button>
         </ion-item>
       </ion-list>
 
