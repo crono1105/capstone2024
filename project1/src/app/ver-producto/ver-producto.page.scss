@@ -79,26 +79,20 @@ ion-title {
             font-size: 20px;
             margin-top: -15%;
             border-color: rgb(0, 0, 0);
+            margin-left: 15%;
 
-            ion-col {
+            ion-item {
 
-                ion-textarea {
+                ion-text {
                     font-size: 20px;
                     color: rgb(0, 0, 0);
                     border-color: black;
 
-
-                    
-
                 }
-
             }
         }
-
-
     }
 }
-
 
 .listtar {
     --background: rgb(18, 55, 148);
@@ -110,6 +104,51 @@ ion-title {
     font-size: 18px;
     width: 50%;
     margin-left: 25%;
+}
+
+ion-list {
+    width: 30%;
+    /* Ajusta al 100% del ancho del ion-card-content */
+    height: auto;
+    background-color: transparent;
+    padding-left: 1%;
+
+    color: rgb(0, 0, 0);
+    border-color: rgb(0, 0, 0);
+    margin-left: 35%;
+
+    ion-item {
+        --background: transparent;
+        --color: rgb(0, 0, 0);
+        --inner-padding-start: 10%;
+        --border-color: transparent;
+        font-weight: bold;
+        --inner-padding-end: 2%;
+        /* Elimina el padding interno del final */
+        --inner-border-width: 2%;
+        /* Elimina el borde interno */
+        display: flex;
+        /* Utiliza flexbox para alinear el contenido */
+        width: 90%;
+        /* Establece el ancho al 100% del ion-list */
+        left: 10%;
+        /* Aumenta el margen izquierdo para desplazar el elemento hacia la derecha */
+    }
+
+    ion-button {
+        --background: rgb(18, 55, 148);
+        /* Cambia este color al deseado */
+        --border-radius: 6px;
+        --color: #ffffff;
+        /* Puedes ajustar el color del texto si es necesario */
+        font-weight: bold;
+        font-size: 18px;
+        width: 40%;
+        height: auto;
+        margin-right:5%;
+        margin-left: 3%;
+
+    }
 }
 
 
