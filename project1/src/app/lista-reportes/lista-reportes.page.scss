@@ -1,0 +1,68 @@
+.background {
+    --ion-background-color: rgb(255, 255, 255); /* Establece el color de fondo para ion-content */
+}
+
+
+ion-header {
+    background-color: #ffffff !important;
+
+    ion-back-button {
+        color: rgb(0, 0, 0);
+    }
+}
+
+ion-card {
+    --background: transparent;
+    border-radius: 30px;
+    margin-top: 4%;
+    border: 3px solid rgb(0, 0, 0);
+    margin-left: auto;
+    margin-right: auto;
+
+    ion-card-title {
+        text-align: center;
+        color: rgb(0, 0, 0);
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    ion-card-content {
+        --background: transparent;
+
+        ul {
+            list-style-type: none; /* Elimina los puntos de la lista */
+            padding: 0; /* Elimina el padding por defecto de la lista */
+            margin: 0; /* Elimina el margen por defecto de la lista */
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgb(0, 0, 0);
+            font-size: 18px;
+            margin-bottom: 10px; /* Añade espacio entre los elementos de la lista */
+            
+
+            ion-icon {
+
+                background: rgb(18, 55, 148);
+                border-radius: 10px;
+                color: #ffffff;
+                font-weight: bold;
+                font-size: 25px;
+
+            }
+        }
+    }
+}
+/* Pantallas de escritorio más grandes */
+@media only screen and (min-width: 1000px) {
+
+    ion-card {
+        width: 40%;
+
+    }
+
+
+}
