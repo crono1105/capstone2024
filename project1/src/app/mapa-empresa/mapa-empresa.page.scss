@@ -1,5 +1,29 @@
-.map-container {
-    width:50%;
-    height: 50%;
+.background {
+  --background: rgb(255, 255, 255);
+
+  .map-container {
+    width:80%;
+    height: 80%;
+    margin-left: 10%;
+    margin-top: 2%;
+    border-radius: 5px;
   }
-  
+}
+
+ion-back-button {
+  color: rgb(0, 0, 0);
+}
+
+ion-header {
+  background: rgb(255, 255, 255) !important;
+}
+
+
+ion-title {
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 2%;
+}
+
