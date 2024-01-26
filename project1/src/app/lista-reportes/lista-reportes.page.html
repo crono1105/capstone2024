@@ -6,25 +6,28 @@
 
 <ion-content class="background">
 
-  <ion-card>
+  <ion-title>Lista de Reportes</ion-title>
 
-    <ion-card-title>lista-reportes</ion-card-title>
+  <ion-grid>
+    <ion-row>
+      <ion-col><strong>Reporte</strong></ion-col>
+      <ion-col size="2"><strong>Aceptar</strong></ion-col>
+      <ion-col size="2"><strong>Rechazar</strong></ion-col>
+    </ion-row>
 
-    <ion-card-content>
-      <ul>
-        <li *ngFor="let reporte of reportes">
-          {{ reporte.estado }} - {{reporte.valoracion}} - {{reporte.comentario}}
-
-          <ion-icon name="checkmark-circle-outline" (click)="modificarandeliminar(reporte.id_reporte,reporte.id_valoracion)">
-            ACEPTAR
-            REPORTE
-          </ion-icon>
-          <ion-icon name="close-circle-outline" (click)="eliminarReporte(reporte.id_reporte)">RECHAZAR REPORTE</ion-icon>
-        </li>
-      </ul>
-
-    </ion-card-content>
-
-
-  </ion-card>
+    <ion-row *ngFor="let reporte of reportes">
+      <ion-col>{{ reporte.estado }} - {{ reporte.valoracion }} - {{ reporte.comentario }}</ion-col>
+      <ion-col size="2">
+        <ion-button fill="solid" color="success"
+          (click)="modificarandeliminar(reporte.id_reporte, reporte.id_valoracion)">
+          <ion-icon slot="icon-only" name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button fill="solid" color="danger" (click)="eliminarReporte(reporte.id_reporte)">
+          <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
