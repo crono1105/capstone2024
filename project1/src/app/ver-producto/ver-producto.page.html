@@ -11,6 +11,7 @@
 
     <ion-card-header>
       <ion-card-title>{{ detalleProducto.nombre_producto }}</ion-card-title>
+      <h4>Promedio de Valoración: {{ promedioValoracion }}</h4>
     </ion-card-header>
 
     <ion-card-content>
@@ -78,23 +79,33 @@
 
 
   <ion-card class="res" *ngIf="resenas.length > 0">
+
     <ion-card-header>
       <ion-card-title>Reseñas</ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
-
-      <ion-list class="listita">
-        <ion-item *ngFor="let resena of resenas">
-          <ion-label>{{ resena.comentario }}</ion-label>
-          <p>{{resena.valoracion}}</p>
-          <ion-button class="report" (click)="reportarResena(resena.id_valoracion)">REPORTAR</ion-button>
-        </ion-item>
-      </ion-list>
-
+      <ion-grid class="listita">
+        <ion-row>
+          <ion-col size="8"><strong>Comentario</strong></ion-col>
+          <ion-col size="2"><strong>Valoración</strong></ion-col>
+          <ion-col size="2"><strong>Reportar</strong></ion-col>
+        </ion-row>
+        <ion-row *ngFor="let resena of resenas">
+          <ion-col size="8">{{ resena.comentario }}</ion-col>
+          <ion-col size="2">{{ resena.valoracion }}</ion-col>
+          <ion-col size="2">
+            <ion-button fill="clear" (click)="reportarResena(resena.id_valoracion)">
+              <ion-icon slot="icon-only" name="warning-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
+  <br>
 
-  <h2>Promedio de Valoración: {{ promedioValoracion }}</h2>
+  
 
 
 </ion-content>

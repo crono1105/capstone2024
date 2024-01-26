@@ -145,61 +145,77 @@ ion-list {
         font-size: 18px;
         width: 40%;
         height: auto;
-        margin-right:5%;
+        margin-right: 5%;
         margin-left: 3%;
 
     }
 }
 
-.res{
+.res {
     --background: transparent;
-    border: 3px solid black;
     border-radius: 30px;
+    border: 3px solid black;
+    margin: auto; // Alinea el card en el centro
+    max-width: 80%; // Ajusta el ancho máximo de la tarjeta
 
-    ion-card-header {
-
-        ion-card-title {
-            text-align: center;
-            color: rgb(0, 0, 0);
-            font-size: 30px;
-            font-weight: bold;
-        }
+    ion-card-title {
+        text-align: center;
+        color: rgb(0, 0, 0);
+        font-size: 25px;
+        font-weight: bold;
     }
 
-    ion-card-content{
-        background: transparent;
-
+    ion-card-content {
         .listita {
-            width: 80%;
+            width: 90%; // Hace que la grilla ocupe el 100% del ancho del card content
 
-            p {
-                color: rgb(0, 0, 0);
-                font-weight: lighter;
-                width: 80%; 
+            ion-row {
+                align-items: center; // Alinea los elementos de la fila verticalmente
+                text-align: left; // Alinea el texto a la izquierda para todas las columnas
+
+                ion-col {
+                    display: flex; // Aplica flexbox para un mejor control de alineación
+                    align-items: center; // Alinea los elementos de la columna verticalmente
+                    justify-content: flex-start; // Alinea los elementos al inicio de la columna
+                    padding: 10px 0; // Espacio vertical para cada celda
+                    color: rgb(0, 0, 0);
+                    font-size: 16px;
+                    border-bottom: transparent; // Línea divisoria entre filas
+
+                    &:first-child {
+                        justify-content: flex-start; // Asegura que el contenido de la primera columna esté al inicio
+                    }
+
+                    &:nth-child(2) {
+                        justify-content: center; // Centra el contenido de la segunda columna
+                    }
+
+                    &:last-child {
+                        justify-content: flex-end; // Alinea el contenido de la última columna al final
+                    }
+
+                    ion-button {
+                        margin: 0; // Elimina márgenes para botones dentro de la columna
+                        padding: 0; // Elimina el padding para botones
+                    }
+
+                    ion-icon {
+                        margin: 0 5px; // Espacio horizontal para iconos
+                    }
+                }
             }
-    
-            .report{
-                --background: rgb(18, 55, 148);
-            /* Cambia este color al deseado */
-            --border-radius: 6px;
-            --color: #ffffff;
-            /* Puedes ajustar el color del texto si es necesario */
-            font-weight: bold;
-            font-size: 18px;
-            width: 40%;
-            height: auto;
-            margin-right:5%;
-            margin-left: 3%;
+
+            ion-row:last-child {
+                ion-col {
+                    border-bottom: none; // Elimina la línea divisoria de la última fila
+                }
             }
         }
-
-       
-
     }
-
 }
 
-h2 {
+
+h4 {
     text-align: center;
     color: rgb(0, 0, 0);
 }
