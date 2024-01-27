@@ -3,8 +3,14 @@ const jwt = require('jsonwebtoken');
 
 const registroUsuario = (usuario, callback) => {
     const { correo_electronico, nombre_completo, password, telefono } = usuario;
+
+    // Codificar la contraseña en base64
+    const passwordBase64 = Buffer.from(password).toString('base64');
+
     const sql = 'INSERT INTO usuario (correo_electronico, nombre_completo, password, telefono, ultimo_acceso) VALUES (?, ?, ?, ?, NOW())';
-    db.query(sql, [correo_electronico, nombre_completo, password, telefono], callback);
+    
+    // Usar la contraseña codificada en base64 en la consulta SQL
+    db.query(sql, [correo_electronico, nombre_completo, passwordBase64, telefono], callback);
 };
 
 const loginUsuario = (correo_electronico, password, callback) => {

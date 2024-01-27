@@ -27,7 +27,7 @@ app.post('/registro', (req, res) => {
 app.post('/login', (req, res) => {
     const { correo_electronico, password } = req.body;
     console.log(correo_electronico, password)
-    loginUsuario(correo_electronico, password, (err, user) => {
+    loginUsuario(correo_electronico, Buffer.from(password).toString('base64'), (err, user) => {
         if (err || !user) {
             return res.status(401).json({ mensaje: 'Credenciales inválidas' });
         }
