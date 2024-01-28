@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-lista-reportes',
   templateUrl: './lista-reportes.page.html',
@@ -8,7 +9,7 @@ import { AuthService } from '../auth.service';
 export class ListaReportesPage implements OnInit {
   public reportes: any[] = [];
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private alertController: AlertController) { }
 
   ngOnInit() {
     this.obtenerListaDeReportes();
@@ -26,6 +27,7 @@ export class ListaReportesPage implements OnInit {
       const nuevoComentario = " ";
       await this.authService.modificarComentarioValoracionProducto(idValoracion, nuevoComentario);
       console.log('Comentario de valoración del producto modificado con éxito');
+      this.presentCustomAlert('¡COMENTARIO DEL REPORTE ELIMINADO!');
     } catch (error) {
       console.error('Error al modificar el comentario de la valoración del producto en el componente:', error);
     }
@@ -34,15 +36,27 @@ export class ListaReportesPage implements OnInit {
   async eliminarReporte(idReporte: string) {
     try {
       await this.authService.eliminarReporte(idReporte);
-      console.log('Reporte eliminado con éxito');
+      console.log('Proceso terminado');
+      await this.presentCustomAlert('¡Reporte elimininado!');
     } catch (error) {
       console.error('Error al eliminar el reporte en el componente:', error);
     }
   }
 
   modificarandeliminar(idReporte: string, idValoracion :string){
-    this.eliminarReporte(idReporte);
     this.modificarComentarioValoracion(idValoracion);
+    this.eliminarReporte(idReporte);
+   
+  }
+
+  async presentCustomAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'ADMINSTRADOR ',
+      message: message,
+      buttons: ['Aceptar']
+    });
+
+    await alert.present();
   }
 
 }
