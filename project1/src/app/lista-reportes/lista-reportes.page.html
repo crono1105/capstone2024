@@ -16,7 +16,7 @@
     </ion-row>
 
     <ion-row *ngFor="let reporte of reportes">
-      <ion-col>{{ reporte.estado }} - {{ reporte.valoracion }} - {{ reporte.comentario }}</ion-col>
+      <ion-col>{{ reporte.valoracion }} - {{ reporte.comentario }}</ion-col>
       <ion-col size="2">
         <ion-button fill="solid" color="success"
           (click)="modificarandeliminar(reporte.id_reporte, reporte.id_valoracion)">
