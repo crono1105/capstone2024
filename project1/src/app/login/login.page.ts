@@ -24,11 +24,8 @@ export class LoginPage implements OnInit {
 
   async login() {
     try {
-      // Intenta iniciar sesión como usuario
       const resultUsuario = await this.authService.loginUsuario(this.credenciales);
       console.log('Login de usuario exitoso', resultUsuario);
-
-      // Muestra la alerta personalizada solo si el inicio de sesión es exitoso
       await this.presentCustomAlert('¡Inicio de sesión exitoso como usuario!');
       this.router.navigate(['/home']);
     } catch (errorUsuario) {

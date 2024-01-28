@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modificar-perfil',
@@ -14,13 +16,13 @@ export class ModificarPerfilPage implements OnInit {
     telefono: '',
   };
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+    private router: Router,
+    private alertController: AlertController) {}
 
   ngOnInit() {
-    // Obtiene el correo electrónico del usuario logeado desde el servicio AuthService
+   
     this.usuarioModificado.correoElectronico = this.authService.obtenerCorreoElectronico();
-
-    // Carga los otros datos actuales del usuario usando la función getUsuarioPorCorreo
     this.cargarDatosUsuario(this.usuarioModificado.correoElectronico);
   }
 
@@ -47,14 +49,24 @@ export class ModificarPerfilPage implements OnInit {
 
   async modificarPerfil() {
     try {
-      // Llama al método modificarUsuario del servicio AuthService
       const response = await this.authService.modificarUsuario(this.usuarioModificado);
       console.log('Usuario modificado con éxito:', response);
-      // Realiza alguna acción adicional, como redirigir a la página de perfil o mostrar un mensaje de éxito.
+      await this.presentCustomAlert('¡Usuario modificado con exito!');
+      this.router.navigate(['/home']);
     } catch (error) {
       console.error('Error al modificar el usuario:', error);
-      // Maneja el error, por ejemplo, mostrando un mensaje de error al usuario.
+      await this.presentCustomAlert('¡No se pude modificar usuario!');
     }
+  }
+
+  async presentCustomAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Usuario ',
+      message: message,
+      buttons: ['Aceptar']
+    });
+
+    await alert.present();
   }
 
   
