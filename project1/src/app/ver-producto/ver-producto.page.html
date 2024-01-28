@@ -12,6 +12,11 @@
     <ion-card-header>
       <ion-card-title>{{ detalleProducto.nombre_producto }}</ion-card-title>
       <h4>Promedio de Valoración: {{ promedioValoracion }}</h4>
+      <ion-col size="12">
+        <ion-button class="whatsapp-button" target="_blank" href="https://wa.me/569{{ detalleProducto.telefono_empresa }}">
+          <ion-icon name="logo-whatsapp"></ion-icon>
+        </ion-button>
+      </ion-col>
     </ion-card-header>
 
     <ion-card-content>
@@ -19,7 +24,7 @@
         <ion-row>
           <ion-col ffset-lg="1">
 
-          <ion-img [src]="detalleProducto.img_producto" *ngIf="detalleProducto.img_producto"></ion-img>
+            <ion-img [src]="detalleProducto.img_producto" *ngIf="detalleProducto.img_producto"></ion-img>
 
             <ion-item>
               <ion-label>Precio</ion-label>
@@ -40,19 +45,21 @@
               <ion-label>Categoria</ion-label>
               <ion-text>{{ detalleProducto.nombre_categoria }}</ion-text>
             </ion-item>
-            
+
             <ion-item>
               <ion-label>Direccion</ion-label>
               <ion-text>{{detalleProducto.direccion}},{{ detalleProducto.nombre_comuna }}</ion-text>
             </ion-item>
+
+            
 
             <ion-list> Descripcion:
               <ion-item>
                 <ion-textarea>{{detalleProducto.descripcion}}</ion-textarea>
               </ion-item>
             </ion-list>
-            <ion-button   target="_blank" href="https://wa.me/569{{ detalleProducto.telefono_empresa }}">Hablar WhatsApp<ion-icon style="padding-left: 5%;" name="logo-whatsapp"></ion-icon></ion-button>
-            </ion-col>
+            
+          </ion-col>
 
         </ion-row>
       </ion-grid>
@@ -104,8 +111,5 @@
     </ion-card-content>
   </ion-card>
   <br>
-
-  
-
 
 </ion-content>

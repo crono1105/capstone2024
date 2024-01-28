@@ -33,6 +33,20 @@ ion-title {
             font-weight: bold;
         }
 
+        .whatsapp-button {
+            --background: #25d366;
+            --border-radius: 50px;
+            display: flex;
+            width: 5%;
+            height: auto;
+            margin-left: 48%;
+        
+            ion-icon {
+              font-size: 30px;
+              color: #fff;
+            }
+          }
+
     }
 
     ion-card-content {
@@ -89,8 +103,9 @@ ion-title {
                     border-color: black;
 
                 }
-            }
+            }     
         }
+
     }
 }
 
