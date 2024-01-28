@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -13,26 +14,45 @@ export class LoginPage implements OnInit {
     password: ''
   };
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private alertController: AlertController
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   async login() {
     try {
       // Intenta iniciar sesión como usuario
       const resultUsuario = await this.authService.loginUsuario(this.credenciales);
       console.log('Login de usuario exitoso', resultUsuario);
+
+      // Muestra la alerta personalizada solo si el inicio de sesión es exitoso
+      await this.presentCustomAlert('¡Inicio de sesión exitoso como usuario!');
       this.router.navigate(['/home']);
     } catch (errorUsuario) {
-      // Si el inicio de sesión como usuario falla, intenta como administrador
+      await this.presentCustomAlert('¡Credenciales erroneas!');
       try {
         const resultAdmin = await this.authService.loginAdmin(this.credenciales);
         console.log('Login de administrador exitoso', resultAdmin);
+
         // Puedes realizar acciones específicas para el administrador aquí
+        await this.presentCustomAlert('¡Inicio de sesión exitoso como administrador!');
         this.router.navigate(['lista-reportes']);
       } catch (errorAdmin) {
         console.error('Error al iniciar sesión', errorAdmin);
       }
     }
+  }
+
+  async presentCustomAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Usuario ',
+      message: message,
+      buttons: ['Aceptar']
+    });
+
+    await alert.present();
   }
 }
