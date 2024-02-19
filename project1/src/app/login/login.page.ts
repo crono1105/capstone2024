@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
       await this.presentCustomAlert('¡Inicio de sesión exitoso como usuario!');
       this.router.navigate(['/home']);
     } catch (errorUsuario) {
-      await this.presentCustomAlert('¡Credenciales erroneas!');
+      
       try {
         const resultAdmin = await this.authService.loginAdmin(this.credenciales);
         console.log('Login de administrador exitoso', resultAdmin);
