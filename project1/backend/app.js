@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const {eliminarReporte, modificarComentarioValoracionProducto,obtenerListaDeReportes,insertarReporte, loginAdmin, calcularPromedioValoracion, obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const {insertarPublicidad,eliminarReporte, modificarComentarioValoracionProducto,obtenerListaDeReportes,insertarReporte, loginAdmin, calcularPromedioValoracion, obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); 
@@ -342,6 +342,21 @@ app.delete('/eliminar-reporte/:idReporte', (req, res) => {
 
         // Reporte eliminado con éxito
         return res.json({ mensaje: 'Reporte eliminado con éxito' });
+    });
+});
+
+app.post('/insertar-publicidad', (req, res) => {
+    console.log(req.body);
+    const publicidad = req.body;
+   
+    insertarPublicidad(publicidad, (err, result) => {
+        if (err) {
+            console.error('Error al insertar publicidad:', err.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        console.log('Publicidad insertada con éxito');
+        res.status(200).json({ mensaje: 'Publicidad insertada con éxito' });
     });
 });
 

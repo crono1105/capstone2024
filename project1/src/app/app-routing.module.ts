@@ -81,7 +81,11 @@ const routes: Routes = [
     path: 'lista-reportes',
     loadChildren: () => import('./lista-reportes/lista-reportes.module').then( m => m.ListaReportesPageModule),
     canActivate: [AuthGuard]
+  },  {
+    path: 'crear-publicidad',
+    loadChildren: () => import('./crear-publicidad/crear-publicidad.module').then( m => m.CrearPublicidadPageModule)
   },
+
 
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-lista-reportes',
   templateUrl: './lista-reportes.page.html',
@@ -9,7 +10,7 @@ import { AlertController } from '@ionic/angular';
 export class ListaReportesPage implements OnInit {
   public reportes: any[] = [];
 
-  constructor(private authService: AuthService,private alertController: AlertController) { }
+  constructor(private authService: AuthService,private alertController: AlertController,private router: Router) { }
 
   ngOnInit() {
     this.obtenerListaDeReportes();
@@ -57,6 +58,10 @@ export class ListaReportesPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  GoToAgregarPublicidad() {
+    this.router.navigate(['/crear-publicidad']);
   }
 
 }

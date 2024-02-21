@@ -411,6 +411,11 @@ function eliminarReporte(idReporte, callback) {
     });
 }
 
+const insertarPublicidad = (publicidad, callback) => {
+    const {  name_pbli, url_pbli ,img_publicidad} = publicidad;
+    const sql = 'INSERT INTO plublicidad ( name_pbli, url_pbli,img_publicidad) VALUES (?, ?, ?)';
+    db.query(sql, [ name_pbli, url_pbli,img_publicidad], callback);
+};
 
 module.exports = {
     registroUsuario,
@@ -437,4 +442,5 @@ module.exports = {
     obtenerListaDeReportes,
     modificarComentarioValoracionProducto,
     eliminarReporte,
+    insertarPublicidad,
 };

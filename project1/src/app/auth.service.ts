@@ -322,14 +322,28 @@ export class AuthService {
     const url = `${this.apiUrl}/eliminar-reporte/${idReporte}`;
 
     try {
-        const result = await this.http.delete(url).toPromise();
-        console.log('Reporte eliminado con éxito', result);
-        return result;
+      const result = await this.http.delete(url).toPromise();
+      console.log('Reporte eliminado con éxito', result);
+      return result;
     } catch (error) {
-        console.error('Error al eliminar el reporte:', error);
-        throw error;
+      console.error('Error al eliminar el reporte:', error);
+      throw error;
     }
-}
+  }
+  async agregarPublicidad(publicidad: any): Promise<any> {
+    const url = `${this.apiUrl}/insertar-publicidad`;
+    try {
+      const resultado = await this.http.post(url, publicidad).toPromise();
+      return resultado;
+    } catch (error) {
+      console.error('Error al agregar publicidad:', error);
+      throw error;
+    }
+  }
+
+
+
+
 
 
 
