@@ -14,10 +14,11 @@ export class HomePage implements OnInit {
   filteredProductos: any[] = [];
 
   constructor(private router: Router, private authService: AuthService) { }
-
+  publicidades: any[] = [];
   ngOnInit(): void {
     // Llama a la función para obtener todos los productos al inicializar la página
     this.obtenerProductos();
+    this.obtenerPublicidades();
   }
 
   // Resto del código
@@ -92,5 +93,14 @@ export class HomePage implements OnInit {
 
   filtrarProductosConBoton() {
     this.filtrarProductos();
+  }
+
+  async obtenerPublicidades() {
+    try {
+      this.publicidades = await this.authService.obtenerPublicidades();
+      console.log(this.publicidades);
+    } catch (error) {
+      console.error('Error al obtener publicidades en la página de inicio:', error);
+    }
   }
 }

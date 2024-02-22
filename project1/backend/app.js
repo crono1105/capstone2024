@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const {insertarPublicidad,eliminarReporte, modificarComentarioValoracionProducto,obtenerListaDeReportes,insertarReporte, loginAdmin, calcularPromedioValoracion, obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const {obtenerTodasLasPublicidades,insertarPublicidad,eliminarReporte, modificarComentarioValoracionProducto,obtenerListaDeReportes,insertarReporte, loginAdmin, calcularPromedioValoracion, obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); 
@@ -359,6 +359,19 @@ app.post('/insertar-publicidad', (req, res) => {
         res.status(200).json({ mensaje: 'Publicidad insertada con éxito' });
     });
 });
+
+app.get('/obtener-publicidades', (req, res) => {
+    obtenerTodasLasPublicidades((err, publicidades) => {
+        if (err) {
+            console.error('Error al obtener publicidades:', err.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        console.log('Publicidades obtenidas con éxito');
+        res.status(200).json(publicidades);
+    });
+});
+
 
 
 app.get('/ruta-protegida', verificarToken, (req, res) => {

@@ -341,6 +341,19 @@ export class AuthService {
     }
   }
 
+  async obtenerPublicidades(): Promise<any> {
+    const url = `${this.apiUrl}/obtener-publicidades`;
+
+    try {
+      const publicidades = await this.http.get(url).toPromise();
+      console.log('Publicidades obtenidas:', publicidades);
+      return publicidades;
+    } catch (error) {
+      console.error('Error al obtener publicidades:', error);
+      throw error;
+    }
+  }
+
 
 
 

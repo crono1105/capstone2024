@@ -7,7 +7,7 @@ const registroUsuario = (usuario, callback) => {
     const passwordBase64 = Buffer.from(password).toString('base64');
 
     const sql = 'INSERT INTO usuario (correo_electronico, nombre_completo, password, telefono, ultimo_acceso) VALUES (?, ?, ?, ?, NOW())';
-    
+
     // Usar la contraseña codificada en base64 en la consulta SQL
     db.query(sql, [correo_electronico, nombre_completo, passwordBase64, telefono], callback);
 };
@@ -374,8 +374,8 @@ const insertarReporte = (idValoracion, estado, callback) => {
 
 
 function obtenerListaDeReportes(callback) {
-  
-    const query = 'SELECT * FROM reporte JOIN valoracion_producto ON reporte.id_valoracion = valoracion_producto.id_valoracion' ;
+
+    const query = 'SELECT * FROM reporte JOIN valoracion_producto ON reporte.id_valoracion = valoracion_producto.id_valoracion';
     db.query(query, (err, reportes) => {
         if (err) {
             return callback(err, null);
@@ -387,14 +387,14 @@ function obtenerListaDeReportes(callback) {
 }
 
 function modificarComentarioValoracionProducto(idValoracion, nuevoComentario, callback) {
- 
+
     const query = 'UPDATE valoracion_producto SET comentario = ? WHERE id_valoracion = ?';
     db.query(query, [nuevoComentario, idValoracion], (err, result) => {
         if (err) {
             return callback(err, null);
         }
 
-        
+
         callback(null, result);
     });
 }
@@ -404,7 +404,7 @@ function eliminarReporte(idReporte, callback) {
     const query = 'DELETE FROM reporte WHERE id_reporte = ?';
     db.query(query, [idReporte], (err, result) => {
         if (err) {
-            return callback(err, null);s
+            return callback(err, null); s
         }
 
         callback(null, result);
@@ -412,10 +412,31 @@ function eliminarReporte(idReporte, callback) {
 }
 
 const insertarPublicidad = (publicidad, callback) => {
-    const {  name_pbli, url_pbli ,img_publicidad} = publicidad;
+    const { name_pbli, url_pbli, img_publicidad } = publicidad;
     const sql = 'INSERT INTO plublicidad ( name_pbli, url_pbli,img_publicidad) VALUES (?, ?, ?)';
-    db.query(sql, [ name_pbli, url_pbli,img_publicidad], callback);
+    db.query(sql, [name_pbli, url_pbli, img_publicidad], callback);
 };
+
+const obtenerTodasLasPublicidades = (callback) => {
+    const sql = 'SELECT * FROM plublicidad';
+    db.query(sql, (err, publicidades) => {
+        if (err) {
+            callback(err, null);
+            return;
+        }
+
+        // Convierte la imagen de cada publicidad a Base64
+        publicidades.forEach(publicidad => {
+            if (publicidad.img_publicidad) {
+                publicidad.img_publicidad = publicidad.img_publicidad.toString('utf-8');
+            }
+        });
+
+        callback(null, publicidades);
+    });
+};
+
+
 
 module.exports = {
     registroUsuario,
@@ -443,4 +464,5 @@ module.exports = {
     modificarComentarioValoracionProducto,
     eliminarReporte,
     insertarPublicidad,
+    obtenerTodasLasPublicidades,
 };
