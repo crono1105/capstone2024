@@ -436,6 +436,35 @@ const obtenerTodasLasPublicidades = (callback) => {
     });
 };
 
+const registrarAdmin = (req, res) => {
+    
+    const { correo_electronico, password, nombre_completo } = req.body;
+  
+ 
+    if (!correo_electronico || !password || !nombre_completo) {
+      return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+    }
+  
+    
+    const sqlQuery = 'INSERT INTO admin (correo_electronico, password, nombre_completo) VALUES (?, ?, ?)';
+  
+ 
+    db.query(sqlQuery, [correo_electronico, password, nombre_completo], (err, result) => {
+      if (err) {
+        console.error("Error al registrar administrador:", err);
+        return res.status(500).json({ error: 'Error interno del servidor' });
+      }
+     
+      console.log('Administrador registrado con éxito');
+      res.status(200).json({ mensaje: 'Administrador registrado con éxito' });
+    });
+  };
+
+
+
+
+
+
 
 
 module.exports = {
@@ -465,4 +494,6 @@ module.exports = {
     eliminarReporte,
     insertarPublicidad,
     obtenerTodasLasPublicidades,
+    registrarAdmin,
+ 
 };

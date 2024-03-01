@@ -85,6 +85,10 @@ const routes: Routes = [
     path: 'crear-publicidad',
     loadChildren: () => import('./crear-publicidad/crear-publicidad.module').then( m => m.CrearPublicidadPageModule)
   },
+  {
+    path: 'crear-admin',
+    loadChildren: () => import('./crear-admin/crear-admin.module').then( m => m.CrearAdminPageModule)
+  },
 
 
 

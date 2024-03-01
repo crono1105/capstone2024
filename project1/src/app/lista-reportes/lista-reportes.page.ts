@@ -64,4 +64,8 @@ export class ListaReportesPage implements OnInit {
     this.router.navigate(['/crear-publicidad']);
   }
 
+  GoToregistroadmin() {
+    this.router.navigate(['/crear-admin']);
+  }
+
 }

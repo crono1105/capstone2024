@@ -354,6 +354,11 @@ export class AuthService {
     }
   }
 
+  registrarAdmin(adminData: any): Promise<any> {
+    const url = `${this.apiUrl}/registrar-admin`;
+    return this.http.post(url, adminData).toPromise();
+  }
+
 
 
 
