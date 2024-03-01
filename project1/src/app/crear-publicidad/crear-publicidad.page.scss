@@ -1,0 +1,87 @@
+.background {
+    --background: rgb(255, 255, 255);
+}
+
+ion-back-button {
+    color: rgb(0, 0, 0);
+}
+
+ion-header {
+    background-color: #ffffff !important;
+}
+
+ion-card {
+    --background: transparent;
+    border-radius: 30px;
+    margin-top: 10%;
+    border: 3px solid rgb(0, 0, 0);
+    margin-left: 18%;
+
+    ion-card-content {
+        --background: transparent;
+    }
+
+    ion-card-title {
+        text-align: center;
+        color: rgb(0, 0, 0);
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    ion-col {
+
+        ion-label {
+            color: rgb(0, 0, 0);
+            background: transparent;
+            font-size: 18px;
+        }
+
+        ion-input {
+            color: rgb(0, 0, 0);
+            background: transparent;
+            border-bottom: 2px solid black;
+            padding-bottom: 5px;
+        }
+
+        .imagenpubli {
+            margin-left:5%;
+            font-size: 18px;
+        }
+    }
+
+    .confirmar {
+        --background: rgb(18, 55, 148);
+        /* Cambia este color al deseado */
+        --border-radius: 6px;
+        --color: #000000;
+        /* Puedes ajustar el color del texto si es necesario */
+        font-weight: bold;
+        font-size: 18px;
+        width: 50%;
+        margin-left: 25%;
+        margin-top: 10%;
+
+    }
+}
+
+
+/* Pantallas de escritorio más grandes */
+@media only screen and (min-width: 1000px) {
+
+    ion-card {
+        width: 65%;
+
+    }
+
+    ion-col {
+        margin-left: 5%;
+    }
+
+    ion-input {
+        font-size: 18px;
+        width: 83%;
+        margin-left: 5%;
+
+    }
+
+}

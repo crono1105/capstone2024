@@ -8,6 +8,9 @@
   <ion-card>
 
     <ion-card-title>Agregar Publicidad</ion-card-title>
+
+    <br>
+    <br>
     <ion-card-content>
 
       <ion-col>
@@ -15,16 +18,21 @@
         <ion-input type="text" [(ngModel)]="publicidad.name_pbli"></ion-input>
       </ion-col>
 
+      <br>
+
       <ion-col>
         <ion-label position="floating">URL de la Publicidad</ion-label>
         <ion-input type="text" [(ngModel)]="publicidad.url_pbli"></ion-input>
       </ion-col>
 
+      <br>
+
       <ion-col>
         <ion-label position="floating">Imagen de la Publicidad</ion-label>
-        <br>
-        <input type="file" (change)="convertirImagenABase64($event)">
+        <input class="imagenpubli" type="file" (change)="convertirImagenABase64($event)">
       </ion-col>
+
+      <br>
 
       <ion-button class="confirmar" expand="block" (click)="agregarPublicidad()">Agregar Publicidad</ion-button>
 
