@@ -9,11 +9,13 @@ import { Router } from '@angular/router';
 })
 export class ListaReportesPage implements OnInit {
   public reportes: any[] = [];
-
+  public correo_electronico: string | null = null;
   constructor(private authService: AuthService,private alertController: AlertController,private router: Router) { }
 
   ngOnInit() {
     this.obtenerListaDeReportes();
+    this.correo_electronico=this.authService.obtenerCorreoElectronico();
+    console.log("hola",this.correo_electronico);
   }
   async obtenerListaDeReportes() {
     try {
