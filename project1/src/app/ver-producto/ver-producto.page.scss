@@ -9,7 +9,6 @@ ion-header {
 .pro {
     --background: rgb(255, 255, 255);
     border-radius: 30px;
-    border: 3px solid black;
     margin-left: 15%;
 
     ion-card-header {
@@ -51,7 +50,7 @@ ion-header {
         }
 
         ion-item {
-            --background: rgb(255, 255, 255);
+            --background: rgb(250, 250, 250);
             --color: rgb(0, 0, 0);
             --padding-start: 7%;
             /* Elimina el padding inicial predeterminado */
@@ -75,7 +74,7 @@ ion-header {
             width: 70%;
             /* Ajusta al 100% del ancho del ion-card-content */
             height: auto;
-            background-color: rgb(218, 221, 228);
+            background-color: rgb(248, 248, 248);
             padding-left: 5%;
             color: rgb(0, 0, 0);
             font-size: 20px;
@@ -155,9 +154,8 @@ ion-list {
 }
 
 .res {
-    --background: transparent;
+    --background: rgb(255, 255, 255);
     border-radius: 30px;
-    border: 3px solid black;
     margin: auto; // Alinea el card en el centro
     max-width: 80%; // Ajusta el ancho máximo de la tarjeta
 

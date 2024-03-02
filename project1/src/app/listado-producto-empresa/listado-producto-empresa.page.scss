@@ -1,11 +1,11 @@
-.background {
-    --ion-background-color: rgb(255, 255, 255);
-    /* Establece el color de fondo para ion-content */
+ion-header {
+    background-color: #FFFFFF !important;
+
+    ion-back-button {
+        color: rgb(0, 0, 0);
+    }
 }
 
-ion-back-button {
-    color: rgb(0, 0, 0);
-}
 
 ion-title {
     text-align: center;
@@ -14,9 +14,7 @@ ion-title {
     font-weight: bold;
 }
 
-ion-header {
-    background-color: #FFFFFF !important;
-}
+
 
 ion-icon[name="add-outline"] {
     position: absolute; /* Posición absoluta para el ícono dentro de ion-card */
@@ -28,6 +26,7 @@ ion-icon[name="add-outline"] {
 
 ion-grid {
     width: 90%;
+    background: rgb(255, 255, 255);
 }
 
 ion-col {

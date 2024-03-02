@@ -21,9 +21,9 @@
     </ion-row>
 
     <ion-row *ngFor="let producto of productos">
-      <ion-col>
+      <ion-col>  {{ producto.nombre_producto }}
         <ion-img [src]="producto.img_producto" alt="Imagen del producto"></ion-img>
-        {{ producto.nombre_producto }}
+       
       </ion-col>
       <ion-col>{{ producto.precio | currency }}</ion-col>
       <ion-col>{{ producto.stock }}</ion-col>

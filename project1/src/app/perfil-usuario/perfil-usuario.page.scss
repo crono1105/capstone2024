@@ -1,35 +1,38 @@
-.background {
-    --background: #ffffff;
-}
-
-ion-back-button {
-    color: rgb(0, 0, 0);
-}
-
 ion-header {
     background-color: #FFFFFF !important;
+
+    ion-back-button {
+        color: rgb(0, 0, 0);
+    }
 }
 
 ion-icon[name="pencil-outline"] {
-    position: absolute; /* Posición absoluta para el ícono dentro de ion-card */
-    top: 2%; /* Ajusta la distancia desde la parte superior de ion-card */
-    right: 35%; /* Ajusta la distancia desde el lado derecho de ion-card */
+    position: absolute;
+    /* Posición absoluta para el ícono dentro de ion-card */
+    top: 2%;
+    /* Ajusta la distancia desde la parte superior de ion-card */
+    right: 35%;
+    /* Ajusta la distancia desde el lado derecho de ion-card */
     font-size: 24px;
-    color: rgb(0, 0, 0);/* Color negro para el ícono del lápiz */ 
+    color: rgb(0, 0, 0);
+    /* Color negro para el ícono del lápiz */
 }
 
 ion-icon[name="business-outline"] {
-    position: absolute; /* Posición absoluta para el ícono dentro de ion-card */
-    top: 2%; /* Ajusta la distancia desde la parte superior de ion-card */
-    right: 30%; /* Ajusta la distancia desde el lado derecho de ion-card */
+    position: absolute;
+    /* Posición absoluta para el ícono dentro de ion-card */
+    top: 2%;
+    /* Ajusta la distancia desde la parte superior de ion-card */
+    right: 30%;
+    /* Ajusta la distancia desde el lado derecho de ion-card */
     font-size: 24px;
-    color: rgb(0, 0, 0);/* Color negro para el ícono del lápiz */ 
+    color: rgb(0, 0, 0);
+    /* Color negro para el ícono del lápiz */
 }
 
 ion-card {
-    --background: transparent;
+    --background: rgb(255, 255, 255);
     border-radius: 30px;
-    border: 3px solid black;
     margin-left: 18%;
 
 
@@ -42,8 +45,6 @@ ion-card {
         color: rgb(0, 0, 0);
         font-size: 30px;
         font-weight: bold;
-        
-        
     }
 
     ion-col {
@@ -62,7 +63,9 @@ ion-card {
         }
     }
 
-};
+}
+
+;
 
 /* Pantallas de escritorio más grandes */
 @media only screen and (min-width: 1000px) {
