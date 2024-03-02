@@ -10,6 +10,14 @@
     shape="round">
     <span>agregar admin </span> <ion-icon name="pricetag-outline"></ion-icon>
   </ion-button>
+  <ion-button *ngIf="correo_electronico === 'administrador@selection.cl'" slot="" (click)="GoToListarAdmin()"
+    shape="round">
+    <span>listar administrador </span> <ion-icon name="pricetag-outline"></ion-icon>
+  </ion-button>
+  <ion-button  slot="" (click)="GoToAgregarCategoria()"
+    shape="round">
+    <span>Agregar Categoria </span> <ion-icon name="pricetag-outline"></ion-icon>
+  </ion-button>
 
 
 </ion-header>
