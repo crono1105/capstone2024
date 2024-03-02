@@ -1,18 +1,14 @@
-.background {
-    --background: rgb(255, 255, 255);
-}
-
-ion-back-button {
-    color: rgb(0, 0, 0);
-}
-
 ion-header {
     background-color: #ffffff !important;
+
+    ion-back-button {
+        color: rgb(0, 0, 0);
+    }
 }
 
 
 ion-card {
-    --background: transparent;
+    --background: rgb(255, 255, 255);
     border-radius: 30px;
     margin-top: 10%;
     border: 3px solid black;
@@ -47,7 +43,7 @@ ion-card {
     }
 
     .confirmar {
-        --background: rgb(18, 55, 148);
+        --background: rgb(9, 32, 92);
         /* Cambia este color al deseado */
         --border-radius: 6px;
         --color: rgb(255, 255, 255);

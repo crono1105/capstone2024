@@ -26,11 +26,27 @@
   text-decoration: none;
 }
 
+.publicidad {
+  background: transparent;
+  margin-left: 7%;
+
+
+  .publi {
+    a {
+      ion-img {
+        width: 80%;
+      }
+    }
+    
+  }
+  
+}
+
 ion-card {
   --background: transparent;
   border-radius: 30px;
   border: 3px solid black;
-  margin-left: 18%;
+  margin-left: 5%;
 
 
   ion-card-content {

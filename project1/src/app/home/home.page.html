@@ -24,17 +24,16 @@
 
 <ion-content class="background">
 
-  <h1>hola</h1>
-  <ion-list>
-    <ion-item *ngFor="let publicidad of publicidades">
-      
-     
-      <a [href]="'http://' + publicidad.url_pbli" target="_blank">
-        <ion-img [src]="publicidad.img_publicidad"></ion-img>
-      </a>
-    </ion-item>
-  </ion-list>
-  
+  <ion-grid class="publicidad">
+    <ion-row>
+      <ion-col class="publi" size="12" size-md="6" *ngFor="let publicidad of publicidades">
+        <a [href]="'http://' + publicidad.url_pbli" target="_blank">
+          <ion-img [src]="publicidad.img_publicidad"></ion-img>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-searchbar placeholder="Buscar productos" [(ngModel)]="busquedaPalabraClave"
     (ionInput)="filtrarProductos()"></ion-searchbar>
   <ion-button class="buscar" expand="full" (click)="filtrarProductos()">Buscar</ion-button>

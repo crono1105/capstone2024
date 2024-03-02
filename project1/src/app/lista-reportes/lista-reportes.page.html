@@ -1,7 +1,8 @@
 <ion-header>
 
-  <h3 style="color: black;">Hola, {{correo_electronico}}</h3>
+  <h3 style="color: black;">{{correo_electronico}}</h3>
 
+  <ion-col>
   <ion-button (click)="GoToAgregarPublicidad()" shape="round">
     <span>agregar publicidad </span> <ion-icon name="pricetag-outline"></ion-icon>
   </ion-button>
@@ -10,17 +11,21 @@
     shape="round">
     <span>agregar admin </span> <ion-icon name="pricetag-outline"></ion-icon>
   </ion-button>
+
   <ion-button *ngIf="correo_electronico === 'administrador@selection.cl'" slot="" (click)="GoToListarAdmin()"
     shape="round">
     <span>listar administrador </span> <ion-icon name="pricetag-outline"></ion-icon>
   </ion-button>
+
   <ion-button  slot="" (click)="GoToAgregarCategoria()"
     shape="round">
     <span>Agregar Categoria </span> <ion-icon name="pricetag-outline"></ion-icon>
   </ion-button>
+
   <ion-button (click)="logout()">
     <ion-icon name="exit-outline"></ion-icon>
   </ion-button>
+</ion-col>
 
 
 </ion-header>

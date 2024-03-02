@@ -413,8 +413,15 @@ function eliminarReporte(idReporte, callback) {
 
 const insertarPublicidad = (publicidad, callback) => {
     const { name_pbli, url_pbli, img_publicidad } = publicidad;
-    const sql = 'INSERT INTO plublicidad ( name_pbli, url_pbli,img_publicidad) VALUES (?, ?, ?)';
-    db.query(sql, [name_pbli, url_pbli, img_publicidad], callback);
+    const sql = 'INSERT INTO plublicidad (name_pbli, url_pbli, img_publicidad) VALUES (?, ?, ?)';
+    db.query(sql, [name_pbli, url_pbli, img_publicidad], (error, results, fields) => {
+        if (error) {
+            console.error('Error al agregar publicidad:', error);
+            callback(error, null);
+            return;
+        }
+        callback(null, results);
+    });
 };
 
 const obtenerTodasLasPublicidades = (callback) => {

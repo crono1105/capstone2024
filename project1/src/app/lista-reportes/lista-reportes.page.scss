@@ -6,6 +6,34 @@ ion-header {
     text-align: center;
 
   }
+  
+  ion-col {
+    left: 14%;
+
+    ion-button {
+      --background: rgb(9, 32, 92);
+          /* Color de fondo */
+          --border-radius: 6px;
+          /* Redondeo de bordes */
+          --color: #ffffff;
+          /* Color de texto */
+          --padding-horizontal: 8px;
+          /* Padding horizontal */
+          font-weight: bold;
+          font-size: 16px;
+          margin: 2 10px;
+          /* Margen horizontal para separar los botones */
+          height: 32px;
+          /* Altura de los botones */
+  
+          ion-icon {
+            margin: 0;
+          }
+  
+    }
+  }
+
+  
 }
 
 ion-card {
