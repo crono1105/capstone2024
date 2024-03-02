@@ -5,7 +5,6 @@
 </ion-header>
 
 <ion-content class="background">
-  <ion-title>Detalle del Producto</ion-title>
 
   <ion-card class="pro" *ngIf="detalleProducto">
 
@@ -28,7 +27,7 @@
 
             <ion-item>
               <ion-label>Precio</ion-label>
-              <ion-text>{{ detalleProducto.precio }}</ion-text>
+              <ion-text>${{ detalleProducto.precio }}</ion-text>
             </ion-item>
 
             <ion-item>
@@ -54,9 +53,9 @@
             
 
             <ion-list> Descripcion:
-              <ion-item>
-                <ion-textarea>{{detalleProducto.descripcion}}</ion-textarea>
-              </ion-item>
+              <ion-col>
+                <ion-textarea readonly>{{detalleProducto.descripcion}} </ion-textarea>
+              </ion-col>
             </ion-list>
             
           </ion-col>
