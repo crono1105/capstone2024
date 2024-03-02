@@ -70,4 +70,12 @@ export class ListaReportesPage implements OnInit {
     this.router.navigate(['/crear-admin']);
   }
 
+  GoToListarAdmin(){
+    this.router.navigate(['/listar-administradores']);
+  }
+
+  GoToAgregarCategoria(){
+    this.router.navigate(['/agregar-categoria']);
+  }
+
 }
