@@ -1,44 +1,49 @@
 <ion-header>
 
-  <ion-buttons slot="start">
-    <ion-back-button defaultHref=""></ion-back-button>
-  </ion-buttons>
-  
-  <ion-button  slot="end" (click)="GoToAgregarPublicidad()"  shape="round">
-   <span>agregar publicidad </span> <ion-icon name="pricetag-outline"></ion-icon>
+  <h3 style="color: black;">Hola, {{correo_electronico}}</h3>
+
+  <ion-button (click)="GoToAgregarPublicidad()" shape="round">
+    <span>agregar publicidad </span> <ion-icon name="pricetag-outline"></ion-icon>
   </ion-button>
 
-  <ion-button *ngIf="correo_electronico === 'administrador@selection.cl'"  slot="end" (click)="GoToregistroadmin()"  shape="round">
+  <ion-button *ngIf="correo_electronico === 'administrador@selection.cl'" slot="end" (click)="GoToregistroadmin()"
+    shape="round">
     <span>agregar admin </span> <ion-icon name="pricetag-outline"></ion-icon>
-   </ion-button>
-   
-  <h3 style="color: black;">Hola, {{correo_electronico}}</h3>
+  </ion-button>
+
+
 </ion-header>
 
 <ion-content class="background">
 
-  <ion-title>Lista de Reportes</ion-title>
+  <ion-card>
+    <ion-card-title>Lista de Reportes</ion-card-title>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col><strong>Reporte</strong></ion-col>
-      <ion-col size="2"><strong>Aceptar</strong></ion-col>
-      <ion-col size="2"><strong>Rechazar</strong></ion-col>
-    </ion-row>
+    <ion-card-content>
 
-    <ion-row *ngFor="let reporte of reportes">
-      <ion-col>{{ reporte.valoracion }} - {{ reporte.comentario }}</ion-col>
-      <ion-col size="2">
-        <ion-button fill="solid" color="success"
-          (click)="modificarandeliminar(reporte.id_reporte, reporte.id_valoracion)">
-          <ion-icon slot="icon-only" name="checkmark-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-col>
-      <ion-col size="2">
-        <ion-button fill="solid" color="danger" (click)="eliminarReporte(reporte.id_reporte)">
-          <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col><strong>Reporte</strong></ion-col>
+          <ion-col size="2"><strong>Aceptar</strong></ion-col>
+          <ion-col size="2"><strong>Rechazar</strong></ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let reporte of reportes">
+          <ion-col>{{ reporte.valoracion }} - {{ reporte.comentario }}</ion-col>
+          <ion-col size="2">
+            <ion-button fill="solid" color="success"
+              (click)="modificarandeliminar(reporte.id_reporte, reporte.id_valoracion)">
+              <ion-icon slot="icon-only" name="checkmark-circle-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button fill="solid" color="danger" (click)="eliminarReporte(reporte.id_reporte)">
+              <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>

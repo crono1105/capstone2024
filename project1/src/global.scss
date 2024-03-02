@@ -24,3 +24,11 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+
+
+
+ion-content {
+    --background: transparent url('https://img.freepik.com/foto-gratis/elemento-diseno-textura-fondo-blanco-blanco_53876-132773.jpg?w=1380&t=st=1709342025~exp=1709342625~hmac=977a65919d0a7083a370c9e4401ef9862a1386d0031c1ecb5085484d46885f2c') center center / cover no-repeat;
+}

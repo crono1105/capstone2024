@@ -1,81 +1,111 @@
-.background {
-    --ion-background-color: rgb(255, 255, 255); /* Establece el color de fondo para ion-content */
-  }
-  
-  ion-header {
-    background-color: #ffffff !important;
-    
-    ion-back-button {
-      color: rgb(0, 0, 0);
-    }
+ion-header {
+  background-color: rgb(255, 255, 255) !important;
 
-    h3 {
-      font-size: 25px;
-      text-align: center;
+  h3 {
+    font-size: 25px;
+    text-align: center;
 
   }
+}
+
+ion-card {
+  --background: rgb(255, 255, 255);
+    border-radius: 30px;
+    margin-top: -2%;
+    margin-left: 18%;
+
+  ion-card-title {
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    /* Alinea el texto de las celdas al centro */
+    margin-top: 2%;
   }
-  
-  ion-content {
 
-    ion-title{
-        color: rgb(0, 0, 0);
-        font-size: 30px;
-        font-weight: bold;
-        text-align: center; /* Alinea el texto de las celdas al centro */
-        margin-top:2%;
+  ion-card-content {
 
-
-    }
     ion-grid {
-      max-width: 800px; /* Ajusta según el ancho deseado */
+      max-width: 800px;
+      /* Ajusta según el ancho deseado */
       margin: 0 auto;
       padding: 16px;
-      
+
       ion-row {
-        border-bottom: 1px solid #d7d7d7; /* Línea divisoria entre filas */
-        
+        border-bottom: 1px solid #d7d7d7;
+        /* Línea divisoria entre filas */
+
         ion-col {
           display: flex;
           font-size: 20px;
           color: rgb(0, 0, 0);
           align-items: center;
           justify-content: center;
-          padding: 8px 0; /* Espaciado vertical para las celdas */
-          
+          padding: 8px 0;
+          /* Espaciado vertical para las celdas */
+
           &:first-child {
             justify-content: start;
           }
-          
+
           strong {
             font-weight: bold;
             color: rgb(0, 0, 0);
           }
         }
       }
-      
+
       ion-button {
-        --background: rgb(18, 55, 148); /* Color de fondo */
-        --border-radius: 6px; /* Redondeo de bordes */
-        --color: #ffffff; /* Color de texto */
-        --padding-horizontal: 8px; /* Padding horizontal */
+        --background: rgb(18, 55, 148);
+        /* Color de fondo */
+        --border-radius: 6px;
+        /* Redondeo de bordes */
+        --color: #ffffff;
+        /* Color de texto */
+        --padding-horizontal: 8px;
+        /* Padding horizontal */
         font-weight: bold;
         font-size: 16px;
-        margin: 0 4px; /* Margen horizontal para separar los botones */
-        height: 32px; /* Altura de los botones */
-        
+        margin: 0 4px;
+        /* Margen horizontal para separar los botones */
+        height: 32px;
+        /* Altura de los botones */
+
         ion-icon {
           margin: 0;
         }
       }
     }
   }
-  
-  /* Pantallas de escritorio más grandes */
-  @media only screen and (min-width: 1000px) {
-    ion-grid {
-      /* Amplia el ancho para pantallas grandes si es necesario */
-      max-width: 90%;
-    }
+}
+
+/* Pantallas de escritorio más grandes */
+@media only screen and (min-width: 1000px) {
+  ion-grid {
+    /* Amplia el ancho para pantallas grandes si es necesario */
+    max-width: 90%;
   }
-  
+}
+
+/* Pantallas de escritorio más grandes */
+@media only screen and (min-width: 1000px) {
+
+
+  ion-card {
+      width: 65%;
+      margin-top: 5%;
+
+  }
+
+  ion-col {
+      margin-left: 5%;
+  }
+
+  ion-input {
+      font-size: 18px;
+      width: 83%;
+      margin-left: 5%;
+
+  }
+
+}
