@@ -77,5 +77,8 @@ export class ListaReportesPage implements OnInit {
   GoToAgregarCategoria(){
     this.router.navigate(['/agregar-categoria']);
   }
+  logout() {
+    this.authService.logout();
+  }
 
 }
