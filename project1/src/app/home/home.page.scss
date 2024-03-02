@@ -1,3 +1,44 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  ion-toolbar {
+    --background: rgb(255, 255, 255);
+
+    ion-title {
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+    }
+  }
+}
+
+.infof {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+}
+
+
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+}
+
+.social-icons ion-icon {
+  font-size: 30px;
+  /* Ajusta el tamaño según sea necesario */
+  margin: 0 10px;
+  /* Agrega espacio entre los íconos */
+}
+
+
 #container {
   text-align: center;
 
@@ -7,6 +48,8 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+
 
 #container strong {
   font-size: 20px;
@@ -39,9 +82,9 @@
 
       }
     }
-    
+
   }
-  
+
 }
 
 ion-card {
@@ -95,7 +138,7 @@ ion-content {
     font-size: 16px;
     width: 15%;
     margin-left: 45%;
-    top:10%;
+    top: 10%;
   }
 
 
@@ -130,28 +173,39 @@ ion-content {
           }
 
           .verproducto {
-            --background: rgb(9, 32, 92); /* Color de fondo azul para el botón */
-            --border-radius: 4px; /* Bordes redondeados para el botón */
-            --color: #ffffff; /* Color de texto blanco para el botón */
-            --padding: 13px 20px; /* Espaciado interno para el botón */
-            font-weight: 400; /* Peso de la fuente */
-            font-size: 16px; /* Tamaño de la fuente */
-            width: 65%; /* El botón ocupa todo el ancho posible */
-            text-transform: none; /* Evita la transformación de texto por defecto */
-            margin-top: 15px; /* Espacio por encima del botón */
+            --background: rgb(9, 32, 92);
+            /* Color de fondo azul para el botón */
+            --border-radius: 4px;
+            /* Bordes redondeados para el botón */
+            --color: #ffffff;
+            /* Color de texto blanco para el botón */
+            --padding: 13px 20px;
+            /* Espaciado interno para el botón */
+            font-weight: 400;
+            /* Peso de la fuente */
+            font-size: 16px;
+            /* Tamaño de la fuente */
+            width: 65%;
+            /* El botón ocupa todo el ancho posible */
+            text-transform: none;
+            /* Evita la transformación de texto por defecto */
+            margin-top: 15px;
+            /* Espacio por encima del botón */
             margin-left: 17%;
-            height: 50px; /* Altura específica para el botón */
-            display: block; /* Asegura que el botón sea un bloque para aplicar anchura y altura */
+            height: 50px;
+            /* Altura específica para el botón */
+            display: block;
+            /* Asegura que el botón sea un bloque para aplicar anchura y altura */
             justify-content: center;
             align-items: center;
           }
-          }
-
         }
-       
+
       }
+
     }
   }
+}
 
 
 @media only screen and (min-width: 1000px) {
