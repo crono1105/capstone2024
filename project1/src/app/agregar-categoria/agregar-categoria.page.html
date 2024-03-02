@@ -1,19 +1,24 @@
 <ion-header>
   <ion-buttons slot="start">
     <ion-back-button defaultHref="/lista-reportes"></ion-back-button>
-</ion-buttons>
+  </ion-buttons>
 </ion-header>
 
 <ion-content>
 
-  <ion-title>Agregar Categoria</ion-title>
+  <ion-card>
+  <ion-card-title>Agregar Categoria</ion-card-title>
+  <br>
+  <ion-card-content>
 
-  <form (ngSubmit)="agregarCategoria()">
-    <ion-item>
-      <ion-label position="stacked">Nombre de la Categoría</ion-label>
-      <ion-input type="text" [(ngModel)]="nombreCategoria" name="nombreCategoria" required></ion-input>
-    </ion-item>
-    <ion-button class="confirmar" type="submit" expand="block">Agregar Categoría</ion-button>
-  </form>
-  
+
+  <ion-col>
+    <ion-label position="stacked">Nombre de la Categoría</ion-label>
+    <ion-input type="text" [(ngModel)]="nombreCategoria" name="nombreCategoria" required></ion-input>
+  </ion-col>
+
+  <ion-button class="confirmar" (click)="agregarCategoria()" type="submit" expand="block">Agregar Categoría</ion-button>
+
+</ion-card-content>
+</ion-card>
 </ion-content>
