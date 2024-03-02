@@ -2,12 +2,19 @@
     --background: rgb(255, 255, 255);
 }
 
-ion-back-button {
-    color: rgb(0, 0, 0);
-}
+
 
 ion-header {
     background-color: #FFFFFF !important;
+
+    ion-back-button {
+        color: rgb(0, 0, 0);
+    }
+
+    h3 {
+        font-size: 20px;
+        margin-left: 5%;
+    }
 }
 
 ion-card {
