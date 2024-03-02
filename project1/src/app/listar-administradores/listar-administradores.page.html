@@ -19,12 +19,12 @@
 
     </ion-grid>
 
-    <ion-item *ngFor="let admin of administradores">
-      <ion-label>{{ admin.nombre_completo }}</ion-label>
-      <ion-label>{{ admin.correo_electronico }}</ion-label>
+    <ion-row *ngFor="let admin of administradores">
+      <ion-col>{{ admin.nombre_completo }}</ion-col>
+      <ion-col>{{ admin.correo_electronico }}</ion-col>
 
       <ion-button color="danger" (click)="eliminarAdministrador(admin.correo_electronico)">Eliminar</ion-button>
-    </ion-item>
+    </ion-row>
   </ion-list>
 
   <DIV *ngIf="correo_electronico != 'administrador@selection.cl'">

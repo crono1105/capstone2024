@@ -19,16 +19,48 @@ ion-list {
 
     width: 90%;
     margin-left: 5%;
+    background: rgb(255, 255, 255);
 
     ion-grid {
-        width: 95%;
+        width: 99%;
 
         ion-row {
             align-items: center;
             /* Centra los elementos verticalmente */
             background-color: transparent;
+
+            ion-col {
+                color: rgb(0, 0, 0);
+            }
+            ion-label {
+                color: rgb(0, 0, 0);
+            }
+        }
+    }
+
+    ion-row{
+        align-items: center;
+        /* Centra los elementos verticalmente */
+        background-color: transparent;
+        width: 91%;
+
+        ion-col {
+            color: rgb(0, 0, 0);
         }
 
+        ion-button {
+            right:5%;
+        }
+    }
+}
 
+/* Pantallas de escritorio más grandes */
+@media only screen and (min-width: 1000px) {
+    ion-col {
+        padding: 15px 0; /* Aumenta el padding vertical para celdas en pantallas más grandes */
+        max-width: none; /* Permite que las columnas se expandan en pantallas más grandes */
+    }
+    ion-grid {
+        width: 90%;
     }
 }
