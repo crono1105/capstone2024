@@ -1,0 +1,15 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>agregar-categoria</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="agregarCategoria()">
+    <ion-item>
+      <ion-label position="stacked">Nombre de la Categoría</ion-label>
+      <ion-input type="text" [(ngModel)]="nombreCategoria" name="nombreCategoria" required></ion-input>
+    </ion-item>
+    <ion-button type="submit" expand="block">Agregar Categoría</ion-button>
+  </form>
+</ion-content>

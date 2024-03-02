@@ -142,7 +142,7 @@ const obtenerTodosLosProductos = (req, res) => {
             console.error("Error al realizar la consulta: ", err);
             return res.status(500).json({ error: "Error interno del servidor" });
         } else {
-            // Mapea y convierte img_producto a Base64 para cada producto
+         
             result.forEach(producto => {
                 if (producto.img_producto) {
                     producto.img_producto = producto.img_producto.toString('utf-8');
@@ -484,6 +484,19 @@ const eliminarAdministrador = (correo_electronico, callback) => {
     });
 };
 
+const agregarCategoriaProducto = (categoria, callback) => {
+    const { nombre_categoria } = categoria;
+    const sql = 'INSERT INTO categoria_producto (nombre_categoria) VALUES (?)';
+
+    db.query(sql, [nombre_categoria], (err, result) => {
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, result);
+    });
+};
+
+
 
 
 
@@ -521,5 +534,6 @@ module.exports = {
     registrarAdmin,
     listarAdministradores,
     eliminarAdministrador,
+    agregarCategoriaProducto,
 
 };

@@ -378,6 +378,19 @@ export class AuthService {
     return this.http.delete(url).toPromise();
   }
 
+  async agregarCategoriaProducto(categoria: any): Promise<any> {
+    const url = `${this.apiUrl}/agregar-categoria-producto`;
+
+    try {
+      const result = await this.http.post(url, categoria).toPromise();
+      console.log('Categoría de producto agregada con éxito:', result);
+      return result;
+    } catch (error) {
+      console.error('Error al agregar categoría de producto:', error);
+      throw error;
+    }
+  }
+
 
 
 

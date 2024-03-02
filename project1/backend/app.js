@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const {eliminarAdministrador,listarAdministradores,registrarAdmin,obtenerTodasLasPublicidades,insertarPublicidad,eliminarReporte, modificarComentarioValoracionProducto,obtenerListaDeReportes,insertarReporte, loginAdmin, calcularPromedioValoracion, obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const {agregarCategoriaProducto,eliminarAdministrador,listarAdministradores,registrarAdmin,obtenerTodasLasPublicidades,insertarPublicidad,eliminarReporte, modificarComentarioValoracionProducto,obtenerListaDeReportes,insertarReporte, loginAdmin, calcularPromedioValoracion, obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); 
@@ -405,6 +405,17 @@ app.delete('/eliminar-administrador/:correo_electronico', (req, res) => {
     });
 });
 
+app.post('/agregar-categoria-producto', (req, res) => {
+    const categoria = req.body;
+   agregarCategoriaProducto(categoria, (err, result) => {
+        if (err) {
+            console.error('Error al agregar categoría de producto:', err);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+        console.log('Categoría de producto agregada con éxito');
+        res.status(200).json({ mensaje: 'Categoría de producto agregada con éxito' });
+    });
+});
 
 
 

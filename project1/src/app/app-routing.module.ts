@@ -93,6 +93,10 @@ const routes: Routes = [
     path: 'listar-administradores',
     loadChildren: () => import('./listar-administradores/listar-administradores.module').then( m => m.ListarAdministradoresPageModule)
   },
+  {
+    path: 'agregar-categoria',
+    loadChildren: () => import('./agregar-categoria/agregar-categoria.module').then( m => m.AgregarCategoriaPageModule)
+  },
 
 
 
