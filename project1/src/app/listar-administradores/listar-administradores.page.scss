@@ -1,0 +1,34 @@
+ion-header {
+    background-color: #FFFFFF !important;
+
+    ion-back-button {
+        color: rgb(0, 0, 0);
+    }
+}
+
+ion-title {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 1%;
+}
+
+
+ion-list {
+
+    width: 90%;
+    margin-left: 5%;
+
+    ion-grid {
+        width: 95%;
+
+        ion-row {
+            align-items: center;
+            /* Centra los elementos verticalmente */
+            background-color: transparent;
+        }
+
+
+    }
+}

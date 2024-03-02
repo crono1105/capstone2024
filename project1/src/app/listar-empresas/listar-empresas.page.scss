@@ -2,9 +2,7 @@
     --ion-background-color: rgb(255, 255, 255); /* Establece el color de fondo para ion-content */
 }
 
-ion-back-button {
-    color: rgb(0, 0, 0);
-}
+
 
 ion-title {
     text-align: center;
@@ -23,6 +21,10 @@ ion-icon[name="add-outline"] {
 
 ion-header {
     background-color: #FFFFFF !important;
+
+    ion-back-button {
+    color: rgb(0, 0, 0);
+}
 }
 
 ion-grid {

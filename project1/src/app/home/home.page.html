@@ -26,7 +26,7 @@
 
   <ion-grid class="publicidad">
     <ion-row>
-      <ion-col class="publi" size="12" size-md="6" *ngFor="let publicidad of publicidades">
+      <ion-col  *ngFor="let publicidad of publicidades">
         <a [href]="'http://' + publicidad.url_pbli" target="_blank">
           <ion-img [src]="publicidad.img_publicidad"></ion-img>
         </a>

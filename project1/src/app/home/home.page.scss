@@ -28,13 +28,15 @@
 
 .publicidad {
   background: transparent;
-  margin-left: 7%;
+  /*margin-left: 7%;*/
 
 
   .publi {
     a {
       ion-img {
         width: 80%;
+        height: 100%;
+
       }
     }
     
@@ -44,10 +46,9 @@
 
 ion-card {
   --background: transparent;
-  border-radius: 30px;
-  border: 3px solid black;
+  border-radius: 10px;
+  border: 5px solid rgb(236, 236, 236);
   margin-left: 5%;
-
 
   ion-card-content {
     --background: transparent;
