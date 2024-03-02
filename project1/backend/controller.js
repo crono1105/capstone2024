@@ -437,28 +437,52 @@ const obtenerTodasLasPublicidades = (callback) => {
 };
 
 const registrarAdmin = (req, res) => {
-    
+
     const { correo_electronico, password, nombre_completo } = req.body;
-  
- 
+
+
     if (!correo_electronico || !password || !nombre_completo) {
-      return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+        return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
-  
-    
+
+
     const sqlQuery = 'INSERT INTO admin (correo_electronico, password, nombre_completo) VALUES (?, ?, ?)';
-  
- 
+
+
     db.query(sqlQuery, [correo_electronico, password, nombre_completo], (err, result) => {
-      if (err) {
-        console.error("Error al registrar administrador:", err);
-        return res.status(500).json({ error: 'Error interno del servidor' });
-      }
-     
-      console.log('Administrador registrado con éxito');
-      res.status(200).json({ mensaje: 'Administrador registrado con éxito' });
+        if (err) {
+            console.error("Error al registrar administrador:", err);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        console.log('Administrador registrado con éxito');
+        res.status(200).json({ mensaje: 'Administrador registrado con éxito' });
     });
-  };
+};
+
+const listarAdministradores = (callback) => {
+    const sql = 'SELECT * FROM admin';
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error("Error al realizar la consulta:", err);
+            return callback(err, null);
+        }
+        callback(null, results);
+    });
+};
+
+const eliminarAdministrador = (correo_electronico, callback) => {
+    const sql = 'DELETE FROM admin WHERE correo_electronico = ?';
+
+    db.query(sql, [correo_electronico], (err, result) => {
+        if (err) {
+            console.error('Error al eliminar administrador:', err.message);
+            return callback(err, null);
+        }
+        console.log('Administrador eliminado con éxito');
+        callback(null, result);
+    });
+};
 
 
 
@@ -495,5 +519,7 @@ module.exports = {
     insertarPublicidad,
     obtenerTodasLasPublicidades,
     registrarAdmin,
- 
+    listarAdministradores,
+    eliminarAdministrador,
+
 };

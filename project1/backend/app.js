@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const {registrarAdmin,obtenerTodasLasPublicidades,insertarPublicidad,eliminarReporte, modificarComentarioValoracionProducto,obtenerListaDeReportes,insertarReporte, loginAdmin, calcularPromedioValoracion, obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
+const {eliminarAdministrador,listarAdministradores,registrarAdmin,obtenerTodasLasPublicidades,insertarPublicidad,eliminarReporte, modificarComentarioValoracionProducto,obtenerListaDeReportes,insertarReporte, loginAdmin, calcularPromedioValoracion, obtenerResenasPorProducto, insertarValoracionProducto, obtenerActualizacionesPorProducto, modificarProducto, obtenerDetalleEmpresa, modificarEmpresa, modificarUsuario, obtenerDetalleProducto, obtenerUsuarioPorCorreo, obtenerProductosPorEmpresa, registroUsuario, loginUsuario, insertarEmpresa, obtenerComunas, agregarProducto, obtenerEmpresasPorUsuario, obtenerCategorias, obtenerTodosLosProductos } = require('./controller');
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); 
@@ -378,6 +378,38 @@ app.post('/registrar-admin', registrarAdmin);
 app.get('/ruta-protegida', verificarToken, (req, res) => {
     res.json({ mensaje: 'Ruta protegida' });
 });
+
+app.get('/listar-administradores', (req, res) => {
+    listarAdministradores((err, administradores) => {
+        if (err) {
+            console.error('Error al obtener administradores:', err.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        console.log('Administradores obtenidos con éxito');
+        res.status(200).json(administradores);
+    });
+});
+
+app.delete('/eliminar-administrador/:correo_electronico', (req, res) => {
+    const correo_electronico = req.params.correo_electronico;
+
+    eliminarAdministrador(correo_electronico, (err, result) => {
+        if (err) {
+            console.error('Error al eliminar administrador:', err.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        console.log('Administrador eliminado con éxito');
+        res.status(200).json({ mensaje: 'Administrador eliminado con éxito' });
+    });
+});
+
+
+
+
+
+
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
