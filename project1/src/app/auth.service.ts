@@ -359,6 +359,25 @@ export class AuthService {
     return this.http.post(url, adminData).toPromise();
   }
 
+  async listarAdministradores(): Promise<any> {
+    const url = `${this.apiUrl}/listar-administradores`;
+
+    try {
+      const administradores = await this.http.get(url).toPromise();
+      console.log('Administradores obtenidos con éxito:', administradores);
+      return administradores;
+    } catch (error) {
+      console.error('Error al obtener administradores:', error);
+      throw error;
+    }
+  }
+
+  eliminarAdministrador(correoElectronico: string): Promise<any> {
+    const url = `${this.apiUrl}/eliminar-administrador/${correoElectronico}`;
+
+    return this.http.delete(url).toPromise();
+  }
+
 
 
 
