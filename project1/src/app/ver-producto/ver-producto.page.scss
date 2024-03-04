@@ -138,7 +138,7 @@ ion-list {
     }
 
     ion-button {
-        --background: rgb(18, 55, 148);
+        --background: rgb(9, 32, 92);
         /* Cambia este color al deseado */
         --border-radius: 6px;
         --color: #ffffff;
@@ -202,6 +202,7 @@ ion-list {
 
                     ion-icon {
                         margin: 0 5px; // Espacio horizontal para iconos
+                        color: rgb(211, 198, 13);
                     }
                 }
             }
