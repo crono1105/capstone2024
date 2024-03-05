@@ -11,6 +11,33 @@
     ion-title {
       color: rgb(0, 0, 0);
       font-weight: bold;
+      font-size: 25px;
+    }
+  }
+
+  ion-toolbar {
+    ion-item {
+      --background: rgb(255, 255, 255);
+      left: 40%;
+
+      .wsp {
+        color: rgb(85, 238, 65);
+        font-size: 30px;
+      }
+
+      .wasa {
+        font-size: 20px;
+      }
+
+      .email {
+        color: rgb(6, 19, 133);
+        font-size: 30px;
+      }
+
+      .correo {
+        font-size: 20px;
+      }
+
     }
   }
 }
@@ -21,7 +48,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  
+
 }
 
 
