@@ -81,4 +81,6 @@ export class ListaReportesPage implements OnInit {
     this.authService.logout();
   }
 
+  
+
 }

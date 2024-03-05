@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-publicidad',
@@ -15,7 +16,7 @@ export class CrearPublicidadPage implements OnInit {
 
   };
 
-  constructor(private authService: AuthService, private alertController: AlertController) { }
+  constructor(private authService: AuthService, private alertController: AlertController,private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,6 +26,8 @@ export class CrearPublicidadPage implements OnInit {
       const resultado = await this.authService.agregarPublicidad(this.publicidad);
       console.log('Publicidad agregada con éxito:', resultado);
       await this.presentCustomAlert('¡Publicidad agregada con éxito!');
+      this.GoTolistaReportes();
+      
     } catch (error) {
       console.error('Error al agregar la publicidad:', error);
       await this.presentCustomAlert('¡Error al agregar la publicidad!');
@@ -55,5 +58,9 @@ export class CrearPublicidadPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  GoTolistaReportes(){
+    this.router.navigate(['/lista-reportes']);
   }
 }
