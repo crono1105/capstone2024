@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-listar-administradores',
@@ -9,7 +10,7 @@ import { AuthService } from '../auth.service';
 export class ListarAdministradoresPage implements OnInit {
   administradores: any[] = [];
   public correo_electronico: string | null = null;
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private alertController: AlertController) { }
 
   ngOnInit() {
     this.listarAdministradores();
@@ -27,10 +28,21 @@ export class ListarAdministradoresPage implements OnInit {
   async eliminarAdministrador(correoElectronico: string) {
     try {
       await this.authService.eliminarAdministrador(correoElectronico);
-      // Eliminar el administrador de la lista después de eliminarlo en el servidor
+     
       this.administradores = this.administradores.filter(admin => admin.correo_electronico !== correoElectronico);
+      await this.presentCustomAlert('¡Administrador eliminado!');
     } catch (error) {
       console.error('Error al eliminar administrador:', error);
     }
+  }
+
+  async presentCustomAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar administrador',
+      message: message,
+      buttons: ['Aceptar']
+    });
+
+    await alert.present();
   }
 }
